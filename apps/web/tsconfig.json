@@ -1,0 +1,43 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@justdiego/core": [
+        "../../packages/core/src"
+      ],
+      "@justdiego/db": [
+        "../../packages/db/src"
+      ],
+      "@justdiego/logger": [
+        "../../packages/logger/src"
+      ],
+      "@justdiego/utils": [
+        "../../packages/utils/src"
+      ],
+      "@justdiego/types": [
+        "../../packages/types/src"
+      ],
+      "@justdiego/config": [
+        "../../packages/config/src"
+      ],
+      "@justdiego/auth": [
+        "../../packages/auth/src"
+      ]
+    },
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next.config.mjs"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
