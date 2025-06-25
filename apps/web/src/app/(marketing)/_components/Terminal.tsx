@@ -53,6 +53,8 @@ export default function InteractiveTerminal() {
             "!contact - Get in touch",
             "!clear - Clear terminal",
         ],
+        "!clear": [
+        ],
     }
 
     const availableCommands = Object.keys(commands)
@@ -60,7 +62,7 @@ export default function InteractiveTerminal() {
     useEffect(() => {
         if (input) {
             const filtered = availableCommands.filter((cmd) => cmd.toLowerCase().includes(input.toLowerCase()))
-            setSuggestions(filtered.slice(0, 3))
+            setSuggestions(filtered)
         } else {
             setSuggestions([])
         }
@@ -110,6 +112,15 @@ export default function InteractiveTerminal() {
     const handleSuggestionClick = (suggestion: string) => {
         setInput(suggestion)
         inputRef.current?.focus()
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Tab') {
+            e.preventDefault()
+            if (suggestions.length > 0) {
+                setInput(suggestions[0])
+            }
+        }
     }
 
     return (
@@ -192,6 +203,7 @@ export default function InteractiveTerminal() {
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     className="flex-1 bg-transparent outline-none text-white"
                     placeholder="Type a command..."
                     autoFocus

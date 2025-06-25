@@ -100,7 +100,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
                                 height={720}
                                 className="w-full h-auto aspect-video object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent pointer-events-none" />
                         </motion.div>
                     </motion.div>
 

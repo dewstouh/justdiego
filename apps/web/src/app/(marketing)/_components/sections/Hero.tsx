@@ -14,7 +14,7 @@ export default function HeroSection() {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-8 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-8 bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                         DIEGO RODRÍGUEZ
                     </h1>
                 </motion.div>

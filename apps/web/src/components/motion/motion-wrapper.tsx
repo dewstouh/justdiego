@@ -1,43 +1,21 @@
-'use client';
+"use client";
 
-import { type ReactNode, useEffect, useState } from 'react';
-import { motion, type MotionProps } from 'framer-motion';
+import { motion } from "framer-motion";
+import React, { ElementType, forwardRef, ReactNode } from "react";
 
-interface MotionWrapperProps extends MotionProps {
+interface MotionWrapperProps {
+  type?: keyof typeof motion;
   children: ReactNode;
-  className?: string;
-  fallback?: ReactNode;
+  [key: string]: unknown;
 }
 
-/**
- * SSR-compatible wrapper for framer-motion components.
- * Prevents hydration mismatches by only rendering motion after client-side mount.
- */
-export function MotionWrapper({
-  children,
-  className,
-  fallback,
-  ...motionProps
-}: MotionWrapperProps) {
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  // Return fallback or static version during SSR
-  if (!hasMounted) {
-    return (
-      <div className={className}>
-        {fallback ?? children}
-      </div>
-    );
-  }
-
-  // Return motion component after client-side mount
+export const MotionWrapper = forwardRef<unknown, MotionWrapperProps>(({ type = "div", children, ...props }, ref) => {
+  const Component = motion[type as keyof typeof motion] as ElementType;
   return (
-    <motion.div className={className} {...motionProps}>
+    <Component ref={ref} {...props}>
       {children}
-    </motion.div>
+    </Component>
   );
-}
+});
+
+MotionWrapper.displayName = "MotionWrapper";

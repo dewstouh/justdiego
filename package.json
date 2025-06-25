@@ -1,73 +1,56 @@
 {
-  "name": "justdiego-monorepo",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Enterprise monorepo with Nx, pnpm, and TypeScript",
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
-  },
-  "scripts": {
-    "build": "nx run-many --target=build --all",
-    "dev": "nx run-many --target=dev --all",
-    "lint": "nx run-many --target=lint --all",
-    "test": "nx run-many --target=test --all",
-    "type-check": "nx run-many --target=type-check --all",
-    "clean": "nx reset && rm -rf node_modules && rm -rf dist",
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "@nx/eslint-plugin": "^19.8.4",
-    "@nx/js": "19.8.4",
-    "@nx/next": "19.8.4",
-    "@nx/workspace": "19.8.4",
-    "@types/node": "^24.0.3",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^15.3.4",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.5.2",
-    "nx": "19.8.4",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3",
-    "vitest": "^1.6.1"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+    "name": "justdiego-monorepo",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Enterprise monorepo with Nx, pnpm, and TypeScript",
+    "packageManager": "pnpm@9.0.0",
+    "engines": {
+        "node": ">=20.0.0",
+        "pnpm": ">=9.0.0"
+    },
+    "scripts": {
+        "build": "nx run-many --target=build --all",
+        "dev": "nx run-many --target=dev --all",
+        "lint": "nx run-many --target=lint --all",
+        "test": "nx run-many --target=test --all",
+        "type-check": "nx run-many --target=type-check --all",
+        "clean": "nx reset && rm -rf node_modules && rm -rf dist",
+        "prepare": "husky install"
+    },
+    "devDependencies": {
+        "@nx/eslint-plugin": "^21.2.1",
+        "@nx/js": "21.2.1",
+        "@nx/next": "21.2.1",
+        "@nx/workspace": "21.2.1",
+        "@types/node": "^24.0.3",
+        "@types/react": "^19.1.8",
+        "@types/react-dom": "^19.1.6",
+        "@typescript-eslint/eslint-plugin": "^8.34.1",
+        "@typescript-eslint/parser": "^8.34.1",
+        "eslint": "^9.29.0",
+        "eslint-config-next": "^15.3.4",
+        "eslint-config-prettier": "^10.1.5",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.1.2",
+        "nx": "21.2.1",
+        "prettier": "^3.5.3",
+        "typescript": "^5.8.3",
+        "vitest": "^3.2.4"
+    },
+    "workspaces": [
+        "apps/*",
+        "packages/*"
     ],
-    "*.{json,md,yml,yaml}": [
-      "prettier --write"
-    ]
-  },
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "date-fns": "^3.6.0",
-    "framer-motion": "^12.18.1",
-    "lucide-react": "^0.522.0",
-    "next": "15.3.4",
-    "pino": "^9.7.0",
-    "pino-pretty": "^11.0.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss": "^3.4.1",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.0"
-  }
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,md,yml,yaml}": [
+            "prettier --write"
+        ]
+    }
 }

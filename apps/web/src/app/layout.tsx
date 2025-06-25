@@ -1,8 +1,9 @@
+import "./globals.css"
 import type React from "react"
 import type { Metadata } from "next"
-import "./globals.css"
 import Navbar from "@/app/components/Navbar"
 import { Inter } from "next/font/google"
+import Footer from "@/app/components/Footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -20,8 +21,10 @@ export default function RootLayout({
     return (
         <html lang="en" className="scroll-smooth">
             <body className={inter.className}>
+                <div className="fixed inset-0 -z-10 bg-gradient-to-br from-black via-gray-900 to-black opacity-50 pointer-events-none"></div>
                 <Navbar/>
                 {children}
+                <Footer/>
             </body>
         </html>
     )
