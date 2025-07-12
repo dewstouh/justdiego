@@ -210,6 +210,9 @@ importers:
       '@justdiego/mocks':
         specifier: workspace:*
         version: link:../mocks
+      '@justdiego/types':
+        specifier: workspace:*
+        version: link:../types
       '@justdiego/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
