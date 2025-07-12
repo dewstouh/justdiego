@@ -7,3 +7,4 @@ export * from './Tag';
 export * from './Technology';
 export * from './User';
 export * from './SocialMedia';
+export * from './Customer';
