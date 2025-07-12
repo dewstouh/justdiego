@@ -4,6 +4,7 @@ import { TechnicalDetails } from "../types";
 
 export interface Solution {
     id: string;
+    title: string;
     slug: string;
     projectIds?: string[];
     customerId: string;
