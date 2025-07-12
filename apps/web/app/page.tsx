@@ -9,7 +9,7 @@ import CTA from '../components/CTA';
 export default function HomePage() {
   return (
     <div className="min-h-screen pixel-gradient flex flex-col">
-      <div className="min-h-screen w-full flex-1 flex flex-col items-center justify-center px-16 lg:px-24">
+      <div className="min-h-screen w-full flex-1 flex flex-col items-center justify-center px-8 lg:px-24">
         <Hero />
       </div>
       
@@ -18,12 +18,6 @@ export default function HomePage() {
       </div>
 
       <CTA/>
-
-      {/* Solutions Section */}
-      
-      <div className="w-full flex flex-col items-center justify-center px-16 lg:px-24">
-        <Footer />
-      </div>
 
     <KonamiCode/>
 

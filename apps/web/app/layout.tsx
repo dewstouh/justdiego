@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +35,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable}`}>
         <Navbar/>
         {children}
+        <div className="w-full flex flex-col items-center justify-center px-16 lg:px-24">
+          <Footer />
+        </div>
       </body>
     </html>
   );
