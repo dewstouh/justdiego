@@ -1,85 +1,41 @@
-interface SolutionCase {
-  id: string;
-  project: string;
-  company: string;
-  companyHref: string;
-  country: string;
-  countryFlag: string;
-  companyLogo: string;
-  result: string;
-  review: string;
-  reviewer: string;
-  reviewerAvatar: string;
-  demoUrl?: string;
-  tags: string[];
-}
+'use client';
 
-const solutionCases: SolutionCase[] = [
-  {
-    id: '1',
-    project: 'Automated CI/CD Pipeline',
-    company: 'TechFlow Commerce',
-    companyHref: 'https://techflow.com',
-    country: 'United States',
-    countryFlag: '🇺🇸',
-    companyLogo: '/company-logos/techflow.svg',
-    result: 'Reduced deploy time from 15 min to 2 min (7x faster)',
-    review: 'Deploys are now effortless and 7x faster. Changed the way our team works.',
-    reviewer: 'Sarah Chen, CTO',
-    reviewerAvatar: '/avatars/sarah-chen.jpg',
-    demoUrl: 'https://demo.techflow.com',
-    tags: ['CI/CD', 'DevOps', 'Automation']
-  },
-  {
-    id: '2',
-    project: 'Modular Discord Bot',
-    company: 'Niby Gaming',
-    companyHref: 'https://niby.gg',
-    country: 'Canada',
-    countryFlag: '🇨🇦',
-    companyLogo: '/company-logos/niby.svg',
-    result: 'Enabled moderation and logging for 2,000+ users with 99% uptime',
-    review: '99% uptime. We never worry about downtime anymore.',
-    reviewer: 'Alex Morrison, Community Manager',
-    reviewerAvatar: '/avatars/alex-morrison.jpg',
-    demoUrl: 'https://discord.gg/niby',
-    tags: ['Discord Bot', 'Moderation', 'Community']
-  },
-  {
-    id: '3',
-    project: 'Data Analytics Dashboard',
-    company: 'InsightCorp',
-    companyHref: 'https://insightcorp.io',
-    country: 'United Kingdom',
-    countryFlag: '🇬🇧',
-    companyLogo: '/company-logos/insight.svg',
-    result: 'Automated reporting saved 20 hours/week of manual work',
-    review: 'Our decision-making speed increased dramatically. The insights are crystal clear.',
-    reviewer: 'James Potter, Head of Analytics',
-    reviewerAvatar: '/avatars/james-potter.jpg',
-    demoUrl: 'https://dashboard.insightcorp.com',
-    tags: ['Analytics', 'Dashboard', 'Automation']
-  }
-];
+import { useState } from 'react';
+import Link from 'next/link';
+import { formatDate, getTimeAgo } from '@justdiego/utils';
+import { getSolutions } from '@justdiego/react-utils';
 
 export default function Solutions() {
+  const solutions = getSolutions();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const openImageModal = (imageSrc: string) => {
+    setSelectedImage(imageSrc);
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <section className="w-full max-w-[55rem] mx-auto px-4 py-16">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-          SOLUTIONS IN ACTION
+SOLUTIONS IN ACTION
         </h2>
         <div className="w-32 h-1 bg-gray-900 mx-auto mb-6"></div>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Real results from real businesses. See how custom automation and solutions 
-          have impacted companies worldwide.
-        </p>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Identifying problems. Delivering solutions. Automating outcomes.
+          </p>
+          <p className="text-xs text-gray-400 mt-2">
+            (This section is always up-to-date with the latest work delivered.)
+          </p>
       </div>
 
       {/* Solutions Grid */}
       <div className="grid gap-8 lg:gap-12">
-        {solutionCases.map((solution) => (
+        {solutions.slice(0, 2).map((solution) => (
           <div key={solution.id} className="relative">
             {/* Separator Line */}
             <div className="w-full border-t-2 border-gray-400 mb-8 relative">
@@ -113,6 +69,9 @@ export default function Solutions() {
                       <span className="text-lg">{solution.countryFlag}</span>
                       <span>{solution.country}</span>
                     </div>
+                    <div className="text-sm text-gray-500 font-mono mt-1">
+                      Completed: {formatDate(solution.completedDate)} • {getTimeAgo(solution.completedDate)}
+                    </div>
                   </div>
                 </div>
 
@@ -121,10 +80,15 @@ export default function Solutions() {
                   <h4 className="font-bold text-lg text-gray-900 mb-3">
                                 Objective: {solution.project}
                   </h4>
+
+                  <div className="bg-red-50 border-2 border-red-200 p-4 mb-4">
+                    <h5 className="font-bold text-sm text-red-700 mb-2">PROBLEM:</h5>
+                    <p className="text-red-900 font-mono text-sm">{solution.problem}</p>
+                  </div>
                   
-                  <div className="bg-gray-50 border-2 border-gray-200 p-4 mb-4">
-                    <h5 className="font-bold text-sm text-gray-700 mb-2">RESULT:</h5>
-                    <p className="text-gray-900 font-mono text-sm">{solution.result}</p>
+                  <div className="bg-green-50 border-2 border-green-200 p-4 mb-4">
+                    <h5 className="font-bold text-sm text-green-700 mb-2">RESULT:</h5>
+                    <p className="text-green-900 font-mono text-sm">{solution.result}</p>
                   </div>
 
                   {/* Tags */}
@@ -141,7 +105,7 @@ export default function Solutions() {
                 </div>
               </div>
 
-              {/* Right Column - Review & Demo */}
+              {/* Right Column - Review, Screenshots & Demo */}
               <div className="space-y-6">
                 {/* Review */}
                 <div className="bg-white border-2 border-gray-900 p-6">
@@ -165,14 +129,45 @@ export default function Solutions() {
                   </div>
                 </div>
 
+                {/* Screenshots Gallery */}
+                <div className="space-y-3">
+                  <h5 className="font-bold text-sm text-gray-700 mb-3">ATTACHMENTS:</h5>
+                  <div className="grid grid-cols-3 gap-2">
+                    {solution.screenshots.map((screenshot, index) => (
+                      <div
+                        key={index}
+                        className="relative group cursor-pointer"
+                        onClick={() => openImageModal(screenshot)}
+                      >
+                        <div className="w-full h-24 bg-gray-200 border-2 border-gray-300 hover:border-gray-900 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
+                          <div className="text-center">
+                            <div className="w-8 h-8 bg-gray-400 mx-auto mb-1 flex items-center justify-center">
+                              <span className="text-white text-xs">📷</span>
+                            </div>
+                            <span className="text-xs text-gray-600 font-mono">
+                              Screenshot {index + 1}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                          <span className="text-white text-xs font-bold bg-black bg-opacity-50 px-2 py-1">
+                            Click to view
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Demo Button */}
                 {solution.demoUrl && (
                   <div className="text-center">
-                    <button
-                      className="bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900"
+                    <Link
+                      href={`/solutions/${solution.slug}`}
+                      className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 transition-all duration-200"
                     >
                       VIEW CASE →
-                    </button>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -180,6 +175,54 @@ export default function Solutions() {
           </div>
         ))}
       </div>
+
+      {/* Show More Button */}
+      {solutions.length > 2 && (
+        <div className="text-center mt-20">
+          <div className="w-full border-t border-gray-200 mb-8"></div>
+          <a
+            href="/solutions"
+            className="inline-block bg-white text-gray-900 px-8 py-3 border-2 border-gray-300 font-bold hover:border-gray-900 hover:bg-gray-50 transition-all duration-200"
+          >
+            VIEW ALL SOLUTIONS →
+          </a>
+        </div>
+      )}
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+          onClick={closeImageModal}
+        >
+          <div className="relative max-w-4xl max-h-full">
+            <button
+              onClick={closeImageModal}
+              className="absolute top-4 right-4 text-white text-2xl font-bold bg-black bg-opacity-50 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-75 z-10"
+            >
+              ×
+            </button>
+            <div className="bg-white border-4 border-gray-300 p-4 max-h-[90vh] overflow-auto">
+              <div className="w-full h-96 bg-gray-100 border-2 border-gray-300 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gray-400 mx-auto mb-4 flex items-center justify-center text-2xl">
+                    📷
+                  </div>
+                  <p className="text-gray-600 font-mono text-sm mb-2">Screenshot Preview</p>
+                  <p className="text-xs text-gray-500">
+                    {selectedImage}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <p className="text-sm text-gray-600 font-mono">
+                  Click outside or the × button to close
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </section>
   );
