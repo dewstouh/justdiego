@@ -1,6 +1,6 @@
 import { Customer, CustomerEnum } from '@justdiego/types';
 
-export const Customers: Customer[] = [
+export const customersMock: Customer[] = [
     {
         id: 'customer-techflow',
         type: CustomerEnum.Company

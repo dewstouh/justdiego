@@ -1,6 +1,6 @@
 import { Review } from '@justdiego/types';
 
-export const Reviews: Review[] = [
+export const reviewsMock: Review[] = [
     {
         id: 'review-sarah-chen',
         authorId: 'author-sarah-chen',

@@ -1,6 +1,6 @@
 import { Project } from '@justdiego/types';
 
-export const Projects: Project[] = [
+export const projectsMock: Project[] = [
     {
         id: 'proj-1',
         slug: 'automated-cicd-pipeline-techflow-commerce',
