@@ -1,4 +1,4 @@
-export enum CustomerType {
+export enum CustomerEnum {
     User = "user",
     Company = "company",
 }

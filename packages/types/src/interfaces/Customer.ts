@@ -1,4 +1,4 @@
-import { CustomerType } from "../enums";
+import { CustomerType } from "../types";
 
 export interface Customer {
     id: string;

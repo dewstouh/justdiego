@@ -1,3 +1,3 @@
-import { CustomerType } from "../enums/CustomerType";
+import { CustomerEnum } from "../enums/CustomerType";
 
-export type Customer = `${CustomerType}`
+export type CustomerType = `${CustomerEnum}`
