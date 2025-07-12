@@ -1,5 +1,4 @@
-import { SolutionCase } from "../types/solution";
-
+import { SolutionCase } from '@justdiego/types';
 
 export const solutionCases: SolutionCase[] = [
     {
