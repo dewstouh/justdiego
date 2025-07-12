@@ -3,6 +3,7 @@
 ## Features
 - [ ] Create page template for pages
 - [ ] Add book a call section with Calendly
+- [ ] Auto PDF generation for solutions
 
 ## Improvements
 - [ ] Add `AutoBreadcrumb` to all pages
@@ -13,4 +14,8 @@
 - [ ] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
 - [ ] Fix paddings on pages so they all have the same margings
 - [ ] Use actual title in solution slug broadcrumb instead of replacing
-- [ ] Fix buttons from @justdiego/ui not applying proper CSS 
+
+
+
+## DONE
+- [x] ~~Fix buttons from @justdiego/ui not applying proper CSS~~
