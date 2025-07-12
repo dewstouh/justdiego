@@ -4,6 +4,9 @@
 - [ ] Create page template for pages
 - [ ] Add book a call section with Calendly
 - [ ] Auto PDF generation for solutions
+- [ ] Add Policies
+- [ ] Add CONTRIBUTING and related documents
+- [ ] Create dev branch for development and leave main for production
 
 ## Improvements
 - [ ] Add `AutoBreadcrumb` to all pages
