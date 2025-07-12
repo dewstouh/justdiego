@@ -13,8 +13,8 @@
   "dependencies": {
     "@justdiego/ui": "workspace:*",
     "@justdiego/utils": "workspace:*",
+    "@justdiego/react-utils": "workspace:*",
     "@justdiego/constants": "workspace:*",
-    "@justdiego/mocks": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "next": "^15.3.0",
     "postcss": "^8.5.6",
