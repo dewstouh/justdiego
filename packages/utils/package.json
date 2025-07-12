@@ -1,0 +1,24 @@
+{
+  "name": "@justdiego/utils",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/*.tsx"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@justdiego/eslint-config": "workspace:*",
+    "@justdiego/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "eslint": "^9.30.0",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
+}
