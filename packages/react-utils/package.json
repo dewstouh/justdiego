@@ -15,6 +15,7 @@
     "@justdiego/eslint-config": "workspace:*",
     "@justdiego/typescript-config": "workspace:*",
     "@justdiego/mocks": "workspace:*",
+    "@justdiego/types": "workspace:*",
     "@types/node": "^22.15.3",
     "eslint": "^9.30.0",
     "@types/react": "19.1.0",
