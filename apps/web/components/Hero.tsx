@@ -11,7 +11,7 @@ export default function Hero() {
         
         {/* Subtitle */}
         <p className="text-base md:text-lg text-gray-700 mb-6">
-          Scale, manage, optimize & automate your systems
+          Turning hours into minutes, automate your business & stop wasting money.
         </p>
         
         {/* Powered by */}
@@ -42,7 +42,7 @@ export default function Hero() {
               <rect x="6" y="2" width="2" height="4" rx="1" fill="black" />
               <rect x="12" y="2" width="2" height="4" rx="1" fill="black" />
             </svg>
-            <a href="">BOOK A CALL</a>
+            BOOK A CALL
           </CTAButton>
         </div>
       </div>
