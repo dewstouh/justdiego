@@ -8,6 +8,10 @@ body {
   font-weight: 400;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Pixel gradient background */
 .pixel-gradient {
   background: linear-gradient(135deg, #dedede 0%, #ffffff 100%);
