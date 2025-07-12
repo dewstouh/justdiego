@@ -1,5 +1,9 @@
-# justdiego.com
-This is my personal portfolio website, showcasing my work and projects. It is built with Next.js and Tailwind CSS, providing a modern and responsive design.
+# [`justdiego.com`](https://justdiego.com) - Portfolio & Solutions Platform
+---
 
-# Roadmap
-**Day 0:** - [ ] MVP Online
+![](./assets/preview.png)
+
+
+---
+
+> *Diego Rodriguez, Founder & CTO — justdiego.com*
