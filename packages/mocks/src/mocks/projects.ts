@@ -1,0 +1,163 @@
+import { Project } from '@justdiego/types';
+
+export const Projects: Project[] = [
+    {
+        id: 'proj-1',
+        slug: 'automated-cicd-pipeline-techflow-commerce',
+        problem: 'Manual deployments taking 15+ minutes with frequent errors and downtime',
+        result: 'Reduced deploy time from 15 min to 2 min (7x faster)',
+        reviewIds: ['review-sarah-chen'],
+        attachments: [
+            '/screenshots/techflow-before.jpg',
+            '/screenshots/techflow-after.jpg',
+            '/screenshots/techflow-dashboard.jpg'
+        ],
+        customerIds: ['customer-techflow'],
+        demoUrl: 'https://demo.techflow.com',
+        tagIds: ['tag-cicd', 'tag-devops', 'tag-automation'],
+        completedAt: new Date('2024-11-15'),
+        startedAt: new Date('2024-10-01'),
+        shortDescription: 'Complete automation of deployment pipeline for e-commerce platform, reducing deployment time by 700% and eliminating manual errors.',
+        fullDescription: 'TechFlow Commerce was struggling with a manual deployment process that was taking over 15 minutes per deployment, causing frequent downtime and errors that affected their customer experience. Their development team was spending hours each week managing deployments instead of building features. We implemented a complete CI/CD pipeline automation solution that transformed their development workflow.',
+        technicalDetails: [
+            {
+                title: 'Pipeline Architecture',
+                content: 'Designed a multi-stage pipeline using GitHub Actions with automatic testing, building, and deployment stages. Implemented Docker containerization for consistent environments across development, staging, and production.'
+            },
+            {
+                title: 'Automated Testing',
+                content: 'Integrated comprehensive test suites including unit tests, integration tests, and end-to-end tests. Set up code quality checks with ESLint, Prettier, and security scanning with Snyk.'
+            },
+            {
+                title: 'Zero-Downtime Deployment',
+                content: 'Implemented blue-green deployment strategy with automated rollback capabilities. Used Kubernetes for orchestration and load balancing during deployment transitions.'
+            },
+            {
+                title: 'Monitoring & Alerts',
+                content: 'Set up comprehensive monitoring with Prometheus and Grafana, including deployment success rates, performance metrics, and automated alerting via Slack integration.'
+            }
+        ],
+        challenges: [
+            'Legacy codebase with complex dependencies',
+            'Multiple environments with different configurations',
+            'Zero tolerance for downtime during peak shopping hours',
+            'Team needed training on new deployment workflows'
+        ],
+        outcomes: [
+            '700% faster deployment time (15 min → 2 min)',
+            'Zero deployment-related downtime since implementation',
+            '90% reduction in deployment errors',
+            'Development team can now focus on features instead of deployments',
+            'Automatic rollback prevented 3 potential incidents'
+        ],
+        technologyIds: ['tech-github-actions', 'tech-docker', 'tech-kubernetes', 'tech-aws-ecs', 'tech-prometheus', 'tech-grafana', 'tech-snyk', 'tech-slack'],
+        createdAt: new Date('2024-10-01'),
+        updatedAt: new Date('2024-11-20')
+    },
+    {
+        id: 'proj-2',
+        slug: 'discord-bot-moderation-niby-gaming',
+        problem: 'Community management chaos with 2,000+ users and no automated moderation',
+        result: 'Enabled moderation and logging for 2,000+ users with 99% uptime',
+        reviewIds: ['review-alex-morrison'],
+        attachments: [
+            '/screenshots/niby-bot-commands.jpg',
+            '/screenshots/niby-moderation.jpg',
+            '/screenshots/niby-analytics.jpg'
+        ],
+        customerIds: ['customer-niby'],
+        demoUrl: 'https://discord.gg/niby',
+        tagIds: ['tag-discord', 'tag-moderation', 'tag-community'],
+        completedAt: new Date('2025-02-28'),
+        startedAt: new Date('2025-01-15'),
+        shortDescription: 'Custom Discord bot with advanced moderation features, analytics, and community management tools for 2,000+ active gaming community members.',
+        fullDescription: 'Niby Gaming had a rapidly growing Discord community of over 2,000 gamers but lacked proper moderation tools. Manual moderation was becoming impossible, with inappropriate content, spam, and rule violations overwhelming their small team of moderators. We built a comprehensive Discord bot solution that automated community management while providing detailed analytics.',
+        technicalDetails: [
+            {
+                title: 'Modular Architecture',
+                content: 'Built using Discord.js with a modular command system, allowing easy addition of new features. Implemented slash commands for better user experience and auto-completion.'
+            },
+            {
+                title: 'Advanced Moderation',
+                content: 'Automated detection of spam, inappropriate language, and rule violations using machine learning. Implemented configurable punishment system with warnings, mutes, kicks, and bans.'
+            },
+            {
+                title: 'Analytics Dashboard',
+                content: 'Real-time analytics showing member activity, most active channels, moderation actions, and community growth metrics. Data visualization with charts and graphs.'
+            },
+            {
+                title: 'Custom Game Integration',
+                content: 'Integration with popular gaming APIs to show player stats, leaderboards, and game-specific commands. Automated role assignment based on game achievements.'
+            }
+        ],
+        challenges: [
+            'Handling high message volume (1000+ messages/hour)',
+            'Complex permission system for different user roles',
+            'Integration with multiple gaming platforms',
+            'Maintaining 99% uptime with Discord API rate limits'
+        ],
+        outcomes: [
+            '99.2% uptime since deployment',
+            '85% reduction in manual moderation work',
+            'Automated handling of 500+ moderation actions per week',
+            'Community growth increased by 40% after implementation',
+            'Zero major incidents or community disruptions'
+        ],
+        technologyIds: ['tech-nodejs', 'tech-discordjs', 'tech-postgresql', 'tech-redis', 'tech-pm2', 'tech-chartjs', 'tech-docker'],
+        createdAt: new Date('2025-01-15'),
+        updatedAt: new Date('2025-03-05')
+    },
+    {
+        id: 'proj-3',
+        slug: 'analytics-dashboard-insightcorp',
+        problem: 'Manual reporting consuming 20+ hours weekly with error-prone data collection',
+        result: 'Automated reporting saved 20 hours/week of manual work',
+        reviewIds: ['review-james-potter'],
+        attachments: [
+            '/screenshots/insight-dashboard.jpg',
+            '/screenshots/insight-reports.jpg',
+            '/screenshots/insight-analytics.jpg'
+        ],
+        customerIds: ['customer-insight'],
+        demoUrl: 'https://dashboard.insightcorp.com',
+        tagIds: ['tag-analytics', 'tag-dashboard', 'tag-automation'],
+        completedAt: new Date('2025-05-20'),
+        startedAt: new Date('2025-04-01'),
+        shortDescription: 'Real-time analytics dashboard with automated reporting, saving 20+ hours weekly and providing actionable business insights.',
+        fullDescription: 'InsightCorp was drowning in manual data collection and reporting processes. Their analytics team spent over 20 hours each week manually gathering data from multiple sources, creating reports, and trying to identify trends. The process was error-prone and insights were often outdated by the time reports were completed. We built a comprehensive real-time analytics dashboard that automated their entire reporting workflow.',
+        technicalDetails: [
+            {
+                title: 'Data Integration',
+                content: 'Connected multiple data sources including Google Analytics, CRM systems, social media APIs, and internal databases. Built ETL pipelines for real-time data processing and normalization.'
+            },
+            {
+                title: 'Interactive Dashboard',
+                content: 'Created responsive dashboard with customizable widgets, real-time charts, and drill-down capabilities. Users can filter by date ranges, segments, and custom parameters.'
+            },
+            {
+                title: 'Automated Reporting',
+                content: 'Scheduled automatic report generation and distribution via email and Slack. Custom report templates for different stakeholders with relevant KPIs and insights.'
+            },
+            {
+                title: 'Predictive Analytics',
+                content: 'Implemented machine learning models for trend prediction and anomaly detection. Automated alerts when metrics deviate from expected patterns.'
+            }
+        ],
+        challenges: [
+            'Integrating 8 different data sources with varying APIs',
+            'Processing large datasets in real-time',
+            'Creating intuitive visualizations for non-technical users',
+            'Ensuring data accuracy and consistency across sources'
+        ],
+        outcomes: [
+            '20+ hours saved weekly on manual reporting',
+            'Real-time insights instead of week-old data',
+            '95% reduction in data accuracy errors',
+            'Decision-making speed increased by 60%',
+            'Identified 3 new revenue opportunities through trend analysis'
+        ],
+        technologyIds: ['tech-react', 'tech-d3js', 'tech-nodejs', 'tech-python', 'tech-pandas', 'tech-postgresql', 'tech-redis', 'tech-airflow', 'tech-aws-lambda'],
+        createdAt: new Date('2025-04-01'),
+        updatedAt: new Date('2025-05-25')
+    }
+];
