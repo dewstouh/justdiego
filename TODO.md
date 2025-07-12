@@ -1,0 +1,1 @@
+- [ ] Fix paddings on pages so they all have the same margings
