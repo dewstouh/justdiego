@@ -34,7 +34,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`/${item.toLowerCase()}`}
               className="text-xs md:text-sm font-bold text-gray-900 px-3 py-2 thick-underline transition-none"
             >
               {item.toUpperCase()}
@@ -60,7 +60,7 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={`/${item.toLowerCase()}`}
                   className="text-sm font-bold text-gray-900 px-6 py-3 hover:bg-gray-100"
                   onClick={closeMobileMenu}
                 >
