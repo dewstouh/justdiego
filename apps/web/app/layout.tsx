@@ -20,8 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Diego - Developer Portfolio",
-  description: "Solutions for your business. Scale, manage, optimize & automate your systems.",
+  title: "Diego - Business Solutions",
+  description: "Turning hours into minutes, automate your business & stop wasting money.",
 };
 
 export default function RootLayout({
