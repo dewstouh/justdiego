@@ -36,7 +36,7 @@ interface CTAButtonProps {
 }
 
 export const CTAButton = ({ variant = "primary", className, children, href }: CTAButtonProps) => {
-  const baseClasses = "px-12 py-6 w-full text-base font-bold transition-none flex items-center justify-center gap-3 border-2";
+  const baseClasses = "px-12 py-4 w-full text-base font-bold transition-none flex items-center justify-center gap-3 border-2";
   
   const variantClasses = {
     primary: "bg-black text-white border-gray-900 hover:bg-gray-900",
