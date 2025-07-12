@@ -1,7 +1,6 @@
 
 import Hero from '../components/Hero';
 import Solutions from '../components/Solutions';
-import Footer from '../components/Footer';
 import KonamiCode from '../components/KonamiCode';
 import CTA from '../components/CTA';
 
