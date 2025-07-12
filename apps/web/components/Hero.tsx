@@ -2,7 +2,7 @@ import { CTAButton } from "@justdiego/ui/button";
 
 export default function Hero() {
   return (
-    <main className="flex-1 flex items-center justify-center w-full">
+    <main className="flex-1 flex items-center justify-center w-full relative">
       <div className="text-center max-w-4xl mx-auto">
         {/* Main Headline */}
         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-1 leading-tight">
@@ -45,6 +45,35 @@ export default function Hero() {
             BOOK A CALL
           </CTAButton>
         </div>
+        
+        {/* Process Steps */}
+        <div className="mt-8">
+          <div className="flex flex-col sm:flex-row justify-center items-center font-mono text-xs sm:text-sm text-gray-500 gap-2 sm:gap-8 tracking-wide sm:tracking-widest">
+            <div className="text-center">
+              <div>1. Identify</div>
+              <div className="block sm:hidden text-xs mt-1">↓</div>
+            </div>
+            <span className="hidden sm:inline mx-2">→</span>
+            <div className="text-center">
+              <div>2. Deliver</div>
+              <div className="block sm:hidden text-xs mt-1">↓</div>
+            </div>
+            <span className="hidden sm:inline mx-2">→</span>
+            <div className="text-center">
+              <div>3. Automate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Ghost Link - Positioned at bottom */}
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2">
+        <a 
+          href="#solutions" 
+          className="text-sm text-gray-500 hover:text-gray-700 font-mono transition-colors duration-200"
+        >
+          ↓ Take a look
+        </a>
       </div>
     </main>
   );
