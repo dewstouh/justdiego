@@ -1,28 +1,25 @@
-import { SolutionCase } from '@justdiego/types';
+import { Solution } from '@justdiego/types';
 
-export const solutionCases: SolutionCase[] = [
+export const solutionsMock: Solution[] = [
     {
         id: '1',
+        title: 'Automated CI/CD Pipeline for E-commerce',
         slug: 'automated-cicd-pipeline-techflow-commerce',
-        project: 'Automated CI/CD Pipeline for E-commerce',
-        company: 'TechFlow Commerce',
-        companyHref: 'https://techflow.com',
-        country: 'United States',
-        countryFlag: '🇺🇸',
-        companyLogo: '/company-logos/techflow.svg',
+        projectIds: ['proj-1'],
+        customerId: 'customer-techflow',
+        countryId: 'us',
+        tagIds: ['tag-cicd', 'tag-devops', 'tag-automation'],
+        technologyIds: ['tech-github-actions', 'tech-docker', 'tech-kubernetes', 'tech-aws-ecs', 'tech-prometheus', 'tech-grafana', 'tech-snyk', 'tech-slack'],
         problem: 'Manual deployments taking 15+ minutes with frequent errors and downtime',
         result: 'Reduced deploy time from 15 min to 2 min (7x faster)',
-        review: 'Deploys are now effortless and 7x faster. Changed the way our team works.',
-        reviewer: 'Sarah Chen, CTO',
-        reviewerAvatar: '/avatars/sarah-chen.jpg',
-        screenshots: [
+        reviewId: 'review-sarah-chen',
+        attachments: [
             '/screenshots/techflow-before.jpg',
             '/screenshots/techflow-after.jpg',
             '/screenshots/techflow-dashboard.jpg'
         ],
         demoUrl: 'https://demo.techflow.com',
-        tags: ['CI/CD', 'DevOps', 'Automation'],
-        completedDate: '2024-11-15',
+        completedAt: new Date('2024-11-15'),
         shortDescription: 'Complete automation of deployment pipeline for e-commerce platform, reducing deployment time by 700% and eliminating manual errors.',
         fullDescription: 'TechFlow Commerce was struggling with a manual deployment process that was taking over 15 minutes per deployment, causing frequent downtime and errors that affected their customer experience. Their development team was spending hours each week managing deployments instead of building features. We implemented a complete CI/CD pipeline automation solution that transformed their development workflow.',
         technicalDetails: [
@@ -56,30 +53,28 @@ export const solutionCases: SolutionCase[] = [
             'Development team can now focus on features instead of deployments',
             'Automatic rollback prevented 3 potential incidents'
         ],
-        technologies: ['GitHub Actions', 'Docker', 'Kubernetes', 'AWS ECS', 'Prometheus', 'Grafana', 'Snyk', 'Slack API']
+        createdAt: new Date('2024-10-01'),
+        updatedAt: new Date('2024-11-20')
     },
     {
         id: '2',
+        title: 'Advanced Discord Bot for Gaming Community',
         slug: 'discord-bot-moderation-niby-gaming',
-        project: 'Advanced Discord Bot for Gaming Community',
-        company: 'Niby Gaming',
-        companyHref: 'https://niby.gg',
-        country: 'Canada',
-        countryFlag: '🇨🇦',
-        companyLogo: '/company-logos/niby.svg',
+        projectIds: ['proj-2'],
+        customerId: 'customer-niby',
+        countryId: 'ca',
+        tagIds: ['tag-discord', 'tag-moderation', 'tag-community'],
+        technologyIds: ['tech-nodejs', 'tech-discordjs', 'tech-postgresql', 'tech-redis', 'tech-pm2', 'tech-chartjs', 'tech-docker'],
         problem: 'Community management chaos with 2,000+ users and no automated moderation',
         result: 'Enabled moderation and logging for 2,000+ users with 99% uptime',
-        review: '99% uptime. We never worry about downtime anymore.',
-        reviewer: 'Alex Morrison, Community Manager',
-        reviewerAvatar: '/avatars/alex-morrison.jpg',
-        screenshots: [
+        reviewId: 'review-alex-morrison',
+        attachments: [
             '/screenshots/niby-bot-commands.jpg',
             '/screenshots/niby-moderation.jpg',
             '/screenshots/niby-analytics.jpg'
         ],
         demoUrl: 'https://discord.gg/niby',
-        tags: ['Discord Bot', 'Moderation', 'Community'],
-        completedDate: '2025-02-28',
+        completedAt: new Date('2025-02-28'),
         shortDescription: 'Custom Discord bot with advanced moderation features, analytics, and community management tools for 2,000+ active gaming community members.',
         fullDescription: 'Niby Gaming had a rapidly growing Discord community of over 2,000 gamers but lacked proper moderation tools. Manual moderation was becoming impossible, with inappropriate content, spam, and rule violations overwhelming their small team of moderators. We built a comprehensive Discord bot solution that automated community management while providing detailed analytics.',
         technicalDetails: [
@@ -113,30 +108,28 @@ export const solutionCases: SolutionCase[] = [
             'Community growth increased by 40% after implementation',
             'Zero major incidents or community disruptions'
         ],
-        technologies: ['Node.js', 'Discord.js', 'PostgreSQL', 'Redis', 'PM2', 'Chart.js', 'Gaming APIs', 'Docker']
+        createdAt: new Date('2025-01-15'),
+        updatedAt: new Date('2025-03-05')
     },
     {
         id: '3',
+        title: 'Real-time Analytics Dashboard',
         slug: 'analytics-dashboard-insightcorp',
-        project: 'Real-time Analytics Dashboard',
-        company: 'InsightCorp',
-        companyHref: 'https://insightcorp.io',
-        country: 'United Kingdom',
-        countryFlag: '🇬🇧',
-        companyLogo: '/company-logos/insight.svg',
+        projectIds: ['proj-3'],
+        customerId: 'customer-insight',
+        countryId: 'gb',
+        tagIds: ['tag-analytics', 'tag-dashboard', 'tag-automation'],
+        technologyIds: ['tech-react', 'tech-d3js', 'tech-nodejs', 'tech-python', 'tech-pandas', 'tech-postgresql', 'tech-redis', 'tech-airflow', 'tech-aws-lambda'],
         problem: 'Manual reporting consuming 20+ hours weekly with error-prone data collection',
         result: 'Automated reporting saved 20 hours/week of manual work',
-        review: 'Our decision-making speed increased dramatically. The insights are crystal clear.',
-        reviewer: 'James Potter, Head of Analytics',
-        reviewerAvatar: '/avatars/james-potter.jpg',
-        screenshots: [
+        reviewId: 'review-james-potter',
+        attachments: [
             '/screenshots/insight-dashboard.jpg',
             '/screenshots/insight-reports.jpg',
             '/screenshots/insight-analytics.jpg'
         ],
         demoUrl: 'https://dashboard.insightcorp.com',
-        tags: ['Analytics', 'Dashboard', 'Automation'],
-        completedDate: '2025-05-20',
+        completedAt: new Date('2025-05-20'),
         shortDescription: 'Real-time analytics dashboard with automated reporting, saving 20+ hours weekly and providing actionable business insights.',
         fullDescription: 'InsightCorp was drowning in manual data collection and reporting processes. Their analytics team spent over 20 hours each week manually gathering data from multiple sources, creating reports, and trying to identify trends. The process was error-prone and insights were often outdated by the time reports were completed. We built a comprehensive real-time analytics dashboard that automated their entire reporting workflow.',
         technicalDetails: [
@@ -170,6 +163,7 @@ export const solutionCases: SolutionCase[] = [
             'Decision-making speed increased by 60%',
             'Identified 3 new revenue opportunities through trend analysis'
         ],
-        technologies: ['React', 'D3.js', 'Node.js', 'Python', 'Pandas', 'PostgreSQL', 'Redis', 'Apache Airflow', 'AWS Lambda']
+        createdAt: new Date('2025-04-01'),
+        updatedAt: new Date('2025-05-25')
     }
 ];
