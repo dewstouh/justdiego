@@ -18,6 +18,16 @@ body {
   transition: none !important;
 }
 
+/* Allow navbar transitions */
+.navbar-transition {
+  transition: all 0.3s ease !important;
+}
+
+/* Hamburger menu animations */
+.hamburger-line {
+  transition: all 0.3s ease !important;
+}
+
 /* Thick underline for navigation links */
 .thick-underline {
   text-decoration: none;
