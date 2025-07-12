@@ -18,7 +18,7 @@ export default function Solutions() {
   };
 
   return (
-    <section className="w-full max-w-[55rem] mx-auto px-4 py-16">
+    <section id='solutions' className="w-full max-w-[55rem] mx-auto px-4 py-16">
       {/* Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
