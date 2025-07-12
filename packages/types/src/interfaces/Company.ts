@@ -4,7 +4,7 @@ export interface Company {
     ownerId: string;
     countryId: string;
     name: string;
-    logo: string;
+    logoUrl: string;
     website: string;
     socialMediaLinks?: string[];
     description?: string;

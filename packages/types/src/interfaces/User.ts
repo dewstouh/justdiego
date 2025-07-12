@@ -7,7 +7,7 @@ export interface User {
     email: string;
     password: string;
     isEmailVerified: boolean;
-    avatar: string;
+    avatarUrl: string;
     bio?: string;
     createdAt: string;
     updatedAt: string;
