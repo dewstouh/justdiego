@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function CTA() {
   return (
-    <div className = "text-center mt-16 pt-8 border-t-2 border-gray-300" >
+    <div className = "text-center mb-8 pt-8 border-t-2 border-gray-300" >
       <h3 className="text-2xl font-bold text-gray-900 mb-4">
         Will your business be next?
       </h3>
