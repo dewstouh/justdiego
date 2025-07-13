@@ -4,6 +4,7 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import KonamiCode from "../components/KonamiCode";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <div className="w-full flex flex-col items-center justify-center px-16 lg:px-24">
           <Footer />
         </div>
+        <KonamiCode/>
       </body>
     </html>
   );

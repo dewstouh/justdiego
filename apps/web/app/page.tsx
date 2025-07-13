@@ -1,7 +1,6 @@
 
 import Hero from '../components/Hero';
 import Solutions from '../components/Solutions';
-import KonamiCode from '../components/KonamiCode';
 import CTA from '../components/CTA';
 
 
@@ -17,8 +16,6 @@ export default function HomePage() {
       </div>
 
       <CTA/>
-
-    <KonamiCode/>
 
     </div>
   );
