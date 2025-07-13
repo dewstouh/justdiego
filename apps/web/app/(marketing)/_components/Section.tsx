@@ -113,7 +113,7 @@ function SectionHeader({
         </p>
       )}
       <h2 className={cn('text-3xl lg:text-4xl font-bold text-gray-900 mb-4', titleClassName)}>
-        {title}
+        {title.toUpperCase()}
       </h2>
       {showDivider && (
         <div className={cn('w-32 h-1 bg-gray-900 mx-auto mb-6', dividerClassName)} />
