@@ -1,5 +1,6 @@
 import { Solution, Customer, Country, Tag } from '@justdiego/types';
 import { formatDate } from '@justdiego/utils';
+import TagList from '../../../../../components/solution-card/TagList';
 
 interface SolutionHeaderProps {
   solution: Solution;
@@ -37,16 +38,7 @@ export default function SolutionHeader({ solution, customer, country, tags }: So
       </p>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span
-            key={tag.id}
-            className="px-3 py-1 text-sm font-mono bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200 transition-colors"
-          >
-            {tag.icon} {tag.name}
-          </span>
-        ))}
-      </div>
+      <TagList tags={tags} />
     </div>
   );
 }
