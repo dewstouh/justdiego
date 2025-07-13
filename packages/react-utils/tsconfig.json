@@ -1,8 +1,12 @@
 {
-  "extends": "@justdiego/typescript-config/base.json",
+  "extends": "@justdiego/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "**/*.ts",
+    "**/*.tsx",
+],
   "exclude": ["node_modules", "dist"]
 }
