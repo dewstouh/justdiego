@@ -2,7 +2,6 @@
 # TODO List
 ## Features
 - [ ] Auto PDF generation for solutions
-- [ ] Add Policies
 - [ ] Add CONTRIBUTING and related documents
 - [ ] Create dev branch for development and leave main for production
 - [ ] Implement contact form with email sending
@@ -11,12 +10,13 @@
 ## Improvements
 
 ## Bug Fixes
-- [ ] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
-- [ ] Use actual title in solution slug broadcrumb instead of replacing
 
 
 
 ## DONE
+- [x] Use actual title in solution slug broadcrumb instead of replacing
+- [x] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
+- [x] Add Policies
 - [x] ~~Fix paddings on pages so they all have the same margings~~
 - [x] ~~Add padding top on pages~~
 - [x] ~~Add `AutoBreadcrumb` to all pages~~
