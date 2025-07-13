@@ -1,156 +1,102 @@
 "use client";
 
-import { useState } from "react";
+import { useContactForm } from './hooks/useContactForm';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/Card';
+import { FormInput, StatusMessage, SubmitButton } from './ui/FormComponents';
 
-
-
-export default function Form() {
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitStatus('idle');
-
-        try {
-            // TODO: Replace with your actual form submission endpoint
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                setSubmitStatus('success');
-                setFormData({ name: '', email: '', company: '', message: '' });
-            } else {
-                setSubmitStatus('error');
-            }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            setSubmitStatus('error');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        company: '',
-        message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
+export default function ContactForm() {
+  const {
+    formData,
+    isSubmitting,
+    submitStatus,
+    handleInputChange,
+    handleSubmit
+  } = useContactForm();
 
   return (
-      <div className="w-full max-w-4xl mx-auto">
-          <div className="bg-gray-50 border-2 border-gray-200 p-8">
-              <div className="mb-6 text-center">
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">Get in Touch</h4>
-                  <p className="text-gray-600">
-                      Tell me about your project and let&apos;s discuss how I can help.
-                  </p>
-              </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Get in Touch</CardTitle>
+        <CardDescription>
+          Tell me about your project and let&apos;s discuss how I can help.
+        </CardDescription>
+      </CardHeader>
 
-              <div className="bg-primary border-2 border-gray-300 p-6">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div>
-                              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                                  Name *
-                              </label>
-                              <input
-                                  type="text"
-                                  id="name"
-                                  name="name"
-                                  required
-                                  value={formData.name}
-                                  onChange={handleInputChange}
-                                  className="w-full px-4 py-3 border-2 border-gray-300 focus:border-gray-900 focus:outline-none transition-colors"
-                                  placeholder="Your full name"
-                              />
-                          </div>
-                          <div>
-                              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                  Email *
-                              </label>
-                              <input
-                                  type="email"
-                                  id="email"
-                                  name="email"
-                                  required
-                                  value={formData.email}
-                                  onChange={handleInputChange}
-                                  className="w-full px-4 py-3 border-2 border-gray-300 focus:border-gray-900 focus:outline-none transition-colors"
-                                  placeholder="your@email.com"
-                              />
-                          </div>
-                      </div>
+      <CardContent className="h-[600px] p-0">
+        <form onSubmit={handleSubmit} className="h-full p-6 flex flex-col">
+          <div className="space-y-4 flex-shrink-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormInput
+                id="name"
+                name="name"
+                type="text"
+                label="Name"
+                required
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Your full name"
+              />
+              
+              <FormInput
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                required
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="your@email.com"
+              />
+            </div>
 
-                      <div>
-                          <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                              Company
-                          </label>
-                          <input
-                              type="text"
-                              id="company"
-                              name="company"
-                              value={formData.company}
-                              onChange={handleInputChange}
-                              className="w-full px-4 py-3 border-2 border-gray-300 focus:border-gray-900 focus:outline-none transition-colors"
-                              placeholder="Your company name"
-                          />
-                      </div>
-
-                      <div>
-                          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                              Message *
-                          </label>
-                          <textarea
-                              id="message"
-                              name="message"
-                              required
-                              rows={5}
-                              value={formData.message}
-                              onChange={handleInputChange}
-                              className="w-full px-4 py-3 border-2 border-gray-300 focus:border-gray-900 focus:outline-none transition-colors resize-vertical"
-                              placeholder="Tell me about your project and how I can help..."
-                          />
-                      </div>
-
-                      {submitStatus === 'success' && (
-                          <div className="bg-green-50 border-2 border-green-200 text-green-800 px-4 py-3">
-                              Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.
-                          </div>
-                      )}
-
-                      {submitStatus === 'error' && (
-                          <div className="bg-red-50 border-2 border-red-200 text-red-800 px-4 py-3">
-                              Sorry, there was an error sending your message. Please try again or contact me directly.
-                          </div>
-                      )}
-
-                      <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="w-full bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-primary  transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                          {isSubmitting ? 'SENDING...' : 'SEND MESSAGE →'}
-                      </button>
-                  </form>
-              </div>
+            <FormInput
+              id="company"
+              name="company"
+              type="text"
+              label="Company"
+              value={formData.company}
+              onChange={handleInputChange}
+              placeholder="Your company name (optional)"
+            />
           </div>
-      </div>
-  )
+
+          <div className="flex-1 flex flex-col mt-4 min-h-0">
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2 flex-shrink-0">
+              Message *
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="Tell me about your project and how I can help..."
+              className="flex-1 w-full px-4 py-3 border-2 border-gray-300 focus:border-gray-900 focus:outline-none transition-colors resize-none"
+            />
+          </div>
+
+          <div className="mt-6 space-y-4 flex-shrink-0">
+            {submitStatus === 'success' && (
+              <StatusMessage type="success">
+                Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.
+              </StatusMessage>
+            )}
+
+            {submitStatus === 'error' && (
+              <StatusMessage type="error">
+                Sorry, there was an error sending your message. Please try again or contact me directly.
+              </StatusMessage>
+            )}
+
+            <SubmitButton 
+              isLoading={isSubmitting}
+              loadingText="SENDING..."
+            >
+              SEND MESSAGE →
+            </SubmitButton>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  );
 }
