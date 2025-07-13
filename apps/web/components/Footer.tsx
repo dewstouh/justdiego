@@ -1,5 +1,8 @@
+import { getLegalDocuments } from '@justdiego/react-utils';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const legalDocuments = getLegalDocuments();
 
   return (
     <footer className="w-full py-12 border-t border-gray-200">
@@ -35,17 +38,19 @@ export default function Footer() {
         {/* Legal Links */}
         <div className="text-center mb-8">
           <div className="flex flex-wrap justify-center gap-1 text-xs text-gray-400">
-            <a href="/privacy-policy" className="hover:text-gray-600 hover:underline transition-all duration-200">
-              Privacy Policy
-            </a>
-            <span className="hidden sm:inline"> · </span>
-            <a href="/terms-of-service" className="hover:text-gray-600 hover:underline transition-all duration-200">
-              Terms of Service
-            </a>
-            <span className="hidden sm:inline"> · </span>
-            <a href="/cookies-policy" className="hover:text-gray-600 hover:underline transition-all duration-200">
-              Cookies Policy
-            </a>
+            {legalDocuments.map((document, index) => (
+              <span key={document.id}>
+                <a 
+                  href={`/legal/${document.title.toLowerCase().replace(/\s+/g, '-')}`} 
+                  className="hover:text-gray-600 hover:underline transition-all duration-200"
+                >
+                  {document.title}
+                </a>
+                {index < legalDocuments.length - 1 && (
+                  <span className="hidden sm:inline"> · </span>
+                )}
+              </span>
+            ))}
           </div>
         </div>
 
