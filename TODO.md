@@ -7,6 +7,7 @@
 - [ ] Add Policies
 - [ ] Add CONTRIBUTING and related documents
 - [ ] Create dev branch for development and leave main for production
+- [ ] Add auto translation based on user browser language
 
 ## Improvements
 - [ ] Add `AutoBreadcrumb` to all pages
