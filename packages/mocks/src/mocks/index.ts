@@ -5,3 +5,4 @@ export * from './technologies';
 export * from './customers';
 export * from './reviews';
 export * from './projects';
+export * from './documents'
