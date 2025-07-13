@@ -6,6 +6,7 @@
 - [ ] Add CONTRIBUTING and related documents
 - [ ] Create dev branch for development and leave main for production
 - [ ] Implement contact form with email sending
+- [ ] Add auto translation based on user browser language
 
 ## Improvements
 - [ ] Add `AutoBreadcrumb` to all pages
