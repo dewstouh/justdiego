@@ -7,7 +7,7 @@ export default function Solutions() {
   const solutions = getSolutions();
 
   return (
-    <Section id="solutions">
+    <Section id="solutions" className='bg-primary text-gray-900'>
       <Section.Header
         title="SOLUTIONS IN ACTION"
         description="Identifying problems. Delivering solutions. Automating outcomes."
@@ -31,7 +31,7 @@ export default function Solutions() {
         <Section.Footer>
           <Link
             href="/solutions"
-            className="inline-block bg-white text-gray-900 px-8 py-3 border-2 border-gray-300 font-bold hover:border-gray-900 hover:bg-gray-50 transition-all duration-200"
+            className="inline-block bg-primary text-gray-900 px-8 py-3 border-2 border-gray-300 font-bold hover:border-gray-900 hover:bg-gray-50 transition-all duration-200"
           >
             VIEW ALL SOLUTIONS →
           </Link>

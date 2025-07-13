@@ -63,7 +63,7 @@ const paddingClasses = {
 
 const backgroundClasses = {
   transparent: '',
-  white: 'bg-white',
+  white: 'bg-primary',
   gray: 'bg-gray-50',
   primary: 'bg-gray-900',
 };

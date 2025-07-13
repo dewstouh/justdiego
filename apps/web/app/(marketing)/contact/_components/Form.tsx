@@ -63,7 +63,7 @@ export default function Form() {
                   </p>
               </div>
 
-              <div className="bg-white border-2 border-gray-300 p-6">
+              <div className="bg-primary border-2 border-gray-300 p-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
@@ -144,7 +144,7 @@ export default function Form() {
                       <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="w-full bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-primary  transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                           {isSubmitting ? 'SENDING...' : 'SEND MESSAGE →'}
                       </button>

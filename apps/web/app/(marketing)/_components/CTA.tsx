@@ -11,7 +11,7 @@ export default function CTA() {
       </p>
       <a 
         href="/contact"
-        className="bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 inline-block"
+        className="bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-primary inline-block"
       >
         CONTACT →
       </a>

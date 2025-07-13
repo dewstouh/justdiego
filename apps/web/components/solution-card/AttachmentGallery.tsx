@@ -12,7 +12,7 @@ export default function AttachmentGallery({ attachments, slug, onImageClick }: A
       <div className="text-center">
         <Link
           href={`/solutions/${slug}`}
-          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 transition-all duration-200"
+          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-primary transition-all duration-200"
         >
           VIEW CASE →
         </Link>
@@ -55,7 +55,7 @@ export default function AttachmentGallery({ attachments, slug, onImageClick }: A
       <div className="text-center">
         <Link
           href={`/solutions/${slug}`}
-          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 transition-all duration-200"
+          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-primary  transition-all duration-200"
         >
           VIEW CASE →
         </Link>

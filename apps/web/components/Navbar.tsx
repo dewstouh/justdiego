@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 w-full h-16 flex justify-center items-center z-50 navbar-transition ${
-      isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+      isScrolled ? 'bg-primary/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'
     }`}>
       <div className="w-full max-w-6xl mx-auto px-4 flex justify-between items-center md:justify-center">
         {/* Desktop Navigation */}
@@ -55,7 +55,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-16 left-0 w-full bg-white/95 backdrop-blur-sm shadow-lg md:hidden">
+          <div className="absolute top-16 left-0 w-full bg-primary/95 backdrop-blur-sm shadow-lg md:hidden">
             <div className="flex flex-col py-4">
               {navItems.map((item) => (
                 <a

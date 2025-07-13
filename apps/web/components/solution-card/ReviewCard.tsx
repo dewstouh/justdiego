@@ -8,7 +8,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
   if (!review) return null;
 
   return (
-    <div className="bg-white border-2 border-gray-900 p-6">
+    <div className="bg-primary border-2 border-gray-900 p-6">
       <div className="mb-4">
         <div className="flex items-center gap-1 mb-3">
           {[...Array(review.rating)].map((_, i) => (

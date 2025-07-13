@@ -14,11 +14,11 @@ export default function ImageModal({ selectedImage, onClose }: ImageModalProps) 
       <div className="relative max-w-4xl max-h-full">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-900 text-2xl font-bold bg-white bg-opacity-90 w-10 h-10 border-2 border-gray-900 flex items-center justify-center hover:bg-opacity-100 z-10"
+          className="absolute top-4 right-4 text-gray-900 text-2xl font-bold bg-primary bg-opacity-90 w-10 h-10 border-2 border-gray-900 flex items-center justify-center hover:bg-opacity-100 z-10"
         >
           ×
         </button>
-        <div className="bg-white border-4 border-gray-300 p-4 max-h-[90vh] overflow-auto">
+        <div className="bg-primary border-4 border-gray-300 p-4 max-h-[90vh] overflow-auto">
           <div className="w-full h-96 bg-gray-100 border-2 border-gray-300 flex items-center justify-center">
             <div className="text-center">
               <div className="w-16 h-16 bg-gray-400 mx-auto mb-4 flex items-center justify-center text-2xl">

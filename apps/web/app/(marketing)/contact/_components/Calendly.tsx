@@ -10,7 +10,7 @@ export default function Calendly() {
               </div>
 
               {/* Calendly Embed */}
-              <div className="bg-white border-2 border-gray-300 min-h-[600px] flex items-center justify-center">
+              <div className="bg-primary border-2 border-gray-300 min-h-[600px] flex items-center justify-center">
                   {/* TODO: Replace with your actual Calendly embed code */}
                   <div className="text-center">
                       <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -23,7 +23,7 @@ export default function Calendly() {
                       </p>
                       <a
                           href="mailto:hello@justdiego.com"
-                          className="inline-block bg-gray-900 text-white px-6 py-3 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 transition-colors"
+                          className="inline-block bg-gray-900 text-white px-6 py-3 border-2 border-gray-900 font-bold hover:bg-primary  transition-colors"
                       >
                           Email Me Directly →
                       </a>

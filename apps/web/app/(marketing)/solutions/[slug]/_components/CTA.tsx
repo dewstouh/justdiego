@@ -12,13 +12,13 @@ export default function CTA() {
         </p>
         <a
           href="mailto:hello@justdiego.com"
-          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 transition-all duration-200 mr-4"
+          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-primary  transition-all duration-200 mr-4"
         >
           START YOUR PROJECT →
         </a>
         <Link
           href="/solutions"
-          className="inline-block bg-white text-gray-900 px-8 py-3 border-2 border-gray-300 font-bold hover:border-gray-900 hover:bg-gray-50 transition-all duration-200"
+          className="inline-block bg-primary text-gray-900 px-8 py-3 border-2 border-gray-300 font-bold hover:border-gray-900 hover:bg-gray-50 transition-all duration-200"
         >
           VIEW MORE SOLUTIONS
         </Link>
