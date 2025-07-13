@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Import BackHomeButton - adjust path as needed
-import BackHomeButton from '../solutions/_components/BackHomeButton';
+import BackHomeButton from '../_components/BackHomeButton';
 
 // Simple utility to combine class names
 function cn(...classes: (string | undefined | null | false)[]): string {
