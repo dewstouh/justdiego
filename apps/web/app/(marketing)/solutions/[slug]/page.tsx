@@ -8,7 +8,6 @@ import ChallengesOutcomes from './_components/ChallengesOutcomes';
 import Technologies from './_components/Technologies';
 import ClientReview from './_components/ClientReview';
 import CTA from './_components/CTA';
-import AutoBreadcrumb from '../../../../components/AutoBreadcrumb';
 
 export async function generateStaticParams() {
   const solutions = getSolutions();
