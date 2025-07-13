@@ -56,36 +56,34 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
   const review = solution.reviewId ? getReview(solution.reviewId) : null;
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-5xl mx-auto px-4 py-16">
-        <AutoBreadcrumb customLabels={{
-          [solution.slug]: customer?.id.replace('customer-', '').replace('-', ' ') || 'Unknown'
-        }} />
+    <>
+      <AutoBreadcrumb customLabels={{
+        [solution.slug]: customer?.id.replace('customer-', '').replace('-', ' ') || 'Unknown'
+      }} />
 
-        <SolutionHeader 
-          solution={solution}
+      <SolutionHeader 
+        solution={solution}
+        customer={customer}
+        country={country}
+        tags={tags}
+      />
+
+      <ProblemResult problem={problem} result={result} />
+
+      <TechnicalDetails technicalDetails={technicalDetails} />
+
+      <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
+
+      <Technologies technologies={technologies} />
+
+      {review && (
+        <ClientReview 
+          review={review}
           customer={customer}
-          country={country}
-          tags={tags}
         />
+      )}
 
-        <ProblemResult problem={problem} result={result} />
-
-        <TechnicalDetails technicalDetails={technicalDetails} />
-
-        <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
-
-        <Technologies technologies={technologies} />
-
-        {review && (
-          <ClientReview 
-            review={review}
-            customer={customer}
-          />
-        )}
-
-        <CTA />
-      </div>
-    </div>
+      <CTA />
+    </>
   );
 }
