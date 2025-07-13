@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+:root {
+  /* Primary color variables - customize these to change your site's primary color */
+  --color-primary-50: 254 254 254;     /* Very light */
+  --color-primary-100: 251 251 252;    /* fbfbfc - your desired primary color */
+  --color-primary-200: 244 244 245;
+  --color-primary-300: 229 229 234;
+  --color-primary-400: 207 207 216;
+  --color-primary-500: 161 161 170;
+  --color-primary-600: 113 113 122;
+  --color-primary-700: 82 82 91;
+  --color-primary-800: 63 63 70;
+  --color-primary-900: 39 39 42;
+  --color-primary-950: 24 24 27;
+  
+  /* Default primary color - change this to adjust the main color */
+  --color-primary: var(--color-primary-100);
+}
+
 body {
   font-family: var(--font-jetbrains), 'Courier New', monospace;
   background-color: #fafafa;
@@ -24,6 +42,11 @@ html {
     radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0),
     linear-gradient(135deg, rgba(222,222,222,0.7) 0%, rgba(255,255,255,0.7) 100%);
   background-size: 8px 8px, 100% 100%;
+}
+
+/* Scroll offset for anchor links to account for fixed headers/offsets */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 100px;
 }
 
 /* Remove all transitions for pixel art aesthetic */
