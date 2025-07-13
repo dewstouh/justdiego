@@ -34,7 +34,8 @@ export default function Hero() {
             </svg>
             SOLUTIONS
           </CTAButton>
-          <CTAButton 
+          <CTAButton
+          href="/contact" 
             variant="secondary"
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -43,7 +44,7 @@ export default function Hero() {
               <rect x="6" y="2" width="2" height="4" rx="1" fill="black" />
               <rect x="12" y="2" width="2" height="4" rx="1" fill="black" />
             </svg>
-            BOOK A CALL
+            REQUEST A SOLUTION
           </CTAButton>
         </div>
         

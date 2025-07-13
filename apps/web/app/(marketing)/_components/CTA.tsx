@@ -9,9 +9,12 @@ export default function CTA() {
       <p className="text-gray-600 mb-6 max-w-xl mx-auto">
         Every solution is custom-built for your specific needs.
       </p>
-      <button className="bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900">
+      <a 
+        href="/contact"
+        className="bg-gray-900 text-white px-8 py-4 border-2 border-gray-900 font-bold hover:bg-white hover:text-gray-900 inline-block"
+      >
         CONTACT →
-      </button>
+      </a>
     </div>
   )
 }
