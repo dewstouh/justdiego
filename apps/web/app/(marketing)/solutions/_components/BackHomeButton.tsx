@@ -2,8 +2,7 @@ import Link from 'next/link'
 
 export default function BackHomeButton() {
   return (
-      <div className="text-center mt-20">
-          <div className="w-full border-t border-gray-200 mb-8"></div>
+      <div className="text-center">
           <Link
               href="/"
               className="inline-block bg-white text-gray-900 px-8 py-3 border-2 border-gray-300 font-bold hover:border-gray-900 hover:bg-gray-50 transition-all duration-200"
