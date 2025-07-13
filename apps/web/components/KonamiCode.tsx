@@ -33,7 +33,7 @@ export default function KonamiCode() {
   return (
     <>
           {konamiActivated && (
-              <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+              <div className="fixed inset-0 pixelated-backdrop flex items-center justify-center z-50">
                   <div className="bg-gray-200 border-4 border-gray-900 p-8 text-center">
                       <h2 className="text-lg font-bold text-gray-900 mb-4">EASTER EGG ACTIVATED!</h2>
                       <p className="text-sm text-gray-900">No bullshit. Just delivered work.</p>

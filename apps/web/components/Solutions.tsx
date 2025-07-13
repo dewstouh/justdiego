@@ -196,13 +196,13 @@ SOLUTIONS IN ACTION
       {/* Image Modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 pixelated-backdrop flex items-center justify-center z-50 p-4"
           onClick={closeImageModal}
         >
           <div className="relative max-w-4xl max-h-full">
             <button
               onClick={closeImageModal}
-              className="absolute top-4 right-4 text-white text-2xl font-bold bg-black bg-opacity-50 w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-75 z-10"
+              className="absolute top-4 right-4 text-gray-900 text-2xl font-bold bg-white bg-opacity-90 w-10 h-10 border-2 border-gray-900 flex items-center justify-center hover:bg-opacity-100 z-10"
             >
               ×
             </button>
