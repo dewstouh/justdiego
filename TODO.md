@@ -1,7 +1,6 @@
 
 # TODO List
 ## Features
-- [ ] Create page template for pages
 - [ ] Add book a call section with Calendly
 - [ ] Auto PDF generation for solutions
 - [ ] Add Policies
@@ -11,7 +10,6 @@
 ## Improvements
 - [ ] Add `AutoBreadcrumb` to all pages
 - [ ] Add padding top on pages
-- [ ] Remove tag colors
 
 ## Bug Fixes
 - [ ] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
@@ -21,4 +19,6 @@
 
 
 ## DONE
+- [x] ~~Remove tag colors~~
+- [x] ~~Create a section template for marketing sections~~
 - [x] ~~Fix buttons from @justdiego/ui not applying proper CSS~~

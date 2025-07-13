@@ -41,8 +41,7 @@ export default function SolutionHeader({ solution, customer, country, tags }: So
         {tags.map((tag) => (
           <span
             key={tag.id}
-            className="px-3 py-1 text-sm font-mono bg-gray-200 border border-gray-400 text-gray-800"
-            style={{ backgroundColor: tag.color + '20', borderColor: tag.color }}
+            className="px-3 py-1 text-sm font-mono bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200 transition-colors"
           >
             {tag.icon} {tag.name}
           </span>
