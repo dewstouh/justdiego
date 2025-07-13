@@ -2,7 +2,6 @@
 # TODO List
 ## Features
 - [ ] Auto PDF generation for solutions
-- [ ] Add CONTRIBUTING and related documents
 - [ ] Create dev branch for development and leave main for production
 - [ ] Implement contact form with email sending
 - [ ] Add auto translation based on user browser language
@@ -14,6 +13,7 @@
 
 
 ## DONE
+- [x] ~~Add CONTRIBUTING and related documents~~
 - [x] Use actual title in solution slug broadcrumb instead of replacing
 - [x] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
 - [x] Add Policies
