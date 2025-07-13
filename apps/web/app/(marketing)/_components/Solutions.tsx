@@ -7,7 +7,7 @@ export default function Solutions() {
   const solutions = getSolutions();
 
   return (
-    <Section id="solutions" maxWidth="5xl">
+    <Section id="solutions">
       <Section.Header
         title="SOLUTIONS IN ACTION"
         description="Identifying problems. Delivering solutions. Automating outcomes."
