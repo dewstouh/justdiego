@@ -5,4 +5,5 @@ export * from './technologies';
 export * from './customers';
 export * from './reviews';
 export * from './projects';
-export * from './documents'
+export * from './documents';
+export * from './socialmedias';
