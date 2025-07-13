@@ -1,0 +1,75 @@
+name: ❓ Question
+description: Ask a question about the project
+title: "[Question]: "
+labels: ["question"]
+assignees: ["dewstouh"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about justdiego.com? We're here to help!
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Type
+      description: What category does your question fall into?
+      options:
+        - General Usage
+        - Development Setup
+        - Contributing
+        - Architecture/Design
+        - Deployment
+        - Performance
+        - Security
+        - Integrations
+        - Best Practices
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Please describe your question in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: |
+        Provide any relevant context that might help us answer your question.
+        What are you trying to accomplish? What have you already tried?
+      placeholder: |
+        I'm trying to...
+        I've already looked at...
+        My use case is...
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment (if relevant)
+      description: If your question is technical, please provide environment details
+      placeholder: |
+        - Node.js version:
+        - Package manager:
+        - Operating system:
+        - Browser (if applicable):
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and discussions for similar questions
+          required: true
+        - label: I have checked the documentation (README, CONTRIBUTING, etc.)
+          required: true
+        - label: This is not a bug report (use the bug report template instead)
+          required: true

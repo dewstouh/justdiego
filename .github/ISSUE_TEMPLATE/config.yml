@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Security Issue
+    url: mailto:security@justdiego.com
+    about: Report security vulnerabilities via email (do not create public issues)
+  - name: 💬 General Discussion
+    url: https://github.com/dewstouh/justdiego/discussions
+    about: General questions and discussions about the project
+  - name: 🌐 Visit Website
+    url: https://justdiego.com
+    about: Visit the live website
+  - name: 📧 Contact
+    url: https://justdiego.com/contact
+    about: Get in touch directly through the website
