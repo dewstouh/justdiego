@@ -57,10 +57,6 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
 
   return (
     <>
-      <AutoBreadcrumb customLabels={{
-        [solution.slug]: customer?.id.replace('customer-', '').replace('-', ' ') || 'Unknown'
-      }} />
-
       <SolutionHeader 
         solution={solution}
         customer={customer}
