@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import { getSolutions } from '@justdiego/react-utils';
 import SolutionCard from '../../../components/SolutionCard';
