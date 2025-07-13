@@ -1,7 +1,7 @@
 
-import Hero from '../components/Hero';
-import Solutions from '../components/Solutions';
-import CTA from '../components/CTA';
+import CTA from './(marketing)/_components/CTA';
+import Hero from './(marketing)/_components/Hero';
+import Solutions from './(marketing)/_components/Solutions';
 
 
 export default function HomePage() {

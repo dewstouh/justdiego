@@ -22,7 +22,7 @@ export default function Solutions() {
       {/* Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-SOLUTIONS IN ACTION
+          SOLUTIONS IN ACTION
         </h2>
         <div className="w-32 h-1 bg-gray-900 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
