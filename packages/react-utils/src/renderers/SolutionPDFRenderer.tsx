@@ -1,6 +1,6 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import { Solution, Customer, Country, Tag, Technology, Review } from '@justdiego/types';
+import { Solution, Country, Tag, Technology, TechnicalDetail, UserWithRelations, CompanyWithRelations, ReviewWithRelations } from '@justdiego/types';
 import { formatDate } from '@justdiego/utils';
 
 // Clean, professional invoice-style design
@@ -261,12 +261,13 @@ const styles = StyleSheet.create({
 });
 
 interface SolutionPDFTemplateProps {
-  solution: Solution;
-  customer?: Customer;
-  country?: Country;
-  tags: Tag[];
-  technologies: Technology[];
-  review?: Review;
+    solution: Solution;
+    customer: UserWithRelations | CompanyWithRelations
+    country: Country
+    tags: Tag[]
+    technologies: Technology[]
+    technicalDetails: object
+    review: ReviewWithRelations
 }
 
 export const SolutionPDFTemplate: React.FC<SolutionPDFTemplateProps> = ({
@@ -276,8 +277,9 @@ export const SolutionPDFTemplate: React.FC<SolutionPDFTemplateProps> = ({
   technologies,
   review,
 }) => {
-  const customerName = customer?.id.replace('customer-', '').replace('-', ' ').toUpperCase() || 'Unknown Customer';
+  const customerName = customer.name;
   const generateDocumentNumber = () => `SOL-${Date.now().toString().slice(-6)}`;
+  const technicalDetails: TechnicalDetail[] = solution.technicalDetails || [];
 
   return (
     <Document>
@@ -322,7 +324,7 @@ export const SolutionPDFTemplate: React.FC<SolutionPDFTemplateProps> = ({
           
           <View style={styles.clientInfo}>
             <Text style={styles.clientLabel}>Completion Date</Text>
-            <Text style={styles.clientValue}>{formatDate(solution.completedAt.toISOString())}</Text>
+            <Text style={styles.clientValue}>{formatDate(solution.completedAt?.toISOString() || "Not completed yet")}</Text>
           </View>
           
           <View style={styles.clientInfo}>
@@ -342,12 +344,12 @@ export const SolutionPDFTemplate: React.FC<SolutionPDFTemplateProps> = ({
           </View>
 
           <View style={styles.tableRow}>
-            <Text style={[styles.tableCellBold, styles.col60]}>{solution.fullDescription}</Text>
+            <Text style={[styles.tableCellBold, styles.col60]}>{solution.longDescription}</Text>
             <Text style={[styles.tableCell, styles.col20]}>Full Project</Text>
             <Text style={[styles.tableCell, styles.col20]}>Completed</Text>
           </View>
 
-          {solution.technicalDetails.map((detail, index) => (
+          {technicalDetails.map((detail, index) => (
             <View key={index} style={styles.tableRow}>
               <Text style={[styles.tableCell, styles.col60]}>{detail.title}</Text>
               <Text style={[styles.tableCell, styles.col20]}>Technical</Text>
@@ -368,11 +370,11 @@ export const SolutionPDFTemplate: React.FC<SolutionPDFTemplateProps> = ({
         <View style={styles.problemResultSection}>
           <View style={styles.problemBox}>
             <Text style={styles.boxTitle}>Problem</Text>
-            <Text style={styles.boxContent}>{solution.problem}</Text>
+            <Text style={styles.boxContent}>{solution.problemDescription}</Text>
           </View>
           <View style={styles.resultBox}>
             <Text style={styles.boxTitle}>Solution</Text>
-            <Text style={styles.boxContent}>{solution.result}</Text>
+            <Text style={styles.boxContent}>{solution.solutionDescription}</Text>
           </View>
         </View>
 
@@ -402,7 +404,7 @@ export const SolutionPDFTemplate: React.FC<SolutionPDFTemplateProps> = ({
                 <Text key={i} style={styles.star}>☆</Text>
               ))}
             </View>
-            <Text style={styles.reviewContent}>"{review.content}"</Text>
+            <Text style={styles.reviewContent}>"{review.comment}"</Text>
             <Text style={styles.reviewAuthor}>
               — {review.authorId.replace('author-', '').replace('-', ' ')}
             </Text>
