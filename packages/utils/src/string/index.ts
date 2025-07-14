@@ -1,3 +1,3 @@
-export * from './slugToTitle'
-export * from './titleToSlug'
-export * from './extractMarkdownHeadings'
+export * from './colors'
+export * from './slug'
+export * from './patterns'
