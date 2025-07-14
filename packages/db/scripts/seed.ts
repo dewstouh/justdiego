@@ -1,10 +1,11 @@
-import { PrismaClient } from '../generated/prisma';
+import { CustomerType, PrismaClient } from '../generated/prisma';
 import {
     countriesMock,
     technologiesMock,
     tagsMock,
     documentsMock,
-    socialMediasMock
+    socialMediasMock,
+    solutionsMock
 } from '../mocks';
 
 const prisma = new PrismaClient();
@@ -163,7 +164,7 @@ async function main() {
             authorId: 'user-diego',
             name: 'CI/CD Pipeline Automation',
             shortDescription: 'Automated deployment pipeline for e-commerce platforms',
-            fullDescription: 'Complete CI/CD automation solution with Docker containerization and Kubernetes orchestration',
+            longDescription: 'Complete CI/CD automation solution with Docker containerization and Kubernetes orchestration',
             problemDescription: 'Manual deployments causing downtime and errors',
             solutionDescription: 'Automated pipeline reducing deployment time by 700%',
             challenges: ['Manual deployment errors', 'Long deployment times', 'Inconsistent environments'],
@@ -198,86 +199,8 @@ async function main() {
 
     // 10. Seed Solutions
     console.log('💡 Seeding solutions...');
-    const solutionsToCreate = [
-        {
-            id: 'solution-cicd-pipeline',
-            authorId: 'user-diego',
-            title: 'Automated CI/CD Pipeline for E-commerce',
-            description: 'Complete automation of deployment pipeline for e-commerce platform, reducing deployment time by 700% and eliminating manual errors.',
-            problemDescription: 'Manual deployments taking 15+ minutes with frequent errors and downtime',
-            solutionDescription: 'Reduced deploy time from 15 min to 2 min (7x faster)',
-            attachments: [
-                'https://fastly.picsum.photos/id/23/800/600.jpg?hmac=tgRp6_r_o2TpuzZfkINDn4dG7rweaGvmcUaNQandV_o',
-                'https://i.imgur.com/bNXSrkJ.mp4',
-                'https://youtu.be/W-wPHjtkfms'
-            ],
-            challenges: [
-                'Legacy codebase with complex dependencies',
-                'Multiple environments with different configurations',
-                'Zero tolerance for downtime during peak shopping hours'
-            ],
-            outcomes: [
-                '700% faster deployment time (15 min → 2 min)',
-                'Zero deployment-related downtime since implementation',
-                '90% reduction in deployment errors'
-            ],
-            isForSale: true,
-            price: 5000.00,
-            completedAt: new Date('2024-11-15'),
-        },
-        {
-            id: 'solution-discord-bot',
-            authorId: 'user-sarah-chen',
-            title: 'Advanced Discord Bot for Gaming Community',
-            description: 'Custom Discord bot with advanced moderation features, analytics, and community management tools for 2,000+ active gaming community members.',
-            problemDescription: 'Community management chaos with 2,000+ users and no automated moderation',
-            solutionDescription: 'Enabled moderation and logging for 2,000+ users with 99% uptime',
-            attachments: [
-                'https://fastly.picsum.photos/id/381/800/600.jpg?hmac=izr8qg93BWeDqyzvMwL7rNhNjj_arTqOO3O_TMflB7Y',
-                'https://placehold.co/800x600'
-            ],
-            challenges: [
-                'Handling high message volume (1000+ messages/hour)',
-                'Complex permission system for different user roles',
-                'Integration with multiple gaming platforms'
-            ],
-            outcomes: [
-                '99.2% uptime since deployment',
-                '85% reduction in manual moderation work',
-                'Automated handling of 500+ moderation actions per week'
-            ],
-            isForSale: true,
-            price: 3500.00,
-            completedAt: new Date('2025-02-28'),
-        },
-        {
-            id: 'solution-analytics-dashboard',
-            authorId: 'user-alex-morrison',
-            title: 'Real-time Analytics Dashboard',
-            description: 'Real-time analytics dashboard with automated reporting, saving 20+ hours weekly and providing actionable business insights.',
-            problemDescription: 'Manual reporting consuming 20+ hours weekly with error-prone data collection',
-            solutionDescription: 'Automated reporting saved 20 hours/week of manual work',
-            attachments: [
-                'https://placehold.co/800x450',
-                'https://placehold.co/1280x720'
-            ],
-            challenges: [
-                'Integrating 8 different data sources with varying APIs',
-                'Processing large datasets in real-time',
-                'Creating intuitive visualizations for non-technical users'
-            ],
-            outcomes: [
-                '20+ hours saved weekly on manual reporting',
-                'Real-time insights instead of week-old data',
-                '95% reduction in data accuracy errors'
-            ],
-            isForSale: true,
-            price: 7500.00,
-            completedAt: new Date('2025-05-20'),
-        }
-    ];
 
-    for (const solution of solutionsToCreate) {
+    for (const solution of solutionsMock) {
         await prisma.solution.create({
             data: {
                 ...solution,
