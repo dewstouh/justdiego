@@ -35,7 +35,7 @@ export default function SolutionHeader({ solution, customer, country, tags }: So
       </div>
       
       <p className="text-xl text-gray-600 leading-relaxed mb-6">
-        {solution.fullDescription}
+        {solution.longDescription}
       </p>
 
       {/* Tags */}
