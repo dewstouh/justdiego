@@ -1,11 +1,11 @@
-import { Technology } from '@justdiego/types';
+import { Prisma } from "../generated/prisma";
 
-export const technologiesMock: Technology[] = [
+export const technologiesMock: Prisma.TechnologyCreateInput[] = [
     {
         id: 'tech-github-actions',
         name: 'GitHub Actions',
         description: 'CI/CD platform for automating workflows',
-        icon: '🐙',
+        iconUrl: '🐙',
         color: '#24292e',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -14,7 +14,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-docker',
         name: 'Docker',
         description: 'Containerization platform',
-        icon: '🐳',
+        iconUrl: '🐳',
         color: '#0db7ed',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -23,7 +23,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-kubernetes',
         name: 'Kubernetes',
         description: 'Container orchestration platform',
-        icon: '☸️',
+        iconUrl: '☸️',
         color: '#326ce5',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -32,7 +32,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-aws-ecs',
         name: 'AWS ECS',
         description: 'Amazon Elastic Container Service',
-        icon: '☁️',
+        iconUrl: '☁️',
         color: '#ff9900',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -41,7 +41,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-prometheus',
         name: 'Prometheus',
         description: 'Monitoring and alerting toolkit',
-        icon: '🔥',
+        iconUrl: '🔥',
         color: '#e6522c',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -50,7 +50,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-grafana',
         name: 'Grafana',
         description: 'Analytics and monitoring platform',
-        icon: '📊',
+        iconUrl: '📊',
         color: '#f46800',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -59,7 +59,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-snyk',
         name: 'Snyk',
         description: 'Security platform for developers',
-        icon: '🔒',
+        iconUrl: '🔒',
         color: '#4c4a73',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -68,7 +68,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-slack',
         name: 'Slack API',
         description: 'Team communication platform API',
-        icon: '💬',
+        iconUrl: '💬',
         color: '#4a154b',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -77,7 +77,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-nodejs',
         name: 'Node.js',
         description: 'JavaScript runtime environment',
-        icon: '🟢',
+        iconUrl: '🟢',
         color: '#339933',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -86,7 +86,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-discordjs',
         name: 'Discord.js',
         description: 'Discord API library for Node.js',
-        icon: '🎮',
+        iconUrl: '🎮',
         color: '#7289da',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -95,7 +95,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-postgresql',
         name: 'PostgreSQL',
         description: 'Open source relational database',
-        icon: '🐘',
+        iconUrl: '🐘',
         color: '#336791',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -104,7 +104,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-redis',
         name: 'Redis',
         description: 'In-memory data structure store',
-        icon: '🔴',
+        iconUrl: '🔴',
         color: '#dc382d',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -113,7 +113,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-pm2',
         name: 'PM2',
         description: 'Node.js process manager',
-        icon: '⚡',
+        iconUrl: '⚡',
         color: '#2b037a',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -122,7 +122,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-chartjs',
         name: 'Chart.js',
         description: 'JavaScript charting library',
-        icon: '📈',
+        iconUrl: '📈',
         color: '#ff6384',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -131,7 +131,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-react',
         name: 'React',
         description: 'JavaScript library for building user interfaces',
-        icon: '⚛️',
+        iconUrl: '⚛️',
         color: '#61dafb',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -140,7 +140,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-d3js',
         name: 'D3.js',
         description: 'Data visualization library',
-        icon: '📊',
+        iconUrl: '📊',
         color: '#f68e56',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -149,7 +149,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-python',
         name: 'Python',
         description: 'High-level programming language',
-        icon: '🐍',
+        iconUrl: '🐍',
         color: '#3776ab',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -158,7 +158,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-pandas',
         name: 'Pandas',
         description: 'Data analysis library for Python',
-        icon: '🐼',
+        iconUrl: '🐼',
         color: '#150458',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -167,7 +167,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-airflow',
         name: 'Apache Airflow',
         description: 'Workflow orchestration platform',
-        icon: '🌊',
+        iconUrl: '🌊',
         color: '#017cee',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
@@ -176,7 +176,7 @@ export const technologiesMock: Technology[] = [
         id: 'tech-aws-lambda',
         name: 'AWS Lambda',
         description: 'Serverless computing service',
-        icon: '⚡',
+        iconUrl: '⚡',
         color: '#ff9900',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
