@@ -56,7 +56,7 @@ export default function Attachment({
                 <span className="text-gray-800 text-sm ml-0.5">▶</span>
               </div>
               <span className="text-xs text-white font-mono text-center">
-                Video {index + 1}
+                Play video
               </span>
             </div>
           </div>
