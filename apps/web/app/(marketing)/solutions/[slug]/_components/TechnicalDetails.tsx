@@ -12,7 +12,7 @@ export default function TechnicalDetails({ technicalDetails }: TechnicalDetailsP
         {technicalDetails.map((detail, index) => {
             const { title, content } = detail;
             return (
-            <div key={index} className="bg-gray-50 border-2 border-gray-200 p-6">
+            <div key={index} className="bg-white border-2 border-gray-200 p-6">
                 <h3 className="font-bold text-lg text-gray-900 mb-3">{title}</h3>
                 <p className="text-gray-700 leading-relaxed">{content}</p>
             </div>
