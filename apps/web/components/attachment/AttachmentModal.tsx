@@ -1,3 +1,5 @@
+"use client";
+
 import { getMediaType, getVideoEmbedUrl, isEmbeddableVideo } from '@justdiego/utils';
 import Image from 'next/image';
 import { useState } from 'react';

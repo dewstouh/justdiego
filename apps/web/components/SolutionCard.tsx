@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import { Solution } from "@justdiego/types";
 import { getCustomer, getCountry, getTags, getTechnologies, getReview } from '@justdiego/react-utils';
 import SolutionCardSeparator from './solution-card/SolutionCardSeparator';
@@ -10,7 +7,6 @@ import TagList from './solution-card/TagList';
 import ReviewCard from './solution-card/ReviewCard';
 import AttachmentGallery from './solution-card/AttachmentGallery';
 import ProjectOverview from './solution-card/ProjectOverview';
-import AttachmentModal from './solution-card/AttachmentModal';
 
 interface SolutionCardProps {
   solution: Solution;
@@ -23,7 +19,6 @@ export default function SolutionCard({
   variant = 'full',
   showSeparator = true 
 }: SolutionCardProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Get related data
   const customer = getCustomer(solution.customerId);
@@ -31,14 +26,6 @@ export default function SolutionCard({
   const tags = getTags().filter(tag => solution.tagIds.includes(tag.id));
   const technologies = getTechnologies().filter(tech => solution.technologyIds.includes(tech.id));
   const review = solution.reviewId ? getReview(solution.reviewId) : null;
-
-  const openAttachmentModal = (attachmentSrc: string) => {
-    setSelectedImage(attachmentSrc);
-  };
-
-  const closeAttachmentModal = () => {
-    setSelectedImage(null);
-  };
 
   return (
     <>
@@ -74,7 +61,6 @@ export default function SolutionCard({
               <AttachmentGallery
                 attachments={solution.attachments}
                 slug={solution.slug}
-                onImageClick={openAttachmentModal}
               />
             ) : (
               <ProjectOverview
@@ -86,14 +72,6 @@ export default function SolutionCard({
           </div>
         </div>
       </div>
-
-      {/* Image Modal - Only for compact variant */}
-      {variant === 'compact' && (
-        <AttachmentModal
-          selectedImage={selectedImage}
-          onClose={closeAttachmentModal}
-        />
-      )}
     </>
   );
 }
