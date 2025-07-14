@@ -16,8 +16,8 @@ export class Repository<T> {
         return this.model.findFirst(params)
     }
 
-    findUnique(where: object) {
-        return this.model.findUnique({ where })
+    findUnique(params: QueryParams = {}) {
+        return this.model.findUnique({ params })
     }
 
     create(data: T) {
