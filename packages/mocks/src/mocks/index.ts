@@ -7,3 +7,4 @@ export * from './reviews';
 export * from './projects';
 export * from './documents';
 export * from './socialmedias';
+export * from './website';

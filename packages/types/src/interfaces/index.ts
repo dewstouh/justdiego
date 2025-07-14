@@ -9,3 +9,4 @@ export * from './User';
 export * from './SocialMedia';
 export * from './Customer';
 export * from './LegalDocument';
+export * from './NavigationItem';

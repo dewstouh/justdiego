@@ -2,12 +2,6 @@
  * Type definitions for website constants
  */
 
-export interface NavigationItem {
-  label: string;
-  href: string;
-  external?: boolean;
-}
-
 export interface ContactInfo {
   EMAIL: string;
   SUPPORT_EMAIL: string;
@@ -92,11 +86,6 @@ export interface LegalInfo {
   };
 }
 
-export interface NavigationConfig {
-  MAIN: NavigationItem[];
-  FOOTER: NavigationItem[];
-}
-
 export interface SiteConfig {
   WEBSITE: WebsiteMetadata;
   CONTACT: ContactInfo;
@@ -104,5 +93,4 @@ export interface SiteConfig {
   BUSINESS: BusinessInfo;
   TECHNICAL: TechnicalConfig;
   LEGAL: LegalInfo;
-  NAVIGATION: NavigationConfig;
 }
