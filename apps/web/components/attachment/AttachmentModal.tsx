@@ -87,12 +87,16 @@ export default function AttachmentModal({ selectedImage, onClose }: AttachmentMo
               )}
             </div>
           ) : (
-            // Unknown media type - show as link
-            <div className="w-full h-96 bg-gray-100 border-2 border-gray-300 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gray-400 mx-auto mb-4 flex items-center justify-center text-2xl">
-                  📎
-                </div>
+            // Unknown media type - render as iframe
+            <div className="w-full mx-auto">
+              <div className="w-[70vw] h-[80vh] border-2 border-gray-300 bg-gray-100">
+                <iframe
+                  src={selectedImage}
+                  className="w-full h-full"
+                  title="Attachment Viewer"
+                />
+              </div>
+              <div className="mt-4 text-center">
                 <p className="text-gray-600 font-mono text-sm mb-2">Attachment Preview</p>
                 <a
                   href={selectedImage}
@@ -100,7 +104,7 @@ export default function AttachmentModal({ selectedImage, onClose }: AttachmentMo
                   rel="noopener noreferrer"
                   className="inline-block bg-gray-900 text-white px-4 py-2 border-2 border-gray-900 font-bold hover:bg-primary transition-all duration-200 text-sm"
                 >
-                  Open Link →
+                  Open in New Tab →
                 </a>
               </div>
             </div>
