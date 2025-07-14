@@ -15,10 +15,10 @@
 ## Improvements
 
 ## Bug Fixes
-- [ ] Fix navbar background when scrolled and website is refreshed
 
 
 ## DONE
+- [x] Fix navbar background when scrolled and website is refreshed
 - [x] Create dev branch for development and leave main for production
 - [x] Update CTA section with new punchline
 - [x] ~~Add constants for website metadata~~
