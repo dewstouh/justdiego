@@ -1,51 +1,39 @@
 import React from 'react';
-import { pdf } from '@react-pdf/renderer';
-import { Solution } from '@justdiego/types';
-import { getCustomer, getCountry, getTags, getTechnologies, getReview } from '../data';
-import { SolutionPDFTemplate } from '../renderers/SolutionPDFRenderer';
-
-export interface GenerateSolutionPDFOptions {
-    solution: Solution;
+import { pdf, DocumentProps } from '@react-pdf/renderer';
+/**
+ * Generates and downloads a PDF for a single solution
+ */
+interface GeneratePDFOptions {
+    component: React.ReactElement<DocumentProps>;
     filename?: string;
 }
 
-export interface GenerateMultipleSolutionsPDFOptions {
-    solutions: Solution[];
-    filename?: string;
+/**
+ * Generates and previews a PDF in a new window
+ */
+interface PreviewPDFOptions {
+    component: React.ReactElement<DocumentProps>;
+    windowTitle?: string;
 }
 
 /**
  * Generates and downloads a PDF for a single solution
  */
-export async function generateSolutionPDF({
-    solution,
-    filename
-}: GenerateSolutionPDFOptions): Promise<void> {
+export async function generatePDF({
+    component,
+    filename = `document.pdf`
+}: GeneratePDFOptions): Promise<void> {
     try {
-        // Get related data
-        const customer = getCustomer(solution.customerId);
-        const country = getCountry(solution.countryId);
-        const tags = getTags().filter(tag => solution.tagIds.includes(tag.id));
-        const technologies = getTechnologies().filter(tech => solution.technologyIds.includes(tech.id));
-        const review = solution.reviewId ? getReview(solution.reviewId) : undefined;
-
         // Generate PDF blob
         const blob = await pdf(
-            <SolutionPDFTemplate
-                solution={solution}
-                customer={customer}
-                country={country}
-                tags={tags}
-                technologies={technologies}
-                review={review}
-            />
+            component
         ).toBlob();
 
         // Create download link
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = filename || `${solution.slug}.pdf`;
+        link.download = filename;
 
         // Trigger download
         document.body.appendChild(link);
@@ -61,65 +49,34 @@ export async function generateSolutionPDF({
 }
 
 /**
- * Generates and downloads a PDF containing multiple solutions
+ * Generates and opens a PDF preview in a new window
  */
-export async function generateMultipleSolutionsPDF({
-    solutions,
-    filename = 'solutions'
-}: GenerateMultipleSolutionsPDFOptions): Promise<void> {
+export async function previewPDF({
+    component,
+    windowTitle = 'PDF Preview'
+}: PreviewPDFOptions): Promise<void> {
     try {
-        // For now, let's generate individual PDFs for each solution
-        // In the future, this could be enhanced to create a single multi-page document
-        for (const [index, solution] of solutions.entries()) {
-            await generateSolutionPDF({
-                solution,
-                filename: `${filename}-${index + 1}-${solution.slug}.pdf`
-            });
-        }
-    } catch (error) {
-        console.error('Error generating multiple PDFs:', error);
-        throw new Error('Failed to generate PDFs');
-    }
-}
-
-/**
- * Opens a PDF preview in a new tab instead of downloading
- */
-export async function previewSolutionPDF({
-    solution
-}: { solution: Solution }): Promise<void> {
-    try {
-        // Get related data
-        const customer = getCustomer(solution.customerId);
-        const country = getCountry(solution.countryId);
-        const tags = getTags().filter(tag => solution.tagIds.includes(tag.id));
-        const technologies = getTechnologies().filter(tech => solution.technologyIds.includes(tech.id));
-        const review = solution.reviewId ? getReview(solution.reviewId) : undefined;
-
         // Generate PDF blob
-        const blob = await pdf(
-            <SolutionPDFTemplate
-                solution={solution}
-                customer={customer}
-                country={country}
-                tags={tags}
-                technologies={technologies}
-                review={review}
-            />
-        ).toBlob();
+        const blob = await pdf(component).toBlob();
 
-        // Open in new tab
+        // Create blob URL
         const url = URL.createObjectURL(blob);
+
+        // Open in new window
         const newWindow = window.open(url, '_blank');
-
-        if (!newWindow) {
-            throw new Error('Popup blocked. Please allow popups for this site.');
-        }
-
-        // Cleanup URL after a delay to allow the browser to load it
-        setTimeout(() => {
+        
+        if (newWindow) {
+            newWindow.document.title = windowTitle;
+            
+            // Cleanup URL after window is loaded or closed
+            newWindow.addEventListener('beforeunload', () => {
+                URL.revokeObjectURL(url);
+            });
+        } else {
+            // Fallback: if popup blocked, cleanup URL
             URL.revokeObjectURL(url);
-        }, 1000);
+            throw new Error('Unable to open preview window. Please allow popups for this site.');
+        }
     } catch (error) {
         console.error('Error previewing PDF:', error);
         throw new Error('Failed to preview PDF');
