@@ -12,6 +12,7 @@
         "check-types": "tsc --noEmit"
     },
     "devDependencies": {
+        "@justdiego/db": "workspace:*",
         "@justdiego/eslint-config": "workspace:*",
         "@justdiego/typescript-config": "workspace:*",
         "@types/node": "^22.15.3",
