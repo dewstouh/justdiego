@@ -7,7 +7,7 @@ export default function CTA() {
         Will your business be next?
       </h3>
       <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-        Every solution is custom-built for your specific needs.
+        Get a full business analysis in <strong>under 24 hours</strong>: see what to improve, fix, and automate to <strong>attract more clients.</strong>
       </p>
       <a 
         href="/contact"
