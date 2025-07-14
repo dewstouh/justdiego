@@ -30,7 +30,7 @@ export default function AttachmentModal({ selectedImage, onClose }: AttachmentMo
       <div className="relative max-w-[70vw] max-h-full" onClick={handleContentClick}>
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-900 text-2xl font-bold bg-primary bg-opacity-90 w-10 h-10 border-2 border-gray-900 flex items-center justify-center hover:bg-opacity-100 z-10"
+          className="absolute top-4 right-4 text-gray-900 text-2xl font-bold bg-neutral-200 opacity-90 cursor-pointer w-10 h-10 border-2 border-white-900 flex items-center justify-center hover:bg-opacity-100 z-10"
         >
           ×
         </button>
