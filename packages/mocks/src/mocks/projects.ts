@@ -8,9 +8,11 @@ export const projectsMock: Project[] = [
         result: 'Reduced deploy time from 15 min to 2 min (7x faster)',
         reviewIds: ['review-sarah-chen'],
         attachments: [
-            '/screenshots/techflow-before.jpg',
-            '/screenshots/techflow-after.jpg',
-            '/screenshots/techflow-dashboard.jpg'
+            'https://picsum.photos/800/600?random=1', // CI/CD Pipeline Before - slow manual process
+            'https://picsum.photos/800/600?random=2', // CI/CD Pipeline After - automated fast deployment
+            'https://via.placeholder.com/1200x800/2563eb/ffffff?text=TechFlow+CI%2FCD+Dashboard', // Pipeline monitoring dashboard
+            'https://placehold.co/800x450/png?text=Deployment+Metrics+Video&font=roboto', // Deployment process video thumbnail
+            'https://picsum.photos/600/400?random=3' // Architecture diagram
         ],
         customerIds: ['customer-techflow'],
         demoUrl: 'https://demo.techflow.com',
@@ -61,9 +63,12 @@ export const projectsMock: Project[] = [
         result: 'Enabled moderation and logging for 2,000+ users with 99% uptime',
         reviewIds: ['review-alex-morrison'],
         attachments: [
-            '/screenshots/niby-bot-commands.jpg',
-            '/screenshots/niby-moderation.jpg',
-            '/screenshots/niby-analytics.jpg'
+            'https://via.placeholder.com/1000x700/5865f2/ffffff?text=Discord+Bot+Commands', // Discord bot command interface
+            'https://picsum.photos/900/600?random=4', // Moderation panel screenshot
+            'https://via.placeholder.com/1200x800/7289da/ffffff?text=Community+Analytics+Dashboard', // Analytics dashboard
+            'https://placehold.co/800x450/mp4?text=Bot+Demo+Video&font=roboto', // Bot demonstration video
+            'https://picsum.photos/700/500?random=5', // Community growth chart
+            'https://via.placeholder.com/600x400/99aab5/2c2f33?text=Moderation+Logs' // Moderation activity logs
         ],
         customerIds: ['customer-niby'],
         demoUrl: 'https://discord.gg/niby',
@@ -114,9 +119,13 @@ export const projectsMock: Project[] = [
         result: 'Automated reporting saved 20 hours/week of manual work',
         reviewIds: ['review-james-potter'],
         attachments: [
-            '/screenshots/insight-dashboard.jpg',
-            '/screenshots/insight-reports.jpg',
-            '/screenshots/insight-analytics.jpg'
+            'https://via.placeholder.com/1400x900/1f2937/f9fafb?text=Analytics+Dashboard+Overview', // Main dashboard view
+            'https://picsum.photos/1200/800?random=6', // Real-time charts and graphs
+            'https://via.placeholder.com/1000x600/059669/ffffff?text=Automated+Reports+Interface', // Report generation interface
+            'https://placehold.co/800x450/webm?text=Dashboard+Walkthrough&font=roboto', // Dashboard demo video
+            'https://picsum.photos/800/600?random=7', // Data visualization examples
+            'https://via.placeholder.com/900x600/dc2626/ffffff?text=Alert+System+Setup', // Alert configuration panel
+            'https://picsum.photos/600x400?random=8' // Performance metrics before/after comparison
         ],
         customerIds: ['customer-insight'],
         demoUrl: 'https://dashboard.insightcorp.com',
