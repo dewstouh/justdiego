@@ -1,14 +1,11 @@
 
 # TODO List
 ## Features
-- [ ] Auto PDF generation for solutions
 - [ ] Create dev branch for development and leave main for production
 - [ ] Implement contact form with email sending
 - [ ] Add auto translation based on user browser language
 - [ ] Add husky and lint-staged for pre-commit hooks
 - [ ] Add Google Analytics
-- [ ] Add constants for website metadata
-- [ ] Add constants for contact information
 - [ ] Create a dashboard to configure the website
 - [ ] Link projects to solutions (a project or projects can be used on a solution)
 - [ ] Add about page with Diego's story and information
@@ -21,6 +18,9 @@
 
 
 ## DONE
+- [x] ~~Add constants for website metadata~~
+- [x] ~~Add constants for contact information~~
+- [x] ~~Auto PDF generation for solutions~~
 - [x] ~~Add CONTRIBUTING and related documents~~
 - [x] Use actual title in solution slug broadcrumb instead of replacing
 - [x] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
