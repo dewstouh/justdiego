@@ -1,4 +1,4 @@
-export type TechnicalDetails = {
+export type TechnicalDetail = {
     title: string;
     content: string;
 }

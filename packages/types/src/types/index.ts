@@ -1,2 +1,2 @@
-export * from './TechnicalDetails';
+export * from './TechnicalDetail';
 export * from './Website';
