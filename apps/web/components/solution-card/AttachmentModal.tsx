@@ -2,12 +2,12 @@ import { getMediaType, getVideoEmbedUrl, isEmbeddableVideo } from '@justdiego/ut
 import Image from 'next/image';
 import { useState } from 'react';
 
-interface ImageModalProps {
+interface AttachmentModalProps {
   selectedImage: string | null;
   onClose: () => void;
 }
 
-export default function ImageModal({ selectedImage, onClose }: ImageModalProps) {
+export default function AttachmentModal({ selectedImage, onClose }: AttachmentModalProps) {
   const [imageError, setImageError] = useState(false);
 
   if (!selectedImage) return null;
@@ -25,7 +25,7 @@ export default function ImageModal({ selectedImage, onClose }: ImageModalProps) 
       className="fixed inset-0 pixelated-backdrop flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
-      <div className="relative max-w-4xl max-h-full" onClick={handleContentClick}>
+      <div className="relative max-w-[70vw] max-h-full" onClick={handleContentClick}>
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-900 text-2xl font-bold bg-primary bg-opacity-90 w-10 h-10 border-2 border-gray-900 flex items-center justify-center hover:bg-opacity-100 z-10"
@@ -35,8 +35,8 @@ export default function ImageModal({ selectedImage, onClose }: ImageModalProps) 
         <div className="bg-primary border-4 border-gray-300 p-4 max-h-[90vh] overflow-auto">
           {isVideo && isEmbeddable ? (
             // Embeddable video (YouTube, Vimeo)
-            <div className="w-full max-w-3xl mx-auto">
-              <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+            <div className="w-[65vw] mx-auto">
+              <div className="relative " style={{ paddingBottom: '56.25%', height: 0 }}>
                 <iframe
                   src={getVideoEmbedUrl(selectedImage)}
                   className="absolute top-0 left-0 w-full h-full border-2 border-gray-300"
@@ -47,7 +47,7 @@ export default function ImageModal({ selectedImage, onClose }: ImageModalProps) 
             </div>
           ) : isVideo ? (
             // Direct video URL
-            <div className="w-full max-w-3xl mx-auto">
+            <div className="w-full mx-auto">
               <video
                 controls
                 className="w-full h-auto border-2 border-gray-300 bg-black"
@@ -60,11 +60,11 @@ export default function ImageModal({ selectedImage, onClose }: ImageModalProps) 
             </div>
           ) : mediaType === 'image' ? (
             // Image
-            <div className="w-full max-w-3xl mx-auto">
+            <div className="w-full mx-auto">
               {!imageError ? (
                 <Image
-                  width={800}
-                  height={600}
+                  width={1200}
+                  height={800}
                   src={selectedImage}
                   alt="Attachment"
                   className="w-full h-auto border-2 border-gray-300 bg-gray-100"
@@ -92,9 +92,6 @@ export default function ImageModal({ selectedImage, onClose }: ImageModalProps) 
                   📎
                 </div>
                 <p className="text-gray-600 font-mono text-sm mb-2">Attachment Preview</p>
-                <p className="text-xs text-gray-500 break-all mb-4">
-                  {selectedImage}
-                </p>
                 <a
                   href={selectedImage}
                   target="_blank"

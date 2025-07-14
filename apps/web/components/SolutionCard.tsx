@@ -10,7 +10,7 @@ import TagList from './solution-card/TagList';
 import ReviewCard from './solution-card/ReviewCard';
 import AttachmentGallery from './solution-card/AttachmentGallery';
 import ProjectOverview from './solution-card/ProjectOverview';
-import ImageModal from './solution-card/ImageModal';
+import AttachmentModal from './solution-card/AttachmentModal';
 
 interface SolutionCardProps {
   solution: Solution;
@@ -32,11 +32,11 @@ export default function SolutionCard({
   const technologies = getTechnologies().filter(tech => solution.technologyIds.includes(tech.id));
   const review = solution.reviewId ? getReview(solution.reviewId) : null;
 
-  const openImageModal = (imageSrc: string) => {
-    setSelectedImage(imageSrc);
+  const openAttachmentModal = (attachmentSrc: string) => {
+    setSelectedImage(attachmentSrc);
   };
 
-  const closeImageModal = () => {
+  const closeAttachmentModal = () => {
     setSelectedImage(null);
   };
 
@@ -74,7 +74,7 @@ export default function SolutionCard({
               <AttachmentGallery
                 attachments={solution.attachments}
                 slug={solution.slug}
-                onImageClick={openImageModal}
+                onImageClick={openAttachmentModal}
               />
             ) : (
               <ProjectOverview
@@ -89,9 +89,9 @@ export default function SolutionCard({
 
       {/* Image Modal - Only for compact variant */}
       {variant === 'compact' && (
-        <ImageModal
+        <AttachmentModal
           selectedImage={selectedImage}
-          onClose={closeImageModal}
+          onClose={closeAttachmentModal}
         />
       )}
     </>
