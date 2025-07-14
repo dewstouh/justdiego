@@ -1,9 +1,6 @@
-import { prisma, PrismaClient } from "@justdiego/db";
-import { Repository } from "./utils/Repository";
-
-export { prisma } from './client' // exports instance of prisma 
-export * from "../generated/prisma" // exports generated types from prisma
-
+import { PrismaClient } from './types'
+import {prisma} from './client'
+import { Repository } from './utils/Repository'
 
 type ModelName = keyof PrismaClient
 

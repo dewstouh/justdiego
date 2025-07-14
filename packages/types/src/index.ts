@@ -1,2 +1,2 @@
 export * from './types/'
-export * from '@justdiego/db'
+export type * from '@justdiego/db/types'
