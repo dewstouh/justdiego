@@ -15,7 +15,7 @@
 ## Improvements
 
 ## Bug Fixes
-
+- [ ] Fix navbar background when scrolled and website is refreshed
 
 
 ## DONE
