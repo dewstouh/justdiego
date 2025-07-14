@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getMediaIcon, getMediaLabel } from '@justdiego/utils';
 
 interface AttachmentGalleryProps {
   attachments: string[] | undefined;
@@ -34,10 +35,10 @@ export default function AttachmentGallery({ attachments, slug, onImageClick }: A
               <div className="w-full h-24 bg-gray-200 border-2 border-gray-300 hover:border-gray-900 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
                 <div className="text-center">
                   <div className="w-8 h-8 bg-gray-400 mx-auto mb-1 flex items-center justify-center">
-                    <span className="text-white text-xs">📷</span>
+                    <span className="text-white text-xs">{getMediaIcon(attachment)}</span>
                   </div>
                   <span className="text-xs text-gray-600 font-mono">
-                    Attachment {index + 1}
+                    {getMediaLabel(attachment, index)}
                   </span>
                 </div>
               </div>
