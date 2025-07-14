@@ -39,6 +39,9 @@ importers:
       '@justdiego/utils':
         specifier: workspace:*
         version: link:../../packages/utils
+      '@react-pdf/renderer':
+        specifier: ^4.3.0
+        version: 4.3.0(react@19.1.0)
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.11
@@ -113,6 +116,9 @@ importers:
       '@justdiego/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@justdiego/mocks':
+        specifier: workspace:*
+        version: link:../mocks
       '@justdiego/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -249,6 +255,9 @@ importers:
 
   packages/types:
     devDependencies:
+      '@justdiego/db':
+        specifier: workspace:*
+        version: link:../db
       '@justdiego/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
@@ -304,6 +313,9 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
     devDependencies:
+      '@justdiego/db':
+        specifier: workspace:*
+        version: link:../db
       '@justdiego/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
