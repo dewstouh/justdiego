@@ -1,7 +1,6 @@
 
 # TODO List
 ## Features
-- [ ] Create dev branch for development and leave main for production
 - [ ] Implement contact form with email sending
 - [ ] Add auto translation based on user browser language
 - [ ] Add husky and lint-staged for pre-commit hooks
@@ -20,6 +19,7 @@
 
 
 ## DONE
+- [x] Create dev branch for development and leave main for production
 - [x] Update CTA section with new punchline
 - [x] ~~Add constants for website metadata~~
 - [x] ~~Add constants for contact information~~
