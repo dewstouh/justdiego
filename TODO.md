@@ -6,9 +6,12 @@
 - [ ] Add auto translation based on user browser language
 - [ ] Add husky and lint-staged for pre-commit hooks
 - [ ] Add Google Analytics
-- [ ] Create a dashboard to configure the website
+- [ ] Create a dashboard to configure the website (nav links, metadata, socials, etc.)
 - [ ] Link projects to solutions (a project or projects can be used on a solution)
 - [ ] Add about page with Diego's story and information
+- [ ] Add cookie notice
+- [ ] Add faq in marketing and projects / shop
+- [ ] Add guides on how to improve your business
 
 ## Improvements
 
