@@ -5,8 +5,16 @@
 - [ ] Create dev branch for development and leave main for production
 - [ ] Implement contact form with email sending
 - [ ] Add auto translation based on user browser language
+- [ ] Add husky and lint-staged for pre-commit hooks
+- [ ] Add Google Analytics
+- [ ] Add constants for website metadata
+- [ ] Add constants for contact information
+- [ ] Create a dashboard to configure the website
+- [ ] Link projects to solutions (a project or projects can be used on a solution)
+- [ ] Add about page with Diego's story and information
 
 ## Improvements
+- [ ] Update CTA section with new punchline
 
 ## Bug Fixes
 
