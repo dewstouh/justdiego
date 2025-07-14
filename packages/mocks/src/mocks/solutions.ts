@@ -14,11 +14,11 @@ export const solutionsMock: Solution[] = [
         result: 'Reduced deploy time from 15 min to 2 min (7x faster)',
         reviewId: 'review-sarah-chen',
         attachments: [
-            'https://picsum.photos/800/600?random=1', // CI/CD Pipeline Before - slow manual process
-            'https://picsum.photos/800/600?random=2', // CI/CD Pipeline After - automated fast deployment
-            'https://via.placeholder.com/1200x800/2563eb/ffffff?text=TechFlow+CI%2FCD+Dashboard', // Pipeline monitoring dashboard
-            'https://placehold.co/800x450/png?text=Deployment+Metrics+Video&font=roboto', // Deployment process video thumbnail
-            'https://picsum.photos/600/400?random=3' // Architecture diagram
+            'https://fastly.picsum.photos/id/23/800/600.jpg?hmac=tgRp6_r_o2TpuzZfkINDn4dG7rweaGvmcUaNQandV_o', // CI/CD Pipeline Before - slow manual process
+            'https://i.imgur.com/bNXSrkJ.mp4', // CI/CD Pipeline After - automated fast deployment
+            'https://youtu.be/W-wPHjtkfms', // Pipeline monitoring dashboard
+            'https://placehold.co/800x450', // Deployment process video thumbnail
+            'https://placehold.co/1280x720' // Architecture diagram
         ],
         demoUrl: 'https://demo.techflow.com',
         completedAt: new Date('2024-11-15'),
@@ -71,12 +71,11 @@ export const solutionsMock: Solution[] = [
         result: 'Enabled moderation and logging for 2,000+ users with 99% uptime',
         reviewId: 'review-alex-morrison',
         attachments: [
-            'https://via.placeholder.com/1000x700/5865f2/ffffff?text=Discord+Bot+Commands', // Discord bot command interface
-            'https://picsum.photos/900/600?random=4', // Moderation panel screenshot
-            'https://via.placeholder.com/1200x800/7289da/ffffff?text=Community+Analytics+Dashboard', // Analytics dashboard
-            'https://placehold.co/800x450/mp4?text=Bot+Demo+Video&font=roboto', // Bot demonstration video
-            'https://picsum.photos/700/500?random=5', // Community growth chart
-            'https://via.placeholder.com/600x400/99aab5/2c2f33?text=Moderation+Logs' // Moderation activity logs
+            'https://fastly.picsum.photos/id/23/800/600.jpg?hmac=tgRp6_r_o2TpuzZfkINDn4dG7rweaGvmcUaNQandV_o', // CI/CD Pipeline Before - slow manual process
+            'https://fastly.picsum.photos/id/381/800/600.jpg?hmac=izr8qg93BWeDqyzvMwL7rNhNjj_arTqOO3O_TMflB7Y', // CI/CD Pipeline After - automated fast deployment
+            'https://placehold.co/800x600', // Pipeline monitoring dashboard
+            'https://placehold.co/800x450', // Deployment process video thumbnail
+            'https://placehold.co/1280x720' // Architecture diagram
         ],
         demoUrl: 'https://discord.gg/niby',
         completedAt: new Date('2025-02-28'),
@@ -129,13 +128,11 @@ export const solutionsMock: Solution[] = [
         result: 'Automated reporting saved 20 hours/week of manual work',
         reviewId: 'review-james-potter',
         attachments: [
-            'https://via.placeholder.com/1400x900/1f2937/f9fafb?text=Analytics+Dashboard+Overview', // Main dashboard view
-            'https://picsum.photos/1200/800?random=6', // Real-time charts and graphs
-            'https://via.placeholder.com/1000x600/059669/ffffff?text=Automated+Reports+Interface', // Report generation interface
-            'https://placehold.co/800x450/webm?text=Dashboard+Walkthrough&font=roboto', // Dashboard demo video
-            'https://picsum.photos/800/600?random=7', // Data visualization examples
-            'https://via.placeholder.com/900x600/dc2626/ffffff?text=Alert+System+Setup', // Alert configuration panel
-            'https://picsum.photos/600/400?random=8' // Performance metrics before/after comparison
+            'https://fastly.picsum.photos/id/23/800/600.jpg?hmac=tgRp6_r_o2TpuzZfkINDn4dG7rweaGvmcUaNQandV_o', // CI/CD Pipeline Before - slow manual process
+            'https://fastly.picsum.photos/id/381/800/600.jpg?hmac=izr8qg93BWeDqyzvMwL7rNhNjj_arTqOO3O_TMflB7Y', // CI/CD Pipeline After - automated fast deployment
+            'https://placehold.co/800x600', // Pipeline monitoring dashboard
+            'https://placehold.co/800x450', // Deployment process video thumbnail
+            'https://placehold.co/1280x720' // Architecture diagram
         ],
         demoUrl: 'https://dashboard.insightcorp.com',
         completedAt: new Date('2025-05-20'),
