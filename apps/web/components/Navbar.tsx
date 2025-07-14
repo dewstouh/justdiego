@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 w-full h-16 flex justify-center items-center z-50 navbar-transition ${
-      isScrolled ? 'bg-primary/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'
+      isScrolled ? 'bg-neutral-100 shadow-sm' : 'bg-transparent'
     }`}>
       <div className="w-full max-w-6xl mx-auto px-4 flex justify-between items-center md:justify-center">
         {/* Desktop Navigation */}
