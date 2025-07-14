@@ -2,13 +2,14 @@
   "name": "@justdiego/db",
   "version": "1.0.0",
   "exports": {
-    ".": "./src/client.ts"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:reset": "prisma migrate reset --force",
     "db:push": "prisma db push",
-    "db:seed": "tsx src/seed.ts",
+    "db:seed": "tsx scripts/seed.ts",
     "dev": "tsup src/* --watch",
     "format": "prisma format",
     "generate": "prisma generate",
@@ -21,6 +22,7 @@
     "@prisma/client": "latest"
   },
   "devDependencies": {
+    "@justdiego/mocks": "workspace:*",
     "@justdiego/eslint-config": "workspace:*",
     "@justdiego/typescript-config": "workspace:*",
     "eslint": "^8.57.0",
