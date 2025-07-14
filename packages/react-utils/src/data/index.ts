@@ -7,4 +7,4 @@ export * from './reviews';
 export * from './countries';
 export * from './legal-documents';
 export * from './socialmedias';
-export * from './navigation'
+export * from './website'
