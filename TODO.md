@@ -11,13 +11,13 @@
 - [ ] Add about page with Diego's story and information
 
 ## Improvements
-- [ ] Update CTA section with new punchline
 
 ## Bug Fixes
 
 
 
 ## DONE
+- [x] Update CTA section with new punchline
 - [x] ~~Add constants for website metadata~~
 - [x] ~~Add constants for contact information~~
 - [x] ~~Auto PDF generation for solutions~~
