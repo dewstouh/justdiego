@@ -88,13 +88,15 @@ export default function AttachmentModal({ selectedImage, onClose }: AttachmentMo
             </div>
           ) : (
             // Unknown media type - render as iframe
-            <div className="w-full mx-auto">
-              <div className="w-[70vw] h-[80vh] border-2 border-gray-300 bg-gray-100">
-                <iframe
-                  src={selectedImage}
-                  className="w-full h-full"
-                  title="Attachment Viewer"
-                />
+            <div className="w-[65vw] mx-auto">
+              <div className="border-2 border-gray-300 bg-gray-100">
+                <div className="relative w-full h-[60vh]">
+                  <iframe
+                    src={selectedImage}
+                    className="w-full h-full"
+                    title="Attachment Viewer"
+                  />
+                </div>
               </div>
               <div className="mt-4 text-center">
                 <p className="text-gray-600 font-mono text-sm mb-2">Attachment Preview</p>
