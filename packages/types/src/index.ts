@@ -1,2 +1,2 @@
 export * from './types/'
-export * from '@prisma/client'
+export * from '@justdiego/db'
