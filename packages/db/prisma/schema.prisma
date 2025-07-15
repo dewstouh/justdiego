@@ -10,22 +10,9 @@ generator client {
 }
 
 generator zod {
-  provider                         = "zod-prisma-types"
-  output                           = "../generated/zod"
-  useMultipleFiles                 = false
-  writeBarrelFiles                 = true
-  createInputTypes                 = true // valida entradas (api/forms)
-  createModelTypes                 = true // valida resultados de la DB
-  addInputTypeValidation           = true
-  addIncludeType                   = true
-  addSelectType                    = true
-  validateWhereUniqueInput         = true
-  createOptionalDefaultValuesTypes = true
-  createRelationValuesTypes        = true
-  createPartialTypes               = true
-  useDefaultValidators             = true
-  coerceDate                       = true
-  writeNullishInModelTypes         = false
+  provider                  = "zod-prisma-types"
+  output                    = "../generated/zod"
+  createRelationValuesTypes = true
 }
 
 datasource db {
@@ -47,7 +34,7 @@ model NavigationItem {
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
-  name      String?
+  name      String
   password  String?
   roles     Role[]
   countryId String
@@ -57,6 +44,7 @@ model User {
   country   Country    @relation(fields: [countryId], references: [id]) // A user belongs to a country
   reviews   Review[]
   documents Document[] // A user can author multiple documents
+  solutions Solution[] // A user can author multiple solutions
 }
 
 model Role {
@@ -89,7 +77,8 @@ model Company {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  country Country @relation(fields: [countryId], references: [id]) // A company belongs to a country
+  country   Country    @relation(fields: [countryId], references: [id]) // A company belongs to a country
+  solutions Solution[] // A company can have multiple solutions
 }
 
 model Country {
@@ -107,7 +96,7 @@ model Country {
 model Document {
   id           String       @id @default(cuid())
   title        String
-  description  String?
+  description  String
   thumbnailUrl String?
   slug         String       @unique
   content      String
@@ -122,6 +111,7 @@ model Document {
 model Tool {
   id                  String       @id @default(cuid())
   authorId            String
+  slug                String       @unique
   name                String
   shortDescription    String?
   longDescription     String?
@@ -145,29 +135,35 @@ model Tool {
 }
 
 model Solution {
-  id                  String       @id @default(cuid())
+  id                  String    @id @default(cuid())
+  customerId          String
+  companyId           String?
   shortDescription    String
   longDescription     String
-  customerId          String
-  customerType        CustomerType
   title               String
+  slug                String    @unique
   description         String?
   thumbnailUrl        String?
   demoUrl             String?
-  problemDescription  String?
-  solutionDescription String?
+  problemDescription  String
+  solutionDescription String
   technicalDetails    Json?
-  attachments         String[]     @default([])
-  tags                Tag[] // A solution can have multiple tags
-  technologies        Technology[] // A solution can use multiple technologies
-  tools               Tool[] // A solution can be associated with multiple tools
+  attachments         String[]  @default([])
   challenges          String[]
   outcomes            String[]
   completedAt         DateTime?
-  isForSale           Boolean      @default(false)
-  price               Decimal?     @default(0.0)
-  createdAt           DateTime     @default(now())
-  updatedAt           DateTime     @updatedAt
+  isForSale           Boolean   @default(false)
+  price               Decimal?  @default(0.0)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  customer User     @relation(fields: [customerId], references: [id])
+  company  Company? @relation(fields: [companyId], references: [id])
+  review   Review?
+
+  tags         Tag[] // A solution can have multiple tags
+  technologies Technology[] // A solution can use multiple technologies
+  tools        Tool[] // A solution can be associated with multiple tools
 }
 
 enum CustomerType {
@@ -179,12 +175,14 @@ model Review {
   id          String   @id @default(cuid())
   authorId    String
   author      User     @relation(fields: [authorId], references: [id])
-  targetId    String
   rating      Int
-  comment     String?
+  comment     String
   attachments String[] @default([])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  solutionId String   @unique
+  solution   Solution @relation(fields: [solutionId], references: [id])
 }
 
 model SocialMedia {
