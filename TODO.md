@@ -12,15 +12,16 @@
 - [ ] Add faq in marketing and projects / shop
 
 ## Improvements
-- [ ] Refactor of whole app
-- [ ] Add a way to generate pages with metadata and data fetching automatically
 
 ## Bug Fixes
 - [ ] Add "View Demo" button to solutions
 - [ ] Fix PDF generators
+- [ ] Add category guides
 
 
 ## DONE
+- [x] ~~Refactor of whole app~~
+- [x] ~~Add a way to generate pages with metadata and data fetching automatically~~
 - [ ] ~~Skeletons and Loading states for data fetching~~
 - [ ] ~~Better caching~~
 - [x] ~~Add guides on how to improve your business~~
