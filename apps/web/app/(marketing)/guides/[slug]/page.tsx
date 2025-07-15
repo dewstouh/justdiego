@@ -17,7 +17,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
-    const guide = await getDocument({ slug: params.slug, type: 'GUIDE' });
+    const {slug} = await params;
+    const guide = await getDocument({ slug, type: 'GUIDE' });
 
     if (!guide) {
         return {
@@ -41,7 +42,8 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
-    const guide = await getDocument({ slug: params.slug, type: 'GUIDE' });
+    const {slug} = await params;
+    const guide = await getDocument({ slug, type: 'GUIDE' });
 
     if(!guide) return notFound();
 
