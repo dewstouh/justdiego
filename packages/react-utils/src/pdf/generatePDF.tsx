@@ -4,7 +4,7 @@ import { pdf, DocumentProps } from '@react-pdf/renderer';
  * Generates and downloads a PDF for a single solution
  */
 interface GeneratePDFOptions {
-    component: React.ReactElement<DocumentProps>;
+    Content: React.FC<DocumentProps>;
     filename?: string;
 }
 
@@ -12,7 +12,7 @@ interface GeneratePDFOptions {
  * Generates and previews a PDF in a new window
  */
 interface PreviewPDFOptions {
-    component: React.ReactElement<DocumentProps>;
+    Content: React.FC<unknown>;
     windowTitle?: string;
 }
 
@@ -20,13 +20,13 @@ interface PreviewPDFOptions {
  * Generates and downloads a PDF for a single solution
  */
 export async function generatePDF({
-    component,
+    Content,
     filename = `document.pdf`
 }: GeneratePDFOptions): Promise<void> {
     try {
         // Generate PDF blob
         const blob = await pdf(
-            component
+            <Content/>
         ).toBlob();
 
         // Create download link
@@ -52,12 +52,14 @@ export async function generatePDF({
  * Generates and opens a PDF preview in a new window
  */
 export async function previewPDF({
-    component,
+    Content,
     windowTitle = 'PDF Preview'
 }: PreviewPDFOptions): Promise<void> {
     try {
         // Generate PDF blob
-        const blob = await pdf(component).toBlob();
+        const blob = await pdf(
+        <Content/>
+    ).toBlob();
 
         // Create blob URL
         const url = URL.createObjectURL(blob);

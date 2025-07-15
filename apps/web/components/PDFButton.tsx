@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import { Solution } from '@justdiego/types';
-//import { generateSolutionPDF, previewSolutionPDF, generateMultipleSolutionsPDF } from '@justdiego/react-utils';
+import { generatePDF, previewPDF } from '@justdiego/react-utils';
 
 interface PDFButtonProps {
     solution?: Solution;
     solutions?: Solution[];
+    Content: React.FC<unknown>;
     variant?: 'download' | 'preview';
     size?: 'sm' | 'md' | 'lg';
     children?: React.ReactNode;
@@ -16,6 +17,7 @@ interface PDFButtonProps {
 export default function PDFButton({
     solution,
     solutions,
+    Content,
     variant = 'download',
     size = 'md',
     children,
@@ -27,15 +29,16 @@ export default function PDFButton({
         try {
             setIsGenerating(true);
 
-            if (solution) {
-                if (variant === 'preview') {
-                    //await previewSolutionPDF({ solution });
-                } else {
-                    //await generateSolutionPDF({ solution });
-                }
-            } else if (solutions && solutions.length > 0) {
-                //await generateMultipleSolutionsPDF({ solutions });
+            if (variant === 'preview') {
+                await previewPDF({
+                    Content
+                })
+            } else {
+                await generatePDF({
+                    Content
+                })
             }
+
         } catch (error) {
             console.error('Error generating PDF:', error);
             alert('Failed to generate PDF. Please try again.');
