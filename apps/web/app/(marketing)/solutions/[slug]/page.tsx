@@ -1,3 +1,5 @@
+"use cache";
+
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import SolutionHeader from './_components/SolutionHeader';

@@ -5,6 +5,9 @@ const nextConfig = {
     defaultLocale: 'en',
     localeDetection: true,
   },*/
+  experimental: {
+    useCache: true
+  },
   images: {
     remotePatterns: [
       {
