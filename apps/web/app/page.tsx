@@ -1,7 +1,7 @@
 
 import CTA from './(marketing)/_components/CTA';
 import Hero from './(marketing)/_components/Hero';
-import Solutions from './(marketing)/_components/Solutions';
+import Solutions from './(marketing)/_components/SolutionsSection';
 
 
 export default async function HomePage() {
