@@ -12,7 +12,11 @@ interface DocumentQuery {
 export const getDocument = async (query?: DocumentQuery) => {
     "use cache";
     return db.document.findFirst({
-        where: query
+        where: query,
+        include: {
+            tags: true,
+            author: true
+        }
     });
 };
 
@@ -23,5 +27,9 @@ export const getDocuments = async (query?: DocumentQuery) => {
         orderBy: {
             updatedAt: 'desc',
         },
+        include: {
+            tags: true,
+            author: true
+        }
     });
 };
