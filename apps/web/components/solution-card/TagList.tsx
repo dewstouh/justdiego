@@ -1,5 +1,6 @@
 import { Tag } from '@justdiego/types';
 
+
 interface TagListProps {
   tags: Tag[];
 }
@@ -12,7 +13,7 @@ export default function TagList({ tags }: TagListProps) {
           key={tag.id}
           className="px-3 py-1 text-xs font-mono bg-gray-100 border border-slate-300 text-gray-900 hover:bg-slate-200 transition-colors"
         >
-          {tag.icon} {tag.name}
+          {tag.iconUrl} {tag.name}
         </span>
       ))}
     </div>

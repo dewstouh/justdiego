@@ -15,7 +15,7 @@ export default function Technologies({ technologies }: TechnologiesProps) {
             className="px-4 py-2 bg-gray-900 text-white font-mono text-sm border-2 border-gray-900"
             style={{ backgroundColor: tech.color, borderColor: tech.color }}
           >
-            {tech.icon} {tech.name}
+            {tech.iconUrl} {tech.name}
           </span>
         ))}
       </div>

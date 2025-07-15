@@ -1,20 +1,20 @@
 import React from 'react'
-import { getLegalDocumentBySlug, getLegalDocuments } from '@justdiego/react-utils';
 import Page from '../../_components/Page';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { MarkdownPage } from '../../../../components/MarkdownPage';
+import { getLegalDocumentBySlug, getLegalDocuments } from '../../../../lib/data/document';
 
 export async function generateStaticParams() {
-  const legalDocs = getLegalDocuments();
-  return legalDocs.map((solution) => ({
-    slug: solution.slug
+  const legalDocs = await getLegalDocuments();
+  return legalDocs.map((doc) => ({
+    slug: doc.slug
   }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const doc = getLegalDocumentBySlug(slug);
+  const doc = await getLegalDocumentBySlug(slug);
   if (!doc) return { title: "Not Found | JustDiego" };
 
   return {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function LegalPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const legalDocument = getLegalDocumentBySlug(slug);
+  const legalDocument = await getLegalDocumentBySlug(slug);
 
   if(!legalDocument) return notFound();
 

@@ -1,7 +1,7 @@
-import { type TechnicalDetails } from "@justdiego/types";
+import { TechnicalDetail } from "@justdiego/types";
 
 interface TechnicalDetailsProps {
-  technicalDetails: TechnicalDetails[];
+  technicalDetails: TechnicalDetail[];
 }
 
 export default function TechnicalDetails({ technicalDetails }: TechnicalDetailsProps) {

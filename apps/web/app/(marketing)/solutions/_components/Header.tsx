@@ -1,10 +1,8 @@
-'use client';
-
-import { getSolutions } from '@justdiego/react-utils';
 import PDFButton from '../../../../components/PDFButton';
+import { getSolutions } from '../../../../lib/data/solution';
 
-export default function Header() {
-  const solutions = getSolutions();
+export default async function Header() {
+  const solutions = await getSolutions();
 
   return (
         <div className="text-center mb-16">

@@ -1,8 +1,6 @@
-import { Solution } from '@justdiego/types';
-
 interface ProblemResultProps {
-    problem: Solution['problem'];
-    result: Solution['result'];
+    problem: string;
+    result: string;
 }
 
 export default function ProblemResult({ problem, result }: ProblemResultProps) {

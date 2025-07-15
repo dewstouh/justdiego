@@ -1,10 +1,9 @@
 'use client';
 
-import { getNavigations } from '@justdiego/react-utils';
 import { useState, useEffect } from 'react';
+import NavItems from './navbar/NavItems';
 
 export default function Navbar() {
-  const navItems = getNavigations();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -35,15 +34,7 @@ export default function Navbar() {
       <div className="w-full max-w-6xl mx-auto px-4 flex justify-between items-center md:justify-center">
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-6 md:gap-8">
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              className="text-xs md:text-sm font-bold text-gray-900 px-3 py-2 thick-underline transition-none"
-            >
-              {item.name.toUpperCase()}
-            </a>
-          ))}
+          <NavItems/>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -61,16 +52,7 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="absolute top-16 left-0 w-full bg-primary/95 backdrop-blur-sm shadow-lg md:hidden">
             <div className="flex flex-col py-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  className="text-sm font-bold text-gray-900 px-6 py-3 hover:bg-gray-100"
-                  onClick={closeMobileMenu}
-                >
-                  {item.name.toUpperCase()}
-                </a>
-              ))}
+              <NavItems onClick={closeMobileMenu}/>
             </div>
           </div>
         )}

@@ -1,8 +1,9 @@
-import { getLegalDocuments } from '@justdiego/react-utils';
 import Page from '../_components/Page';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { CTAButton } from '@justdiego/ui/button';
+import { getLegalDocuments } from '../../../lib/data/document';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: "Legal Documents | JustDiego",
@@ -17,9 +18,10 @@ export const metadata: Metadata = {
   robots: "index, follow",
 };
 
-export default function LegalPage() {
-  const legalDocuments = getLegalDocuments();
-
+export default async function LegalPage() {
+  const legalDocuments = await getLegalDocuments();
+  if(!legalDocuments) return notFound();
+  
   return (
     <Page>
       <Page.Header 

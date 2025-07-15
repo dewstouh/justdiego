@@ -1,9 +1,10 @@
-import { getLegalDocuments, getSocialMedias } from '@justdiego/react-utils';
+import { getLegalDocuments } from "../lib/data/document";
+import { getSocialMedias } from "../lib/data/socialmedia";
 
-export default function Footer() {
+export default async function Footer() {
   const currentYear = new Date().getFullYear();
-  const legalDocuments = getLegalDocuments();
-  const socialMedias = getSocialMedias();
+  const legalDocuments = await getLegalDocuments();
+  const socialMedias = await getSocialMedias();
 
   return (
     <footer className="w-full py-12 border-t border-gray-200">
@@ -20,7 +21,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-sm text-gray-600 hover:text-gray-900 hover:underline transition-all duration-200"
               >
-                {socialMedia.name}
+                {socialMedia.platform}
               </a>
               {index < socialMedias.length - 1 && (
                 <span className="hidden sm:inline"> · </span>

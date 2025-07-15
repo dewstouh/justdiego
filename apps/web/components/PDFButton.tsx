@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Solution } from '@justdiego/types';
-import { generateSolutionPDF, previewSolutionPDF, generateMultipleSolutionsPDF } from '@justdiego/react-utils';
+//import { generateSolutionPDF, previewSolutionPDF, generateMultipleSolutionsPDF } from '@justdiego/react-utils';
 
 interface PDFButtonProps {
     solution?: Solution;
@@ -29,12 +29,12 @@ export default function PDFButton({
 
             if (solution) {
                 if (variant === 'preview') {
-                    await previewSolutionPDF({ solution });
+                    //await previewSolutionPDF({ solution });
                 } else {
-                    await generateSolutionPDF({ solution });
+                    //await generateSolutionPDF({ solution });
                 }
             } else if (solutions && solutions.length > 0) {
-                await generateMultipleSolutionsPDF({ solutions });
+                //await generateMultipleSolutionsPDF({ solutions });
             }
         } catch (error) {
             console.error('Error generating PDF:', error);

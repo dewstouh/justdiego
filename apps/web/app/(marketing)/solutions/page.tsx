@@ -1,9 +1,9 @@
-import { getSolutions } from '@justdiego/react-utils';
+import { getSolutions } from '../../../lib/data/solution';
 import Page from '../_components/Page';
 import SolutionsGrid from './_components/SolutionsGrid';
 
-export default function SolutionsPage() {
-    const solutions = getSolutions();
+export default async function SolutionsPage() {
+    const solutions = await getSolutions();
   return (
     <Page>
       <Page.Header 

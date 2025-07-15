@@ -1,5 +1,3 @@
-import { Solution } from "@justdiego/types";
-import { getCustomer, getCountry, getTags, getTechnologies, getReview } from '@justdiego/react-utils';
 import SolutionCardSeparator from './solution-card/SolutionCardSeparator';
 import CompanyHeader from './solution-card/CompanyHeader';
 import ProjectDetails from './solution-card/ProjectDetails';
@@ -7,25 +5,24 @@ import TagList from './solution-card/TagList';
 import ReviewCard from './solution-card/ReviewCard';
 import AttachmentGallery from './solution-card/AttachmentGallery';
 import ProjectOverview from './solution-card/ProjectOverview';
+import { getSolutions } from '../lib/data/solution';
 
 interface SolutionCardProps {
-  solution: Solution;
+  solution: NonNullable<Awaited<ReturnType<typeof getSolutions>>>[number];
   variant?: 'compact' | 'full';
   showSeparator?: boolean;
 }
 
 export default function SolutionCard({ 
-  solution, 
+  solution,
   variant = 'full',
   showSeparator = true 
 }: SolutionCardProps) {
 
-  // Get related data
-  const customer = getCustomer(solution.customerId);
-  const country = getCountry(solution.countryId);
-  const tags = getTags().filter(tag => solution.tagIds.includes(tag.id));
-  const technologies = getTechnologies().filter(tech => solution.technologyIds.includes(tech.id));
-  const review = solution.reviewId ? getReview(solution.reviewId) : null;
+  const {title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, customer, company, review } = solution;
+
+  const country = customer.country || company?.country;
+
 
   return (
     <>
@@ -38,15 +35,15 @@ export default function SolutionCard({
             <CompanyHeader 
               customer={customer}
               country={country}
-              completedAt={solution.completedAt}
+              completedAt={completedAt}
             />
 
             <ProjectDetails
-              title={solution.title}
-              shortDescription={solution.shortDescription}
-              problem={solution.problem}
-              result={solution.result}
-              slug={solution.slug}
+              title={title}
+              shortDescription={shortDescription}
+              problem={problemDescription}
+              result={solutionDescription}
+              slug={slug}
               variant={variant}
             />
 
@@ -54,22 +51,25 @@ export default function SolutionCard({
           </div>
 
           {/* Right Column - Review & Content */}
-          <div className="space-y-6">
-            <ReviewCard review={review} />
+          {review && (
+            <div className="space-y-6">
+              <ReviewCard rating={review.rating} comment={review.comment} author={review.author} country={review.author.country} />
 
-            {variant === 'compact' ? (
-              <AttachmentGallery
-                attachments={solution.attachments}
-                slug={solution.slug}
-              />
-            ) : (
-              <ProjectOverview
-                attachmentCount={solution.attachments?.length || 0}
-                technologies={technologies}
-                hasDemoUrl={!!solution.demoUrl}
-              />
-            )}
-          </div>
+              {variant === 'compact' ? (
+                <AttachmentGallery
+                  attachments={attachments}
+                  slug={slug}
+                />
+              ) : (
+                <ProjectOverview
+                  attachmentCount={attachments?.length || 0}
+                  technologies={technologies}
+                  hasDemoUrl={!!demoUrl}
+                />
+              )}
+            </div>
+          )}
+          
         </div>
       </div>
     </>
