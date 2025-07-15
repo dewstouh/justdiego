@@ -1,7 +1,8 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
+import BackHomeButton from './ui/BackHomeButton';
 
 // Import BackHomeButton - adjust path as needed
-import BackHomeButton from '../_components/BackHomeButton';
 
 // Simple utility to combine class names
 function cn(...classes: (string | undefined | null | false)[]): string {
@@ -190,5 +191,67 @@ function PageFooter({ children, className, showTopBorder = true }: PageFooterPro
 Page.Header = PageHeader;
 Page.Content = PageContent;
 Page.Footer = PageFooter;
+
+interface SimplePageConfig {
+    title: string;
+    subtitle?: string;
+    description?: string;
+    note?: string;
+    imageUrl?: string;
+    showBackHomeButton?: boolean;
+    showFooterBorder?: boolean;
+    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | 'full';
+    padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+    background?: 'transparent' | 'white' | 'gray' | 'primary';
+}
+
+
+interface SimplePageProps {
+    config: SimplePageConfig;
+    children: React.ReactNode;
+}
+
+export function SimplePage({ config, children }: SimplePageProps) {
+    return (
+        <Page
+            maxWidth={config.maxWidth}
+            padding={config.padding}
+            background={config.background}
+            showBackHomeButton={config.showBackHomeButton}
+            showFooterBorder={config.showFooterBorder}
+        >
+            <Page.Header
+                title={config.title}
+                subtitle={config.subtitle}
+                description={config.description}
+                imageUrl={config.imageUrl}
+                note={config.note}
+            />
+
+            <Page.Content>
+                {children}
+            </Page.Content>
+        </Page>
+    );
+}
+
+export function createPageMetadata(
+    title: string,
+    description: string,
+    path?: string
+): Metadata {
+    return {
+        title: `${title} | JustDiego`,
+        description,
+        openGraph: {
+            title: `${title} | JustDiego`,
+            description,
+            url: path ? `https://justdiego.com${path}` : undefined,
+            siteName: "JustDiego",
+            type: "website",
+        },
+        robots: "index, follow",
+    };
+  }
 
 export default Page;
