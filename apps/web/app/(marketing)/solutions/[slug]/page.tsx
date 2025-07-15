@@ -11,6 +11,7 @@ import ClientReview from './_components/ClientReview';
 import CTA from './_components/CTA';
 import { TechnicalDetail } from '@justdiego/types';
 import { getSolutionBySlug, getSolutions } from '../../../../lib/data/solution';
+import { Suspense } from 'react';
 
 export async function generateStaticParams() {
   const solutions = await getSolutions();
@@ -40,8 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function SolutionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+// Separate component for the solution content
+async function SolutionContent({ slug }: { slug: string }) {
   const solution = await getSolutionBySlug(slug);
 
   if (!solution) return notFound();
@@ -69,16 +70,27 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
       <Technologies technologies={technologies} />
 
       {review && (
-          <ClientReview
-            key={review.id}
-            rating={review.rating}
-            comment={review.comment}
-            author={review.author}
-          />
-        )
-      }
+        <ClientReview
+          key={review.id}
+          rating={review.rating}
+          comment={review.comment}
+          author={review.author}
+        />
+      )}
 
       <CTA />
     </>
+  );
+}
+
+export default async function SolutionDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  return (
+    <div>
+      <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded m-4"></div>}>
+        <SolutionContent slug={slug} />
+      </Suspense>
+    </div>
   );
 }
