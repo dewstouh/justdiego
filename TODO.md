@@ -15,9 +15,11 @@
 ## Improvements
 
 ## Bug Fixes
+- [ ] Fix PDF generators
 
 
 ## DONE
+- [x] Fix typings for `getSolutions`
 - [x] Fix navbar background when scrolled and website is refreshed
 - [x] Create dev branch for development and leave main for production
 - [x] Update CTA section with new punchline
