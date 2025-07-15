@@ -1,8 +1,9 @@
-import { Suspense } from 'react';
 import Page from '../_components/Page';
-import SolutionsList from './_components/SolutionsList';
+import { getSolutions } from '../../../lib/data/solution';
+import SolutionCard from '../../../components/SolutionCard';
 
 export default async function SolutionsPage() {
+  const solutions = await getSolutions();
   return (
     <Page>
       <Page.Header 
@@ -12,9 +13,16 @@ export default async function SolutionsPage() {
       />
       
       <Page.Content>
-        <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded m-4"></div>}>
-          <SolutionsList />
-        </Suspense>
+          <div className="grid gap-12 lg:gap-16">
+            {solutions.map((solution, index) => (
+              <SolutionCard
+                key={solution.id}
+                solution={solution}
+                variant="full"
+                showSeparator={index > 0}
+              />
+            ))}
+          </div>
       </Page.Content>
     </Page>
   );

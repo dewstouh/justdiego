@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import AutoBreadcrumb from '../../components/AutoBreadcrumb';
 
 interface MarketingLayoutProps {
@@ -10,7 +10,9 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
     <div className="min-h-screen bg-primary">
       <div className="max-w-5xl mx-auto px-4 py-22">
         <AutoBreadcrumb />
-        {children}
+        <Suspense fallback={<div className="h-16 bg-gray-200 animate-pulse rounded-md mb-4" />}>
+          {children}
+        </Suspense>
       </div>
     </div>
   );
