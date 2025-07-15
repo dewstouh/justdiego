@@ -1,4 +1,3 @@
-import React from 'react'
 import SolutionCard from '../../../../components/SolutionCard';
 import { getSolutions } from '../../../../lib/data/solution';
 

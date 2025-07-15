@@ -30,8 +30,7 @@ export default async function Solutions() {
         </Section.Footer>
       </Section>
     );
-  } catch (error) {
-    console.error('Solutions component error:', error);
+  } catch {
     return (
       <Section id="solutions" className='bg-primary text-gray-900'>
         <Section.Header

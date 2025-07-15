@@ -1,4 +1,3 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDocument, getDocuments } from '../../../../lib/data/document';
@@ -39,23 +38,6 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
         },
         robots: "index, follow",
     };
-}
-
-// Helper function to get reading time estimate
-function getReadingTime(content: string): string {
-    const wordsPerMinute = 200;
-    const words = content.split(/\s+/).length;
-    const minutes = Math.ceil(words / wordsPerMinute);
-    return `${minutes} min read`;
-}
-
-// Helper function to categorize guides
-function getCategory(title: string): string {
-    if (title.toLowerCase().includes('seo') || title.toLowerCase().includes('appear first')) return 'SEO & Marketing';
-    if (title.toLowerCase().includes('automation')) return 'Automation';
-    if (title.toLowerCase().includes('digital transformation')) return 'Digital Transformation';
-    if (title.toLowerCase().includes('productivity') || title.toLowerCase().includes('tools')) return 'Productivity';
-    return 'Business Growth';
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {

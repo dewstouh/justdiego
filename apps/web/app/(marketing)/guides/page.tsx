@@ -1,4 +1,3 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { getDocuments } from '../../../lib/data/document';
 import { SimplePage, createPageMetadata } from '../_components/SimplePage';

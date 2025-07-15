@@ -39,8 +39,7 @@ export default function PDFButton({
                 })
             }
 
-        } catch (error) {
-            console.error('Error generating PDF:', error);
+        } catch {
             alert('Failed to generate PDF. Please try again.');
         } finally {
             setIsGenerating(false);

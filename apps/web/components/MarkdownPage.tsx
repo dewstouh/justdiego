@@ -1,7 +1,6 @@
 "use client";
 
 import { MarkdownRenderer, useActiveHeading } from '@justdiego/react-utils';
-import React from 'react';
 import { TableOfContents } from './TableOfContents';
 import { extractMarkdownHeadings } from '@justdiego/utils';
 

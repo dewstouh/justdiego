@@ -1,4 +1,3 @@
-import React from 'react';
 import { Metadata } from 'next';
 import { getDocument } from '../../../lib/data/document';
 import DocumentPage from '../_components/DocumentPage';

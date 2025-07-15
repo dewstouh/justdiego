@@ -52,8 +52,7 @@ export function useContactForm() {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
-      console.error('Form submission error:', error);
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

@@ -42,8 +42,7 @@ export async function generatePDF({
         // Cleanup
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-    } catch (error) {
-        console.error('Error generating PDF:', error);
+    } catch {
         throw new Error('Failed to generate PDF');
     }
 }
@@ -79,8 +78,7 @@ export async function previewPDF({
             URL.revokeObjectURL(url);
             throw new Error('Unable to open preview window. Please allow popups for this site.');
         }
-    } catch (error) {
-        console.error('Error previewing PDF:', error);
+    } catch {
         throw new Error('Failed to preview PDF');
     }
 }
