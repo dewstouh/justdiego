@@ -15,6 +15,8 @@
 ## Improvements
 - [ ] Better caching
 - [ ] Skeletons and Loading states for data fetching
+- [ ] Refactor of whole app
+- [ ] Add a way to generate pages with metadata and data fetching automatically
 
 ## Bug Fixes
 - [ ] Add "View Demo" button to solutions
