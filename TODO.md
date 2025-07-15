@@ -10,11 +10,8 @@
 - [ ] Add about page with Diego's story and information
 - [ ] Add cookie notice
 - [ ] Add faq in marketing and projects / shop
-- [ ] Add guides on how to improve your business
 
 ## Improvements
-- [ ] Better caching
-- [ ] Skeletons and Loading states for data fetching
 - [ ] Refactor of whole app
 - [ ] Add a way to generate pages with metadata and data fetching automatically
 
@@ -24,6 +21,9 @@
 
 
 ## DONE
+- [ ] ~~Skeletons and Loading states for data fetching~~
+- [ ] ~~Better caching~~
+- [x] ~~Add guides on how to improve your business~~
 - [x] ~~Fix typings for `getSolutions`~~
 - [x] ~~Fix navbar background when scrolled and website is refreshed~~
 - [x] ~~Create dev branch for development and leave main for production~~
