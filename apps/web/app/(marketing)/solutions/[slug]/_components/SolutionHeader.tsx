@@ -1,7 +1,7 @@
 import { formatDate } from '@justdiego/utils';
 import TagList from '../../../../../components/solution-card/TagList';
-import PDFButton from '../../../../../components/PDFButton';
 import { Tag } from '@justdiego/types';
+import PDFButton from '../../../../../components/ui/PDFButton';
 
 
 interface SolutionHeaderProps {
@@ -46,7 +46,7 @@ export default function SolutionHeader({ title, customerName, tags, description,
       <TagList tags={tags} />
       
       {/* PDF Export Buttons */}
-      <div className="flex flex-wrap gap-3 mt-6">
+      {/*<div className="flex flex-wrap gap-3 mt-6">
         <PDFButton 
           //solution={solution}
           variant="preview"
@@ -54,7 +54,7 @@ export default function SolutionHeader({ title, customerName, tags, description,
         >
           [PDF] - SOLUTION REPORT STUDIO CASE
         </PDFButton>
-      </div>
+      </div> */}
     </div>
   );
 }
