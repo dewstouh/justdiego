@@ -1,4 +1,3 @@
-"use cache";
 
 import React from 'react'
 import Page from '../../_components/Page';
