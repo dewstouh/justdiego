@@ -20,6 +20,7 @@
 
 
 ## DONE
+- [x] ~~Add document author~~
 - [x] ~~Refactor of whole app~~
 - [x] ~~Add a way to generate pages with metadata and data fetching automatically~~
 - [ ] ~~Skeletons and Loading states for data fetching~~
