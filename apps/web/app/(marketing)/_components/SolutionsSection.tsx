@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Section from './Section';
 import { Suspense } from 'react';
-import SolutionsList from './solutions/SolutionsList';
+import SolutionsList from './lists/SolutionsList';
 
 export default async function Solutions() {
   try {
