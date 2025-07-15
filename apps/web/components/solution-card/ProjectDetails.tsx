@@ -45,7 +45,7 @@ export default function ProjectDetails({
           href={`/solutions/${slug}`}
           className="inline-block bg-gray-900 text-white px-6 py-3 border-2 border-gray-900 font-bold hover:bg-primary transition-all duration-200"
         >
-          VIEW FULL CASE STUDY →
+          VIEW FULL STUDY CASE →
         </Link>
       )}
     </div>
