@@ -1,3 +1,5 @@
+"use cache";
+
 import { getLegalDocuments } from "../lib/data/document";
 import { getSocialMedias } from "../lib/data/socialmedia";
 
