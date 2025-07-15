@@ -1,9 +1,8 @@
-import { getSolutions } from '../../../lib/data/solution';
+import { Suspense } from 'react';
 import Page from '../_components/Page';
-import SolutionsGrid from './_components/SolutionsGrid';
+import SolutionsList from './_components/SolutionsList';
 
 export default async function SolutionsPage() {
-    const solutions = await getSolutions();
   return (
     <Page>
       <Page.Header 
@@ -13,7 +12,9 @@ export default async function SolutionsPage() {
       />
       
       <Page.Content>
-        <SolutionsGrid solutions={solutions} />
+        <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded m-4"></div>}>
+          <SolutionsList />
+        </Suspense>
       </Page.Content>
     </Page>
   );

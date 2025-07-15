@@ -1,7 +1,8 @@
-import { Solution } from "@justdiego/types";
 import SolutionCard from "../../../../components/SolutionCard";
+import { getSolutions } from "../../../../lib/data/solution";
 
-export default function SolutionsGrid({ solutions }: { solutions: Solution[] }) {
+export default async function SolutionsList() {
+  const solutions = await getSolutions();
   return (
       <div className="grid gap-12 lg:gap-16">
           {solutions.map((solution, index) => (
