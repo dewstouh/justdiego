@@ -1,6 +1,6 @@
 import { getSolutions } from '../../../lib/data/solution';
 import SolutionCard from '../../../components/SolutionCard';
-import { SimplePage, createPageMetadata } from '../_components/SimplePage';
+import { SimplePage, createPageMetadata } from '../../../components/Page';
 
 export const metadata = createPageMetadata(
   'All Solutions',

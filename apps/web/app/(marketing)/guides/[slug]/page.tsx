@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDocument, getDocuments } from '../../../../lib/data/document';
-import DocumentPage from '../../_components/DocumentPage';
+import DocumentPage from '../../../../components/document/DocumentPage';
 
 interface GuidePageProps {
     params: {
@@ -45,14 +45,9 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
     if(!guide) return notFound();
 
-    const {title, description, content, thumbnailUrl} = guide;
-
     return (
         <DocumentPage
-            title={title}
-            description={description}
-            content={content}
-            thumbnailUrl={thumbnailUrl}
+            document={guide}
         />
     )
 

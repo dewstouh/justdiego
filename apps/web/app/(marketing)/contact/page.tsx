@@ -1,4 +1,4 @@
-import { SimplePage, createPageMetadata } from '../_components/SimplePage';
+import { SimplePage, createPageMetadata } from '../../../components/Page';
 import Contact from './_components/Contact';
 
 export const metadata = createPageMetadata(

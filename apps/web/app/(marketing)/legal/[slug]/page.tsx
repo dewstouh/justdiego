@@ -3,7 +3,7 @@ import React from 'react'
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getDocument, getDocuments } from '../../../../lib/data/document';
-import DocumentPage from '../../_components/DocumentPage';
+import DocumentPage from '../../../../components/document/DocumentPage';
 
 export async function generateStaticParams() {
   const legalDocs = await getDocuments({type: 'LEGAL'});
@@ -38,13 +38,9 @@ export default async function LegalPage({ params }: { params: Promise<{ slug: st
 
   if(!legalDocument) return notFound();
 
-  const { content, description, title } = legalDocument;
   return (
     <DocumentPage
-      title={title}
-      description={description}
-      content={content}
-      thumbnailUrl={legalDocument.thumbnailUrl}
+      document={legalDocument}
     />
   )
 }

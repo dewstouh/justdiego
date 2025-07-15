@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getDocuments } from '../../../lib/data/document';
-import { SimplePage, createPageMetadata } from '../_components/SimplePage';
+import { SimplePage, createPageMetadata } from '../../../components/Page';
 import GuidesContent from './_components/GuidesContent';
 
 export const metadata: Metadata = createPageMetadata(

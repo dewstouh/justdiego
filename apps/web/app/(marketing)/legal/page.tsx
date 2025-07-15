@@ -1,8 +1,8 @@
-import { SimplePage, createPageMetadata } from '../_components/SimplePage';
 import Link from 'next/link';
 import { CTAButton } from '@justdiego/ui/button';
 import { getDocuments } from '../../../lib/data/document';
 import { notFound } from 'next/navigation';
+import { SimplePage, createPageMetadata } from '../../../components/Page';
 
 export const metadata = createPageMetadata(
   "Legal Documents",
