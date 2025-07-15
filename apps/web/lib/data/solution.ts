@@ -1,8 +1,8 @@
-import { cache } from "react";
+
 import db from '@justdiego/db';
 import { Prisma } from "@justdiego/types";
 
-export const getSolutions = cache(async (): Promise<
+export const getSolutions = async (): Promise<
     Prisma.SolutionGetPayload<{
         include: {
             tags: true,
@@ -22,6 +22,7 @@ export const getSolutions = cache(async (): Promise<
         }
     }>[]
 > => {
+    "use cache";
     return db.solution.findMany({
         include: {
             tags: true,
@@ -51,10 +52,11 @@ export const getSolutions = cache(async (): Promise<
             updatedAt: 'desc',
         },
     });
-});
+};
 
 
-export const getSolutionBySlug = cache(async (slug: string) => {
+export const getSolutionBySlug = async (slug: string) => {
+    "use cache";
     return db.solution.findFirst({
         where: {
             slug,
@@ -84,4 +86,4 @@ export const getSolutionBySlug = cache(async (slug: string) => {
             },
         },
     });
-});
+};

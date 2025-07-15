@@ -1,7 +1,9 @@
-import { cache } from "react";
+"use server";
+
 import db from '@justdiego/db';
 
-export const getLegalDocuments = cache(async () => {
+export const getLegalDocuments = async () => {
+    "use cache";
     return db.document.findMany({
         where: {
             type: "LEGAL",
@@ -10,13 +12,14 @@ export const getLegalDocuments = cache(async () => {
             updatedAt: 'desc',
         },
     });
-});
+};
 
-export const getLegalDocumentBySlug = cache(async (slug: string) => {
+export const getLegalDocumentBySlug = async (slug: string) => {
+    "use cache";
     return db.document.findUnique({
         where: {
             type: "LEGAL",
             slug,
         }
     });
-});
+};
