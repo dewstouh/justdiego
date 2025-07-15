@@ -1,8 +1,8 @@
 import React from 'react'
-import { getLegalDocuments } from '../../lib/data/document';
+import { getDocuments } from '../../lib/data/document';
 
 export default async function LegalDocumentList() {
-    const legalDocuments = await getLegalDocuments();
+    const legalDocuments = await getDocuments({ type: 'LEGAL' });
   return (
       <div className="flex flex-wrap justify-center gap-1 text-xs text-gray-400">
           {legalDocuments.map((document, index) => (

@@ -1,13 +1,12 @@
 
 import React from 'react'
-import Page from '../../_components/Page';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { MarkdownPage } from '../../../../components/MarkdownPage';
-import { getLegalDocumentBySlug, getLegalDocuments } from '../../../../lib/data/document';
+import { getDocument, getDocuments } from '../../../../lib/data/document';
+import DocumentPage from '../../_components/DocumentPage';
 
 export async function generateStaticParams() {
-  const legalDocs = await getLegalDocuments();
+  const legalDocs = await getDocuments({type: 'LEGAL'});
   return legalDocs.map((doc) => ({
     slug: doc.slug
   }));
@@ -15,7 +14,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const doc = await getLegalDocumentBySlug(slug);
+  const doc = await getDocument({slug, type: 'LEGAL'});
   if (!doc) return { title: "Not Found | JustDiego" };
 
   return {
@@ -35,21 +34,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function LegalPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const legalDocument = await getLegalDocumentBySlug(slug);
+  const legalDocument = await getDocument({ slug, type: 'LEGAL' });
 
   if(!legalDocument) return notFound();
 
   const { content, description, title } = legalDocument;
   return (
-    <Page>
-      <Page.Header
-        title={title}
-        description={description}
-      />
-
-      <Page.Content>
-        <MarkdownPage content={content} />
-      </Page.Content>
-    </Page>
+    <DocumentPage
+      title={title}
+      description={description}
+      content={content}
+      thumbnailUrl={legalDocument.thumbnailUrl}
+    />
   )
 }

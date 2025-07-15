@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 
 // Import BackHomeButton - adjust path as needed
 import BackHomeButton from '../_components/BackHomeButton';
@@ -24,6 +24,7 @@ interface PageProps {
 interface PageHeaderProps {
     title: string;
     subtitle?: string;
+    imageUrl?: string;
     description?: string;
     note?: string;
     className?: string;
@@ -118,6 +119,7 @@ function PageHeader({
     title,
     subtitle,
     description,
+    imageUrl,
     note,
     className,
     titleClassName,
@@ -139,6 +141,19 @@ function PageHeader({
             </h1>
             {showDivider && (
                 <div className={cn('w-32 h-1 bg-gray-900 mx-auto mb-8', dividerClassName)} />
+            )}
+            {imageUrl && (
+                <div className="relative h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden mb-8">
+                    <div className="mb-8">
+                        <Image
+                            src={imageUrl}
+                            alt={title}
+                            fill
+                            priority
+                            className="mx-auto object-cover rounded-lg shadow-lg"
+                        />
+                    </div>
+                </div>
             )}
             {description && (
                 <p className={cn('text-xl text-gray-600 max-w-4xl mx-auto mb-4', descriptionClassName)}>

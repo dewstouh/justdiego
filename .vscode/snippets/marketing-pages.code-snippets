@@ -1,0 +1,66 @@
+{
+  "Marketing Page with SimplePage": {
+    "prefix": "marketing-page",
+    "body": [
+      "import { SimplePage, createPageMetadata } from '../_components/SimplePage';",
+      "",
+      "export const metadata = createPageMetadata(",
+      "  '${1:Page Title}',",
+      "  '${2:Page description}',",
+      "  '/${3:page-slug}'",
+      ");",
+      "",
+      "export default function ${4:PageName}Page() {",
+      "  return (",
+      "    <SimplePage config={{",
+      "      title: \"${1:Page Title}\",",
+      "      description: \"${2:Page description}\",",
+      "      ${5:// note: \"Optional note\",}",
+      "    }}>",
+      "      {/* Add your page content here */}",
+      "      <div>",
+      "        $0",
+      "      </div>",
+      "    </SimplePage>",
+      "  );",
+      "}"
+    ],
+    "description": "Create a new marketing page with SimplePage wrapper"
+  },
+  
+  "Marketing Page with Data Fetching": {
+    "prefix": "marketing-page-data",
+    "body": [
+      "import { SimplePage, createPageMetadata } from '../_components/SimplePage';",
+      "import { ${1:getDataFunction} } from '../../../lib/data/${2:dataSource}';",
+      "",
+      "export const metadata = createPageMetadata(",
+      "  '${3:Page Title}',",
+      "  '${4:Page description}',",
+      "  '/${5:page-slug}'",
+      ");",
+      "",
+      "export default async function ${6:PageName}Page() {",
+      "  const ${7:data} = await ${1:getDataFunction}();",
+      "",
+      "  return (",
+      "    <SimplePage config={{",
+      "      title: \"${3:Page Title}\",",
+      "      description: \"${4:Page description}\",",
+      "      ${8:// note: \"Optional note\",}",
+      "    }}>",
+      "      {/* Add your page content here */}",
+      "      <div>",
+      "        {${7:data}.map((item) => (",
+      "          <div key={item.id}>",
+      "            $0",
+      "          </div>",
+      "        ))}",
+      "      </div>",
+      "    </SimplePage>",
+      "  );",
+      "}"
+    ],
+    "description": "Create a new marketing page with data fetching and SimplePage wrapper"
+  }
+}

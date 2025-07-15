@@ -72,5 +72,101 @@ export const guideDocumentsMock: Prisma.DocumentCreateInput[] = [
   }
 ]
 
-export const documentsMock = [...legalDocumentsMock, ...guideDocumentsMock];
+export const aboutDocument: Prisma.DocumentCreateInput = {
+  id: "about-justdiego",
+  slug: "about",
+  title: "About",
+  type: "OTHER",
+  description: "Learn about JustDiego, our mission, values, and the team behind the brand. Discover how we help businesses thrive through digital-first operations and green technology solutions.",
+  thumbnailUrl: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&h=600&fit=crop&crop=entropy&auto=format&q=80",
+  content: `# What is justdiego.com?
+
+justdiego.com is not a portfolio.  
+Not a playground for showing off code.  
+Not another vanity project for tech tourists.
+
+This is a platform for ** ruthless business automation** in 2025, powered by real AI.
+  Manual, repetitive work?Eliminated by algorithms that don’t sleep.
+  Slow, outdated systems?Upgraded with automation, not excuses.  
+Excuses and inefficiency ? Out the door, replaced by intelligent systems.
+
+---
+
+## What Does justdiego.com Deliver ?
+
+- ** AI - driven business automation:**
+  Repetitive tasks and manual processes are hunted down and automated using the latest machine learning and AI techniques.No “buzzword” bullshit—only real-world impact.
+- ** Direct business optimization:**
+  Immediate audits, process breakdowns, and technical solutions—not talk, not fluff.
+- ** Custom systems and integrations:**
+  Unique software, robust infrastructure, seamless APIs.Zero templates, zero shortcuts.
+- ** Impact in hours, not weeks:**
+  Results delivered at speed.No time wasted, no endless meetings.
+- ** Centralized service for companies ready to grow:**
+  Cloud deployment, bots, integrations, automation—everything under one roof.
+- ** Proof, not promises:**
+  Claims backed by real - world projects, live demos, and transparent feedback.
+- ** Unfiltered, expert support:**
+  No generic helpdesk, no clueless intermediaries.Only real answers.
+
+---
+
+## Why Does justdiego.com Exist ?
+
+  Tech “solutions” have become a joke—slow, overpriced, and full of empty buzzwords.  
+Businesses deserve actual results, not endless invoices and empty meetings.
+  justdiego.com was created to destroy inefficiency, automate at scale, and deliver outcomes worth paying for, using the power of AI and modern automation.
+    It’s 2025. This is the real world.Anyone ignoring AI is already obsolete.
+
+---
+
+## How Does justdiego.com Work ?
+
+  No onboarding courses.  
+No pointless discovery calls.
+  No “let’s schedule a meeting for next week.”
+
+Here’s how it works:
+
+1. ** Business is dissected.**
+  Systems and processes are mapped, bottlenecks exposed, inefficiencies identified.  
+   Weaknesses don’t survive the first hour.
+
+2. ** Inefficiency is eliminated by AI and automation.**
+  Every manual, repetitive task is targeted for destruction by intelligent systems.  
+   If it wastes time, it’s either automated, replaced, or deleted.
+
+3. ** Solutions are custom - engineered, powered by AI.**
+  Forget generic templates or cookie - cutter apps.
+    Tools, automations, and integrations are built from scratch, leveraging artificial intelligence where it matters, and human expertise where it’s needed.
+
+4. ** Everything is deployed, tested, and proven—fast.**
+  No endless beta phases.  
+   Systems go live, results show up, improvements are measured in real numbers.
+
+5. ** Direct feedback, immediate iteration.**
+  No support tickets lost in a queue.  
+   Adjustments happen in real time until perfection is the only outcome.
+
+---
+
+  This isn’t the world of 2010.
+It’s 2025, and automation is the minimum standard.  
+AI is here.Either the business evolves, or it gets left behind.
+
+## How Automated is justdiego.com ?
+
+  This isn’t marketing talk.
+Every guide, every resource, every update on this website is automatically generated, organized, and published by AI systems—zero manual work, zero wasted effort.
+In fact, the guides you’re reading right now are auto - created by AI.Not a single finger lifted.
+If a process can be automated, it already is.
+
+** Ready to experience real execution in the AI era ?**
+  [Request a real audit](#contact).  
+Witness the difference in the first 24 hours—or keep pretending you live in the past.
+`,
+  author: { connect: { id: 'user-diego' } },
+}
+
+export const documentsMock = [...legalDocumentsMock, ...guideDocumentsMock, aboutDocument];
 

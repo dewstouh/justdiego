@@ -7,9 +7,7 @@ export default function Footer() {
     <footer className="w-full py-12 border-t border-gray-200">
       {/* Social and Professional Links */}
       <div className="text-center max-w-6xl mx-auto px-4">
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          <SocialMediaList />
-        </div>
+        <SocialMediaList />
 
         {/* Legal Links */}
         <div className="text-center mb-8">

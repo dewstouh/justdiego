@@ -4,7 +4,7 @@ import { getSocialMedias } from '../../lib/data/socialmedia';
 export default async function SocialMediaList() {
     const socialMedias = await getSocialMedias();
   return (
-      <div className="flex flex-wrap justify-center gap-3 mb-16">
+      <div className="flex flex-wrap justify-center gap-3 mb-8">
         {
             socialMedias.length > 0 && socialMedias.map((socialMedia, index) => (
                 <span key={socialMedia.id}>
