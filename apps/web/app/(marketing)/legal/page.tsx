@@ -81,7 +81,7 @@ export default async function LegalPage() {
           variant="primary"
           className="w-auto"
         >
-          Contact Us
+          Send an Email
         </CTAButton>
       </div>
     </SimplePage>

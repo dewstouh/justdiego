@@ -38,14 +38,14 @@ export function ContactModeSwitcher({ selectedMode, onModeChange }: ContactModeS
           isActive={selectedMode === 'contact'}
           onClick={() => onModeChange('contact')}
         >
-          Contact Us
+          Send an Email
         </ModeButton>
         <ModeButton
           mode="meeting"
           isActive={selectedMode === 'meeting'}
           onClick={() => onModeChange('meeting')}
         >
-          Book a Meeting
+          UNLOCK A 24H AUDIT
         </ModeButton>
       </div>
     </div>

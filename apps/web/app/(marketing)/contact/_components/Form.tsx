@@ -16,9 +16,9 @@ export default function ContactForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Get in Touch</CardTitle>
+        <CardTitle>Get a full analysis</CardTitle>
         <CardDescription>
-          Tell me about your project and let&apos;s discuss how I can help.
+          No small talk. State your problem, get a solution.
         </CardDescription>
       </CardHeader>
 
@@ -56,7 +56,7 @@ export default function ContactForm() {
               label="Company"
               value={formData.company}
               onChange={handleInputChange}
-              placeholder="Your company name (optional)"
+              placeholder="Your business url (If applicable)"
             />
           </div>
 
@@ -70,7 +70,7 @@ export default function ContactForm() {
               required
               value={formData.message}
               onChange={handleInputChange}
-              placeholder="Tell me about your project and how I can help..."
+              placeholder="Describe your business mess. If there’s a real problem, you’ll get the fix."
               className="flex-1 w-full px-4 py-3 border-2 border-gray-300 focus:border-gray-900 focus:outline-none transition-colors resize-none"
             />
           </div>

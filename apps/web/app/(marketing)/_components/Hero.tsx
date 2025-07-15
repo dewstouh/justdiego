@@ -44,7 +44,7 @@ export default function Hero() {
               <rect x="6" y="2" width="2" height="4" rx="1" fill="black" />
               <rect x="12" y="2" width="2" height="4" rx="1" fill="black" />
             </svg>
-            REQUEST AN UPGRADE
+            GET A FREE AUDIT
           </CTAButton>
         </div>
         

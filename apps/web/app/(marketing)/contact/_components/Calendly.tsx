@@ -6,7 +6,7 @@ export default function CalendlyBooking() {
       <CardHeader>
         <CardTitle>Schedule a Meeting</CardTitle>
         <CardDescription>
-          Let&apos;s discuss your project in detail. Choose a time that works for you.
+          Get a ruthless audit of your business. Book a slot and find out exactly where you’re losing time and money.
         </CardDescription>
       </CardHeader>
 
