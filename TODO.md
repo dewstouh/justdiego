@@ -13,23 +13,26 @@
 - [ ] Add guides on how to improve your business
 
 ## Improvements
+- [ ] Better caching
+- [ ] Skeletons and Loading states for data fetching
 
 ## Bug Fixes
+- [ ] Add "View Demo" button to solutions
 - [ ] Fix PDF generators
 
 
 ## DONE
-- [x] Fix typings for `getSolutions`
-- [x] Fix navbar background when scrolled and website is refreshed
-- [x] Create dev branch for development and leave main for production
-- [x] Update CTA section with new punchline
+- [x] ~~Fix typings for `getSolutions`~~
+- [x] ~~Fix navbar background when scrolled and website is refreshed~~
+- [x] ~~Create dev branch for development and leave main for production~~
+- [x] ~~Update CTA section with new punchline~~
 - [x] ~~Add constants for website metadata~~
 - [x] ~~Add constants for contact information~~
 - [x] ~~Auto PDF generation for solutions~~
 - [x] ~~Add CONTRIBUTING and related documents~~
-- [x] Use actual title in solution slug broadcrumb instead of replacing
-- [x] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
-- [x] Add Policies
+- [x] ~~Use actual title in solution slug broadcrumb instead of replacing~~
+- [x] ~~Fix responsive issues on the website (`AutoBreadcrumb`, etc)~~
+- [x] ~~Add Policies~~
 - [x] ~~Fix paddings on pages so they all have the same margings~~
 - [x] ~~Add padding top on pages~~
 - [x] ~~Add `AutoBreadcrumb` to all pages~~
