@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { GuideCard } from './GuideCard';
 
 interface Guide {
   id: string;
@@ -11,6 +10,8 @@ interface Guide {
   description: string;
   thumbnailUrl?: string | null;
   type: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 interface GuidesContentProps {
@@ -27,58 +28,11 @@ const categories = [
   { id: 'transformation', name: 'Digital', icon: '🔄' },
 ];
 
-function GuideCard({ guide }: { guide: Guide }) {
-  return (
-    <Link
-      href={`/guides/${guide.slug}`}
-      className="group block border border-gray-300 bg-white hover:border-gray-900 transition-colors duration-200"
-    >
-      <div className="aspect-[4/1.5] bg-gray-100 flex items-center justify-center border-b border-gray-300">
-        {guide.thumbnailUrl ? (
-          <Image
-            src={guide.thumbnailUrl}
-            alt={guide.title}
-            width={400}
-            height={300}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="text-gray-400">
-            <span className="text-3xl">📄</span>
-          </div>
-        )}
-      </div>
-      <div className="p-4">
-        <h3 className="font-bold text-sm uppercase tracking-wide mb-1 text-gray-900">
-          {guide.title}
-        </h3>
-        <p className="text-gray-600 text-xs leading-relaxed">
-          {guide.description}
-        </p>
-      </div>
-    </Link>
-  );
-}
-
-// Function to categorize guides based on title/description
-function categorizeGuide(guide: Guide): string {
-  const title = guide.title.toLowerCase();
-  const description = guide.description.toLowerCase();
-  
-  if (title.includes('automation') || description.includes('automation')) return 'automation';
-  if (title.includes('productivity') || description.includes('productivity')) return 'productivity';
-  if (title.includes('marketing') || description.includes('marketing')) return 'marketing';
-  if (title.includes('digital') || title.includes('transformation')) return 'transformation';
-  return 'business';
-}
 
 export default function GuidesContent({ guides }: GuidesContentProps) {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Filter guides based on selected category
-  const filteredGuides = selectedCategory === 'all' 
-    ? guides 
-    : guides.filter(guide => categorizeGuide(guide) === selectedCategory);
+  const latestGuides = guides.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 
   return (
     <>
@@ -116,36 +70,8 @@ export default function GuidesContent({ guides }: GuidesContentProps) {
               LATEST GUIDES
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {guides.slice(0, 4).map((guide) => (
-                <Link
-                  key={guide.id}
-                  href={`/guides/${guide.slug}`}
-                  className="block border border-gray-300 bg-white hover:border-gray-900 transition-colors duration-200"
-                >
-                  <div className="aspect-[4/1.5] bg-gray-100 flex items-center justify-center border-b border-gray-300">
-                    {guide.thumbnailUrl ? (
-                      <Image
-                        src={guide.thumbnailUrl}
-                        alt={guide.title}
-                        width={400}
-                        height={300}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="text-gray-400">
-                        <span className="text-3xl">📄</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-xs uppercase tracking-wide mb-2 text-gray-900">
-                      {guide.title}
-                    </h3>
-                    <p className="text-gray-600 text-xs leading-relaxed line-clamp-2">
-                      {guide.description}
-                    </p>
-                  </div>
-                </Link>
+              {latestGuides.slice(0, 4).map((guide) => (
+                <GuideCard key={guide.id} thumbnailUrl={guide.thumbnailUrl} slug={guide.slug} title={guide.title} description={guide.description} />
               ))}
             </div>
           </div>
@@ -160,15 +86,15 @@ export default function GuidesContent({ guides }: GuidesContentProps) {
             }
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredGuides.map((guide) => (
-              <GuideCard key={guide.id} guide={guide} />
+            {guides.map((guide) => (
+              <GuideCard key={guide.id} thumbnailUrl={guide.thumbnailUrl} slug={guide.slug} title={guide.title} description={guide.description} />
             ))}
           </div>
         </div>
       </div>
 
       {/* Empty State */}
-      {filteredGuides.length === 0 && (
+      {guides.length === 0 && (
         <div className="text-center py-24 border border-gray-300 bg-white">
           <div className="text-4xl mb-4 text-gray-400">📄</div>
           <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
