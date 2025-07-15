@@ -30,6 +30,9 @@ importers:
       '@justdiego/constants':
         specifier: workspace:*
         version: link:../../packages/constants
+      '@justdiego/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@justdiego/react-utils':
         specifier: workspace:*
         version: link:../../packages/react-utils
@@ -207,6 +210,9 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
     devDependencies:
+      '@justdiego/db':
+        specifier: workspace:*
+        version: link:../db
       '@justdiego/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
