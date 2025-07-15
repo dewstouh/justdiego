@@ -5,3 +5,8 @@ export * from './technologies';
 export * from './reviews';
 export * from './documents';
 export * from './socialmedias';
+export * from './users';
+export * from './roles';
+export * from './permissions';
+export * from './companies';
+export * from './tools';

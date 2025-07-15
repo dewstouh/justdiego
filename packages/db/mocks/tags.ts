@@ -72,5 +72,167 @@ export const tagsMock: Prisma.TagCreateInput[] = [
         color: '#795548',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-ecommerce',
+        name: 'E-commerce',
+        description: 'Online shopping and e-commerce platforms',
+        iconUrl: '🛒',
+        color: '#4CAF50',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-ai',
+        name: 'Artificial Intelligence',
+        description: 'AI and machine learning solutions',
+        iconUrl: '🤖',
+        color: '#2196F3',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-nextjs',
+        name: 'Next.js',
+        description: 'Next.js React framework applications',
+        iconUrl: '⚡',
+        color: '#000000',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-inventory',
+        name: 'Inventory Management',
+        description: 'Stock and inventory management systems',
+        iconUrl: '📦',
+        color: '#FF9800',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-ml',
+        name: 'Machine Learning',
+        description: 'Machine learning and predictive analytics',
+        iconUrl: '🧠',
+        color: '#9C27B0',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-marketing',
+        name: 'Marketing',
+        description: 'Marketing automation and campaign management',
+        iconUrl: '📢',
+        color: '#E91E63',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-email',
+        name: 'Email',
+        description: 'Email marketing and automation',
+        iconUrl: '📧',
+        color: '#3F51B5',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-enterprise',
+        name: 'Enterprise',
+        description: 'Enterprise-grade business solutions',
+        iconUrl: '🏢',
+        color: '#607D8B',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-workflow',
+        name: 'Workflow',
+        description: 'Business process and workflow automation',
+        iconUrl: '🔄',
+        color: '#795548',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-integration',
+        name: 'Integration',
+        description: 'System integration and API development',
+        iconUrl: '🔗',
+        color: '#FF5722',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-bi',
+        name: 'Business Intelligence',
+        description: 'Business intelligence and data insights',
+        iconUrl: '💡',
+        color: '#FFEB3B',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-web-development',
+        name: 'Web Development',
+        description: 'Web application development',
+        iconUrl: '🌐',
+        color: '#2196F3',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-full-stack',
+        name: 'Full Stack',
+        description: 'Full stack development solutions',
+        iconUrl: '🔧',
+        color: '#4CAF50',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-crm',
+        name: 'CRM',
+        description: 'Customer Relationship Management',
+        iconUrl: '👥',
+        color: '#9C27B0',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-iot',
+        name: 'IoT',
+        description: 'Internet of Things solutions',
+        iconUrl: '📡',
+        color: '#FF5722',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-education',
+        name: 'Education',
+        description: 'Educational technology and learning',
+        iconUrl: '🎓',
+        color: '#607D8B',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-lms',
+        name: 'LMS',
+        description: 'Learning Management System',
+        iconUrl: '📚',
+        color: '#795548',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tag-corporate',
+        name: 'Corporate',
+        description: 'Corporate and enterprise solutions',
+        iconUrl: '🏢',
+        color: '#455A64',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
     }
 ];

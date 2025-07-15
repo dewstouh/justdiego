@@ -180,5 +180,185 @@ export const technologiesMock: Prisma.TechnologyCreateInput[] = [
         color: '#ff9900',
         createdAt: new Date('2024-01-01'),
         updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-nextjs',
+        name: 'Next.js',
+        description: 'React framework for production',
+        iconUrl: '⚡',
+        color: '#000000',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-typescript',
+        name: 'TypeScript',
+        description: 'Typed superset of JavaScript',
+        iconUrl: '📘',
+        color: '#3178c6',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-prisma',
+        name: 'Prisma',
+        description: 'Next-generation ORM for Node.js and TypeScript',
+        iconUrl: '🔺',
+        color: '#2d3748',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-tailwind',
+        name: 'Tailwind CSS',
+        description: 'Utility-first CSS framework',
+        iconUrl: '🎨',
+        color: '#06b6d4',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-mysql',
+        name: 'MySQL',
+        description: 'Open-source relational database management system',
+        iconUrl: '🗄️',
+        color: '#4479a1',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-vuejs',
+        name: 'Vue.js',
+        description: 'Progressive JavaScript framework',
+        iconUrl: '💚',
+        color: '#4fc08d',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-laravel',
+        name: 'Laravel',
+        description: 'PHP web application framework',
+        iconUrl: '🔴',
+        color: '#ff2d20',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-sendgrid',
+        name: 'SendGrid',
+        description: 'Cloud-based email delivery service',
+        iconUrl: '📧',
+        color: '#1a82e2',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-angular',
+        name: 'Angular',
+        description: 'TypeScript-based web application framework',
+        iconUrl: '🅰️',
+        color: '#dd0031',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-dotnet',
+        name: '.NET Core',
+        description: 'Cross-platform application framework',
+        iconUrl: '⚡',
+        color: '#512bd4',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-sqlserver',
+        name: 'SQL Server',
+        description: 'Microsoft relational database management system',
+        iconUrl: '🗄️',
+        color: '#cc2927',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-azure',
+        name: 'Microsoft Azure',
+        description: 'Cloud computing platform and services',
+        iconUrl: '☁️',
+        color: '#0078d4',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-csharp',
+        name: 'C#',
+        description: 'General-purpose programming language',
+        iconUrl: '©️',
+        color: '#239120',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-tensorflow',
+        name: 'TensorFlow',
+        description: 'Machine learning framework',
+        iconUrl: '🧠',
+        color: '#ff6f00',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-aws',
+        name: 'Amazon Web Services',
+        description: 'Cloud computing platform',
+        iconUrl: '☁️',
+        color: '#ff9900',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-fastapi',
+        name: 'FastAPI',
+        description: 'Modern Python web framework',
+        iconUrl: '⚡',
+        color: '#009688',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-java',
+        name: 'Java',
+        description: 'Object-oriented programming language',
+        iconUrl: '☕',
+        color: '#ed8b00',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-spring-boot',
+        name: 'Spring Boot',
+        description: 'Java application framework',
+        iconUrl: '🍃',
+        color: '#6db33f',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-kafka',
+        name: 'Apache Kafka',
+        description: 'Distributed streaming platform',
+        iconUrl: '📨',
+        color: '#231f20',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
+    },
+    {
+        id: 'tech-django',
+        name: 'Django',
+        description: 'Python web framework',
+        iconUrl: '🎯',
+        color: '#092e20',
+        createdAt: new Date('2024-01-01'),
+        updatedAt: new Date('2024-01-01')
     }
 ];
