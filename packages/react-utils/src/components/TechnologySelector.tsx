@@ -29,11 +29,7 @@ export function TechnologySelector({
     clearSearch
   } = useTechnologySearch({ limit, multiSelect: true });
 
-  // Sync with parent state
-  React.useEffect(() => {
-    // Update parent when internal selection changes
-    onTechnologiesChange(selectedTechnologies);
-  }, [selectedTechnologies, onTechnologiesChange]);
+  // Note: No useEffect needed here as we manage state through parent props
 
   const handleTechToggle = (tech: Prisma.TechnologyCreateInput) => {
     const isSelected = selectedTechnologies.some(t => t.id === tech.id);
