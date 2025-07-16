@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 interface ProjectDetailsProps {
   title: string;
   shortDescription?: string;
@@ -14,8 +12,7 @@ export default function ProjectDetails({
   shortDescription, 
   problem, 
   result, 
-  slug, 
-  variant 
+  variant,
 }: ProjectDetailsProps) {
   return (
     <div>
@@ -39,15 +36,6 @@ export default function ProjectDetails({
         <p className="text-green-900 font-mono text-sm">{result}</p>
       </div>
 
-      {/* View Details Button - Only for full variant */}
-      {variant === 'full' && (
-        <Link
-          href={`/solutions/${slug}`}
-          className="inline-block bg-gray-900 text-white px-6 py-3 border-2 border-gray-900 font-bold hover:bg-primary transition-all duration-200"
-        >
-          VIEW FULL STUDY CASE →
-        </Link>
-      )}
     </div>
   );
 }
