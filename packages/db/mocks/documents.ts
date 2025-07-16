@@ -171,7 +171,7 @@ We may revise these Terms at any time. The latest version will always be posted 
 
 ## 10. Governing Law
 
-These Terms are governed by the laws of Spain (or Poland, if/when registered as such), and any disputes will be resolved in the courts of Madrid or Warsaw as applicable.
+These Terms are governed by the laws of Spain, and any disputes will be resolved in the courts of Madrid or Warsaw as applicable.
 
 ## 11. Contact
 
@@ -198,11 +198,7 @@ For questions about these Terms, email: **contact@justdiego.com**
 
 This website is operated and maintained by Diego Rodriguez (“the owner”).
 
-**Business Address:**  
-[Your real address or registered office, if applicable]
-
 **Contact Email:** contact@justdiego.com  
-**Contact Phone:** [Your business phone, if applicable]
 
 ## Intellectual Property
 
@@ -234,7 +230,7 @@ See the [Privacy Policy](/privacy-policy) for details.
 
 ## Dispute Resolution
 
-For legal matters, disputes will be resolved in the courts of Madrid, Spain, or Warsaw, Poland, depending on official company registration.
+For legal matters, disputes will be resolved in the courts of Madrid, Spain.
 
 ---
 
