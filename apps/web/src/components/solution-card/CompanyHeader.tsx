@@ -1,24 +1,39 @@
 import { formatDate, getTimeAgo } from '@justdiego/utils';
-import { Country, Company, User } from '@justdiego/types';
+import { Prisma  } from '@justdiego/types';
+import Image from 'next/image';
 
 interface CompanyHeaderProps {
-  customer: User | Company | null;
-  country: Country | null;
+  company: Prisma.CompanyGetPayload<{
+    include: {
+      country: true;
+    };
+  }> | null;
   completedAt: Date | null;
 }
 
-export default function CompanyHeader({ customer, country, completedAt }: CompanyHeaderProps) {
+export default function CompanyHeader({ company, completedAt }: CompanyHeaderProps) {
+
+  const { country } = company || {};
 
   const completed = completedAt ? `${formatDate(completedAt.toISOString())} • ${getTimeAgo(completedAt.toISOString())}`: "In progress";
 
   return (
     <div className="flex items-center gap-4 mb-6">
-      <div className="w-32 h-16 bg-gray-100 border-2 border-gray-300 flex items-center justify-center font-mono text-xs text-gray-600">
-        {customer ? customer.name : 'N/A'}
+
+      <div className="flex-shrink-0">
+        <Image
+          src={company?.logoUrl || '/placeholder-logo.png'}
+          alt={company?.name || 'Company Logo'}
+          width={150}
+          height={40}
+        />
       </div>
+
       <div>
         <div className="font-bold text-xl text-gray-900">
-          {customer?.name.toUpperCase() || 'Unknown Customer'}
+          <a href={company?.website || ""} className="hover:underline">
+            {(company?.name || 'Unknown Company').toUpperCase()}
+          </a>
         </div>
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span className="text-lg">{country?.flag || '🏳️'}</span>

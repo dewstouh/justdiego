@@ -19,9 +19,7 @@ export default function SolutionCard({
   showSeparator = true 
 }: SolutionCardProps) {
 
-  const {id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, customer, company, review } = solution;
-
-  const country = customer.country || company?.country;
+  const {id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, company, review } = solution;
 
 
   return (
@@ -33,8 +31,7 @@ export default function SolutionCard({
           {/* Left Column - Project Info */}
           <div className="space-y-6">
             <CompanyHeader 
-              customer={customer}
-              country={country}
+              company={company}
               completedAt={completedAt}
             />
 
