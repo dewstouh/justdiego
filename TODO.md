@@ -7,7 +7,6 @@
 - [ ] Add Google Analytics
 - [ ] Create a dashboard to configure the website (nav links, metadata, socials, etc.)
 - [ ] Link projects to solutions (a project or projects can be used on a solution)
-- [ ] Add about page with Diego's story and information
 - [ ] Add cookie notice
 - [ ] Add faq in marketing and projects / shop
 
@@ -16,15 +15,16 @@
 ## Bug Fixes
 - [ ] Add "View Demo" button to solutions
 - [ ] Fix PDF generators
-- [ ] Add category guides
 
 
 ## DONE
+- [x] ~~Add category guides~~
+- [x] ~~Add about page with Diego's story and information~~
 - [x] ~~Add document author~~
 - [x] ~~Refactor of whole app~~
 - [x] ~~Add a way to generate pages with metadata and data fetching automatically~~
-- [ ] ~~Skeletons and Loading states for data fetching~~
-- [ ] ~~Better caching~~
+- [x] ~~Skeletons and Loading states for data fetching~~
+- [x] ~~Better caching~~
 - [x] ~~Add guides on how to improve your business~~
 - [x] ~~Fix typings for `getSolutions`~~
 - [x] ~~Fix navbar background when scrolled and website is refreshed~~
