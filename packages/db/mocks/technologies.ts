@@ -377,7 +377,7 @@ export const searchTechnologies = (query: string): Prisma.TechnologyCreateInput[
     
     return technologiesMock.filter(tech => 
         tech.name.toLowerCase().includes(searchTerm) ||
-        tech.description.toLowerCase().includes(searchTerm)
+        (tech.description && tech.description.toLowerCase().includes(searchTerm))
     );
 };
 
