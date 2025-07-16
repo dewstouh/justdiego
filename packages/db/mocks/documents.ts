@@ -107,93 +107,386 @@ export const aboutDocument: Prisma.DocumentCreateInput = {
   slug: "about",
   title: "About",
   type: "OTHER",
-  description: "Learn about JustDiego, our mission, values, and the team behind the brand. Discover how we help businesses thrive through digital-first operations and green technology solutions.",
+  description: "justdiego.com exists to expose, fix, and automate what’s holding your business back. Born from actual pain, built for survival, focused on results.",
   thumbnailUrl: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&h=600&fit=crop&crop=entropy&auto=format&q=80",
-  content: `# What is justdiego.com?
+  content: `# About
 
-justdiego.com is not a portfolio.  
-Not a playground for showing off code.  
-Not another vanity project for tech tourists.
+## What is justdiego.com?
 
-This is a platform for ** ruthless business automation** in 2025, powered by real AI.
-  Manual, repetitive work?Eliminated by algorithms that don’t sleep.
-  Slow, outdated systems?Upgraded with automation, not excuses.  
-Excuses and inefficiency ? Out the door, replaced by intelligent systems.
+justdiego.com is a platform built **out of pain**, not inspiration.
 
----
+Born from frustration with amateur solutions and fake “productivity”, justdiego.com is dedicated to exposing and fixing real problems for businesses and individuals who are tired of wasting time and money.
 
-## What Does justdiego.com Deliver ?
+It’s not another portfolio or showcase.
+It’s a toolkit forged by failure, discipline, and the refusal to accept mediocrity.
+Every feature, every line of code exists to find leaks, eliminate inefficiency, and automate what others ignore.
 
-- ** AI - driven business automation:**
-  Repetitive tasks and manual processes are hunted down and automated using the latest machine learning and AI techniques.No “buzzword” bullshit—only real-world impact.
-- ** Direct business optimization:**
-  Immediate audits, process breakdowns, and technical solutions—not talk, not fluff.
-- ** Custom systems and integrations:**
-  Unique software, robust infrastructure, seamless APIs.Zero templates, zero shortcuts.
-- ** Impact in hours, not weeks:**
-  Results delivered at speed.No time wasted, no endless meetings.
-- ** Centralized service for companies ready to grow:**
-  Cloud deployment, bots, integrations, automation—everything under one roof.
-- ** Proof, not promises:**
-  Claims backed by real - world projects, live demos, and transparent feedback.
-- ** Unfiltered, expert support:**
-  No generic helpdesk, no clueless intermediaries.Only real answers.
+If you want empty dashboards, look somewhere else.
+If you want your problems solved, you’re in the right place.
 
----
+## The Truth
 
-## Why Does justdiego.com Exist ?
+In just 2 months, driven by pure hunger to escape mediocrity and get a real job, I’ve built and shipped more than most people do in a year.  
+No motivation, just discipline and pain.
 
-  Tech “solutions” have become a joke—slow, overpriced, and full of empty buzzwords.  
-Businesses deserve actual results, not endless invoices and empty meetings.
-  justdiego.com was created to destroy inefficiency, automate at scale, and deliver outcomes worth paying for, using the power of AI and modern automation.
-    It’s 2025. This is the real world.Anyone ignoring AI is already obsolete.
+I focused on what's important:
+- Real problems
+- Real solutions
+- Real results
+
+**2 months.**
+
+And this is just the beginning.
+
+<p align="center">
+  <img src="https://i.imgur.com/T8mZd28.png" alt="justdiego.com" />
+  <img src="https://i.imgur.com/BayngZ7.png" alt="quickfra" />
+  <img src="https://i.imgur.com/e3UnZu9.gif" alt="quick-status" />
+  <img src="https://i.imgur.com/3tMhmhX.png" alt="niby discord bot" />
+</p>
 
 ---
 
-## How Does justdiego.com Work ?
+## How It All Began
 
-  No onboarding courses.  
-No pointless discovery calls.
-  No “let’s schedule a meeting for next week.”
+Two months ago, I was stuck.  
+No results, no discipline, just excuses and frustration.
 
-Here’s how it works:
+My work was a mess:  
+Trash commit messages, no structure, no testing, no CI/CD—  
+Just another amateur “developer” like everyone else crying for a chance.
 
-1. ** Business is dissected.**
-  Systems and processes are mapped, bottlenecks exposed, inefficiencies identified.  
-   Weaknesses don’t survive the first hour.
+Just look at how my GitHub profile looked:
 
-2. ** Inefficiency is eliminated by AI and automation.**
-  Every manual, repetitive task is targeted for destruction by intelligent systems.  
-   If it wastes time, it’s either automated, replaced, or deleted.
-
-3. ** Solutions are custom - engineered, powered by AI.**
-  Forget generic templates or cookie - cutter apps.
-    Tools, automations, and integrations are built from scratch, leveraging artificial intelligence where it matters, and human expertise where it’s needed.
-
-4. ** Everything is deployed, tested, and proven—fast.**
-  No endless beta phases.  
-   Systems go live, results show up, improvements are measured in real numbers.
-
-5. ** Direct feedback, immediate iteration.**
-  No support tickets lost in a queue.  
-   Adjustments happen in real time until perfection is the only outcome.
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreidlpdd4rs5t6vzpgrcolxmwlgzqjtpk5cp5modhv7hg3h2juxemcu@jpeg)
 
 ---
 
-  This isn’t the world of 2010.
-It’s 2025, and automation is the minimum standard.  
-AI is here.Either the business evolves, or it gets left behind.
+One day I decided to stop lying to myself and start acting like my future depended on it, because it fucking does.
 
-## How Automated is justdiego.com ?
+I stopped waiting for motivation.  
+I built habits.  
+I pushed code every day, learned new tools, broke things, fixed them, and kept moving.
 
-  This isn’t marketing talk.
-Every guide, every resource, every update on this website is automatically generated, organized, and published by AI systems—zero manual work, zero wasted effort.
-In fact, the guides you’re reading right now are auto - created by AI.Not a single finger lifted.
-If a process can be automated, it already is.
+This is how my profile looks now:
 
-** Ready to experience real execution in the AI era ?**
-  [Request a real audit](#contact).  
-Witness the difference in the first 24 hours—or keep pretending you live in the past.
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreifc6pgla6f4375a77ippz4klvlsxmjqge2tjizxnupjesscdakony@jpeg)
+
+---
+
+Then I decided to create a LinkedIn account.
+
+I started posting real progress, sharing what I was actually building, not just talking about it.
+
+Companies started reaching out.  
+For the first time, my work was getting noticed, because it was real, and it was visible.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreicsc5t6fzibssmecgrppcgsy5i2d4fl5uzed7wclceptx7fg3mjte@jpeg)
+
+---
+
+Out of nowhere, LinkedIn restricted my account.  
+No warning, no explanation.  
+All that momentum, gone overnight.
+
+Did I stop? No.  
+I moved everything to other platforms, kept working, and doubled down.  
+You can ban an account, but you can’t ban relentless progress. That’s the difference.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreih3om275adl2fp6mbgwieu7byjgwan5vsclrzqy37jcfghxau2bby@jpeg)
+
+---
+
+After the LinkedIn restriction, I stopped wasting energy on it and started focusing on what actually matters:  
+Improving my code and building real projects.
+
+But I realized that my code and my infra was fucked up, so I asked myself,  
+**How can I make this perfect? How can I keep it clean and scalable?**
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreieo352y4yotuwxl47lhdhklifdulhehyk5hyzfd6upapkjahqzfay@jpeg)
+
+---
+
+So I deleted EVERYTHING and rebuilt it from the ground up.
+
+I learned about real software engineering:  
+Clean architecture, modularization, automated testing, deployments, CI/CD, Docker, and infrastructure as code.  
+I forced myself to do each thing and to treat every project as if it were for production.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreib7pa7omw5zkxg3pqsari25qtm4lzh54iqe3sz574xnhdhbfaktha@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreidqboy4o6lroivvhfjbqprlqmtf3ttrac42ydtnuueeluoomyu4a4@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiatpqkjyjyagzywqvi3dmu77jdhfefefcrgnsxubwfweojwg7jhsy@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreic53v3neydnh7zmiocngtk2fuybums37whs2qrp6xwu55kncfv76q@jpeg)
+
+---
+
+## Automating Everything
+
+I wanted to deploy my projects on my own server, but this time I wasn’t going to do it manually.  
+I started looking for a proper panel, something reliable, automated, and production-ready.
+
+That’s when I discovered [Coolify](https://coolify.io).
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiccqa6nr3ijqmpykca6cdmkdq5crj22io34zwefwsrnnxugc73qsm@jpeg)
+
+I learned how to set it up, integrated it with Docker, and automated my entire deployment process.  
+No more hacky scripts.  
+Just clean, repeatable deployments, with CI/CD hooked from GitHub to production in minutes.
+
+I also deployed my mail server using Stalwart, a Status Page, and a Webmail client.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiatsnf2h2rtzpweypc5occ57c5fzf5ofh47ri263a3va6gkjrfpay@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreihagul3lylun7qoq7ueowekr4u7hymniyb2zzsb7aq4a6rrmk6yra@jpeg)
+
+---
+
+I fell in love with how everything was built.  
+It was just perfect for the case and perfect for small startups that want to move fast without bullshit.
+
+That’s when the idea for [QuickFra](https://quickfra.com) was born.  
+If I could automate all this for myself, why not build a platform that does it for everyone else?
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreifg2m7hhuaqf7rqcguhzkk4o6r6zosazlqtfbffi53wuz64jzspae@jpeg)
+
+---
+
+So I got to work.
+
+Started building, breaking, and rebuilding.
+
+Every roadblock became a feature.  
+Every mistake became a lesson.
+
+I wasn’t aiming for “good enough.”  
+I was building something I’d actually use myself, every day, in real production.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreief4w3khvpkzljry2i2rfhdprh6dkpufuko6dl56z3ier74hv6nyi@jpeg)
+
+---
+
+In 7 days, I learned Terraform from scratch, automated the creation of an Oracle Cloud instance, and set it up to install Coolify automatically under any custom domain I chose in the config using its API.
+
+<video src="https://i.imgur.com/r45ZGsW.mp4" controls>
+</video>
+
+---
+
+Next step in the roadmap: I wanted a status page to monitor all deployed services.  
+But most were way too bloated for what I needed.
+
+So I built my own from scratch.  
+Simple, efficient. No bloat, no extras. Just a tool that does exactly what I need.
+
+This is where **Quick Status** was born:
+
+![](https://i.imgur.com/e3UnZu9.gif)
+
+---
+
+In less than 24 hours, I shipped QuickStatus.  
+A fully working open-source status page, built from scratch, launched with CI/CD, automated testing, and full Docker support from day one.
+
+Using Prisma, Next.js, cronjobs, and a simple config file for tracking any service you want.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreicu6vuy6bmnash4qtsdhz6td42mgpj5qaafalwpwqtctv7u7di7lm@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreicgtpjxnxzrm6zdnegkpripn52fgvjd2p5qmuel2ohijou4nzf3pi@jpeg)
+
+---
+
+Without even realizing it, I started applying everything I learned out of necessity, with speed, efficiency, and results.
+
+Every need became a project, every project a new skill.
+
+No tutorials, just solving my own problems and building real solutions.
+
+Just check it yourself.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiawcli6bjq23svli4gx5djn4iyi657lyy6efvfsi72t6p2l6v3jju@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreidji6mlgx45wbutcukyvavwbrswndmpxstcf6csjuankvaqadm64q@jpeg)
+
+---
+
+## Real Clients. Real Solutions.
+
+Then I got a few clients on Fiverr.
+
+All 5-star reviews. Every single one left more than happy, because I delivered real solutions, with speed and efficiency.
+
+The solutions were focused on deploying applications, fixing and tracking errors.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreic5o5dm2mhx4ln22sjakwazrap4ogjpmzrj6fibfuptwj6g7ahdou@jpeg)
+
+---
+
+So I started building a portfolio:  
+Not to show off “pretty” projects, but to present real solutions I offer and exactly how I do it—and what people actually said after working with me.
+
+Every page is focused on problems solved, processes automated, and results delivered.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreifnuj5mcqwri4b7yjfzorfotq5k76zifscxoeiqqwfbgboz4jcxay@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreidvnusfzjxqewrtgh5nskb4igulba6ntvd7vg6h5jbhvmfti4h2re@jpeg)
+
+---
+
+But I wasn’t just building a portfolio.  
+I was applying every bit of knowledge I’ve collected since the start.  
+Monorepo structure, caching with Prisma, automated testing, CI/CD, containerization, clean code.  
+Not a showcase, but a real platform built to production standards.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreidldgpo3vn5aj6vlmfkmo24nwczq6n3l7wmebxgty45diyousphbe@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiebd5ypazqxfr3l4wb4yqy4nxxcn4vybpww6serrhrnccuflhpjfy@jpeg)
+
+---
+
+Every commit was intentional.  
+Clear, defined, and always with a purpose.
+
+No random “fix bug” or “update stuff” garbage—every message documents real changes, improvements, and progress.
+
+You can see the evolution, line by line.  
+Just structure, order, and a record of actual work getting done.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreicwsrqcr74ku6zgfiscxozgmymyiaymudutj3v4gej3kw72ytavie@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiccg6ncz3bnkj5g4hdo2s5szqr52ek2utn74pv3iot5ac4jvi3is4@jpeg)
+
+---
+
+## From Portfolio to Platform
+
+Later I realized: why just build a portfolio to show off?
+
+I decided to convert JustDiego into a platform that finds leaks, exposes inefficiencies, and automates what wastes your time and money.
+
+Portfolios are for flexing.  
+Platforms actually fix what’s broken.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreigyvscn53xs5l5c4qptkgjvwpuxqmlgtpnjcag5tnmumiosna3xae@jpeg)
+
+---
+
+Nowadays, anyone can build something with AI.  
+But almost nobody knows how to make it production-ready, scalable, and bulletproof.
+
+Most projects die fast because they’re built for show, not for reality.
+
+I build for survival, not for likes.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreigraq5yvmabla4szjoxy4wju75b54zjvsgmzpgvfipbwfpx5dt4ha@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreigdm74vgawybsihe5rovlv7mrpsawi274f66ztevk7mlds4kg2p4u@jpeg)
+
+---
+
+It’s not just about shipping.
+
+It’s about scaling, maintaining, and making sure everything runs when it matters.
+
+Anyone can launch a demo.
+
+Very few can build something that survives real traffic, real failures, and real users.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreigwrizishfqxr3nab4ehgl64kmmpmhtpv4zaqelhogp3wdh4snyku@jpeg)
+
+---
+
+## Where It Started
+
+I'll show you an example from myself, when I created my first project, **Niby**.
+
+Just a basic Discord bot, written in simple JavaScript.
+
+No structure, no testing, no deployment.
+
+Just pure trial and error, learning everything the hard way.
+
+That’s where it all started.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreihpmdwala7bvysqe4sdukfvlu5ume7wacv4l36fc7qi757gybolda@jpeg)
+
+---
+
+I loved creating this bot.
+
+I was obsessed with shipping new features, always rushing for quick results.
+
+All I cared about was pushing out something new, never stopped to think about quality, structure, or the mess I was building underneath.
+
+It was pure chaos, but that chaos taught me everything.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreihe3pprtmcrluk4tnvdlq4fk64an7roiiaouhcp4vwwfur2fy67qq@jpeg)
+
+---
+
+This bot actually started to get noticed.
+
+It was joining hundreds of servers, gaining real traction,  
+and that’s exactly when everything fell apart.
+
+The sloppy code, zero testing, no real structure.
+
+The growth exposed every mistake I made.
+
+And it crashed, hard.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreihqw63rjkc4zqk6ygblew2vxpktdqwo7no3cm4tfpjjpnifdxs3nm@jpeg)
+
+---
+
+That failure was the best thing that could’ve happened.
+
+It forced me to face the truth:  
+If you build like an amateur, your project will die like an amateur.
+
+From that point, I stopped chasing features and started chasing quality, reliability, and real engineering.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreifhdy2ljm7amidttuqlu2x52bwntcownnjm5tvmyaeyxfxu4v6ai4@jpeg)
+
+---
+
+So I decided to rebuild everything from scratch.
+
+Typings, caching, automated testing for stability, and an actual architecture that made sense.
+
+I forced myself to treat it like a real product, because it was—  
+every decision had to make sense for scaling, maintaining, and running in production.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreid3zsdnw7ne7voaftaavb34vomnmxafirqibzlfpkkh6kmjjd6iwu@jpeg)
+
+---
+
+Then it was time to test it in real production.
+
+All that work, all that pain, and all that refactoring—this was the result:
+
+The bot was now handling over **400 servers** and **60,000 members**, running stable and smooth on less than **300MB of RAM**.
+
+No crashes. No chaos. Just efficiency and control.
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreibt6lnh6eqtzig3e3dt7kbdkqp4ecepsjbrvzllq4iu3t5qiiyxgi@jpeg)
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiazh7eczwgegsqu5r64cmfjs5nko2rvevqkloqtqi4ouxzwkxiz7y@jpeg)
+
+---
+
+## What I Learned
+
+This proves anyone can build a project,  
+but not everyone can make it scale, stay stable, and actually survive under pressure.
+
+Yes, AI is cool. It can speed up the work and help you ship faster.
+
+But speed means nothing without real knowledge behind it.
+
+**Tools are as good as the person using them.**
+
+![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiczw2ll7w2npqufxh7uhdacyztuqer6i67s335vrdj5wm5j4oyd2i@jpeg)
+
+---
+
+## Want to See More?
+
+If you’re a business or an individual who’s having the same problems,  
+check out [these tools](https://justdiego.com/tools) that will **expose** your performance issues, uncover vulnerabilities, and automate what’s wasting your time and money.
+
+In case you need a specific solution, reach out [here](ttps://justdiego.com/contact) or send an email to contact@justdiego.com
 `,
   author: { connect: { id: 'user-diego' } },
 }
