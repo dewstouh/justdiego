@@ -1,7 +1,6 @@
 import { formatDate } from '@justdiego/utils';
 import TagList from '@/components/solution-card/TagList';
 import { Tag } from '@justdiego/types';
-import PDFButton from '@/components/ui/PDFButton';
 import Image from 'next/image';
 import Link from 'next/link';
 
