@@ -9,7 +9,8 @@
   "types": "./src/index.ts",
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "build": "tsc -b tsconfig.json"
   },
   "devDependencies": {
     "@justdiego/db": "workspace:*",
@@ -21,8 +22,7 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "eslint": "^9.30.0",
-    "typescript": "5.8.2",
-    "build": "tsc -b tsconfig.json"
+    "typescript": "5.8.2"
   },
   "dependencies": {
     "@justdiego/utils": "workspace:*",
