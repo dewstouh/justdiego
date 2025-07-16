@@ -10,14 +10,14 @@ interface GuidePageProps {
 }
 
 export async function generateStaticParams() {
-    const guides = await getDocuments({type: 'GUIDE'});
+    const guides = await getDocuments({ type: 'GUIDE' });
     return guides.map((guide) => ({
         slug: guide.slug,
     }));
 }
 
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
-    const {slug} = await params;
+    const { slug } = await params;
     const guide = await getDocument({ slug, type: 'GUIDE' });
 
     if (!guide) {
@@ -42,10 +42,10 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
-    const {slug} = await params;
+    const { slug } = await params;
     const guide = await getDocument({ slug, type: 'GUIDE' });
 
-    if(!guide) return notFound();
+    if (!guide) return notFound();
 
     return (
         <DocumentPage

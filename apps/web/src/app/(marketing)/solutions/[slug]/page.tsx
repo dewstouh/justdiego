@@ -11,7 +11,7 @@ import ClientReview from './_components/ClientReview';
 import CTA from './_components/CTA';
 import { TechnicalDetail } from '@justdiego/types';
 import { getSolutionBySlug, getSolutions } from '@/lib/data/solution';
-import { Suspense } from 'react';
+import DefaultSuspense from '@/components/DefaultSuspense';
 
 export async function generateStaticParams() {
   const solutions = await getSolutions();
@@ -88,9 +88,9 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
 
   return (
     <div>
-      <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded m-4"></div>}>
+      <DefaultSuspense>
         <SolutionContent slug={slug} />
-      </Suspense>
+      </DefaultSuspense>
     </div>
   );
 }

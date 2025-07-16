@@ -4,8 +4,8 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import KonamiCode from "@/components/KonamiCode";
-import { Suspense } from "react";
 import Footer from "@/components/Footer";
+import DefaultSuspense from "@/components/DefaultSuspense";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,9 +38,9 @@ export default function RootLayout({
         <Navbar />
         {children}
         <div className="w-full flex flex-col items-center justify-center px-16 lg:px-24">
-          <Suspense>
+          <DefaultSuspense>
             <Footer />
-          </Suspense>
+          </DefaultSuspense>
         </div>
         <KonamiCode/>
       </body>
