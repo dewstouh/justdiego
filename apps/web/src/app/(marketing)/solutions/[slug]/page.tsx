@@ -12,6 +12,8 @@ import CTA from './_components/CTA';
 import { TechnicalDetail } from '@justdiego/types';
 import { getSolutionBySlug, getSolutions } from '@/lib/data/solution';
 import DefaultSuspense from '@/components/DefaultSuspense';
+import AttachmentGallery from '@/components/solution-card/AttachmentGallery';
+import SolutionActions from '@/components/solution-card/SolutionActions';
 
 export async function generateStaticParams() {
   const solutions = await getSolutions();
@@ -47,14 +49,17 @@ async function SolutionContent({ slug }: { slug: string }) {
 
   if (!solution) return notFound();
 
-  const { problemDescription, solutionDescription, technicalDetails, challenges, outcomes, technologies, customer, review } = solution;
+  const { problemDescription, solutionDescription, technicalDetails, challenges, outcomes, technologies, customer, review, attachments, company } = solution;
+
 
   return (
     <>
       <SolutionHeader 
         title={solution.title}
         customerName={customer?.name || "Unknown Customer"}
-        countryName={customer?.country?.name}
+        companyName={company?.name || "Unknown Company"}
+        companyUrl={company?.website || ""}
+        companyImage={company?.logoUrl || ''}
         countryFlag={customer?.country?.flag}
         tags={solution.tags}
         description={solution.shortDescription}
@@ -67,7 +72,21 @@ async function SolutionContent({ slug }: { slug: string }) {
 
       <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
 
-      <Technologies technologies={technologies} />
+      {technologies && technologies.length > 0 && (
+        <div className="mb-6">
+          <Technologies technologies={technologies} />
+        </div>
+      )}
+
+      {attachments && attachments.length > 0 && (
+        <div className="mb-6">
+          <AttachmentGallery attachments={attachments} />
+        </div>
+      )}
+
+      <div className="mb-6">
+        <SolutionActions slug={slug} solutionId={solution.id} />
+      </div>
 
       {review && (
         <ClientReview
