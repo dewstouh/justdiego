@@ -18,6 +18,7 @@
     "generate": "prisma generate",
     "lint": "eslint . --max-warnings 0",
     "prebuild": "npm run generate",
+    "build": "tsc -b tsconfig.json",
     "predev": "npm run generate",
     "studio": "prisma studio"
   },
