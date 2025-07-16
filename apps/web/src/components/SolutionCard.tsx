@@ -4,6 +4,7 @@ import ProjectDetails from '@/components/solution-card/ProjectDetails';
 import TagList from '@/components/solution-card/TagList';
 import ReviewCard from '@/components/solution-card/ReviewCard';
 import AttachmentGallery from '@/components/solution-card/AttachmentGallery';
+import SolutionActions from '@/components/solution-card/SolutionActions';
 import ProjectOverview from '@/components/solution-card/ProjectOverview';
 import { getSolutions } from '@/lib/data/solution';
 
@@ -53,11 +54,12 @@ export default function SolutionCard({
               <ReviewCard rating={review.rating} comment={review.comment} author={review.author} country={review.author.country} />
 
               {variant === 'compact' ? (
-                <AttachmentGallery
-                  attachments={attachments}
-                  slug={slug}
-                  solutionId={id}
-                />
+                <div className="space-y-6">
+                  {attachments && attachments.length > 0 && (
+                    <AttachmentGallery attachments={attachments} />
+                  )}
+                  <SolutionActions slug={slug} solutionId={id} />
+                </div>
               ) : (
                 <ProjectOverview
                   attachmentCount={attachments?.length || 0}
