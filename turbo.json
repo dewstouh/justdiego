@@ -3,7 +3,8 @@
   "globalEnv": [
     "ADMIN_EMAIL",
     "ADMIN_PASSWORD",
-    "RESEND_API_KEY"
+    "RESEND_API_KEY",
+    "DATABASE_URL"
   ],
   "tasks": {
     "build": {
@@ -22,7 +23,8 @@
       "env": [
         "ADMIN_EMAIL",
         "ADMIN_PASSWORD",
-        "RESEND_API_KEY"
+        "RESEND_API_KEY",
+        "DATABASE_URL"
       ]
     },
     "db:migrate:dev": {
