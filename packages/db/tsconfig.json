@@ -1,0 +1,10 @@
+{
+    "extends": "@justdiego/typescript-config/base.json",
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "**/*.test.ts",
+        "**/__tests__"
+    ]
+}

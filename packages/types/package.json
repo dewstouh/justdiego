@@ -9,7 +9,8 @@
     "types": "./src/index.ts",
     "scripts": {
         "lint": "eslint . --max-warnings 0",
-        "check-types": "tsc --noEmit"
+        "check-types": "tsc --noEmit",
+        "build": "tsc -b tsconfig.json"
     },
     "devDependencies": {
         "@justdiego/db": "workspace:*",
