@@ -34,7 +34,7 @@ LICENSE @dewstouh
 
 # UI components
 /packages/ui/ @dewstouh
-/apps/web/components/ @dewstouh
+/apps/web/src/components/ @dewstouh
 
 # ESLint and formatting
 eslint.config.* @dewstouh
@@ -44,12 +44,12 @@ eslint.config.* @dewstouh
 # Build and deployment
 Dockerfile* @dewstouh
 docker-compose*.yml @dewstouh
-/apps/web/next.config.js @dewstouh
+/apps/web/src/next.config.js @dewstouh
 
 # Styles and design
-/apps/web/app/globals.css @dewstouh
-/apps/web/tailwind.config.js @dewstouh
-/apps/web/lib/colors.ts @dewstouh
+/apps/web/src/app/globals.css @dewstouh
+/apps/web/src/tailwind.config.js @dewstouh
+/apps/web/src/lib/colors.ts @dewstouh
 
 # API routes
-/apps/web/app/api/ @dewstouh
+/apps/web/src/app/api/ @dewstouh
