@@ -22,7 +22,6 @@ export const getSolutions = async (): Promise<
         }
     }>[]
 > => {
-    "use cache";
     return db.solution.findMany({
         include: {
             tags: true,
@@ -56,7 +55,6 @@ export const getSolutions = async (): Promise<
 
 
 export const getSolutionBySlug = async (slug: string) => {
-    "use cache";
     return db.solution.findFirst({
         where: {
             slug,

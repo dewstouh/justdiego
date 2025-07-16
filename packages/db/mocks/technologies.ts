@@ -362,3 +362,44 @@ export const technologiesMock: Prisma.TechnologyCreateInput[] = [
         updatedAt: new Date('2024-01-01')
     }
 ];
+
+/**
+ * Search technologies by name or description
+ * @param query - Search term (case insensitive)
+ * @returns Array of technologies matching the search query
+ */
+export const searchTechnologies = (query: string): Prisma.TechnologyCreateInput[] => {
+    if (!query || query.trim() === '') {
+        return technologiesMock;
+    }
+
+    const searchTerm = query.toLowerCase().trim();
+    
+    return technologiesMock.filter(tech => 
+        tech.name.toLowerCase().includes(searchTerm) ||
+        tech.description.toLowerCase().includes(searchTerm)
+    );
+};
+
+/**
+ * Get technologies by category/type
+ * @param category - The category to filter by
+ * @returns Array of technologies in the specified category
+ */
+export const getTechnologiesByCategory = (category: 'frontend' | 'backend' | 'database' | 'devops' | 'mobile' | 'ai'): Prisma.TechnologyCreateInput[] => {
+    // Simple categorization based on technology names - you might want to add category field to your schema
+    const categoryKeywords = {
+        'frontend': ['react', 'vue', 'angular', 'svelte', 'html', 'css', 'javascript', 'typescript', 'tailwind', 'bootstrap'],
+        'backend': ['node', 'express', 'nestjs', 'python', 'django', 'flask', 'java', 'spring', 'php', 'laravel', '.net'],
+        'database': ['mysql', 'postgresql', 'mongodb', 'redis', 'sqlite', 'cassandra', 'dynamodb'],
+        'devops': ['docker', 'kubernetes', 'aws', 'gcp', 'azure', 'jenkins', 'github actions', 'terraform'],
+        'mobile': ['react native', 'flutter', 'swift', 'kotlin', 'xamarin'],
+        'ai': ['tensorflow', 'pytorch', 'openai', 'langchain', 'hugging face']
+    };
+    
+    const keywords = categoryKeywords[category] || [];
+    
+    return technologiesMock.filter(tech => 
+        keywords.some(keyword => tech.name.toLowerCase().includes(keyword))
+    );
+};

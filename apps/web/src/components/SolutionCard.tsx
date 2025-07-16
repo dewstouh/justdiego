@@ -19,7 +19,7 @@ export default function SolutionCard({
   showSeparator = true 
 }: SolutionCardProps) {
 
-  const {title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, customer, company, review } = solution;
+  const {id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, customer, company, review } = solution;
 
   const country = customer.country || company?.country;
 
@@ -59,12 +59,15 @@ export default function SolutionCard({
                 <AttachmentGallery
                   attachments={attachments}
                   slug={slug}
+                  solutionId={id}
                 />
               ) : (
                 <ProjectOverview
                   attachmentCount={attachments?.length || 0}
                   technologies={technologies}
                   hasDemoUrl={!!demoUrl}
+                  slug={slug}
+                  solutionId={id}
                 />
               )}
             </div>

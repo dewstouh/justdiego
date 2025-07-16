@@ -47,10 +47,10 @@ interface UpdateSolutionRequest {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const solutionId = params.id;
+    const { id: solutionId } = await params;
 
     // Fetch solution with all related data
     const solution = await db.solution.findUnique({
@@ -135,10 +135,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const solutionId = params.id;
+    const { id: solutionId } = await params;
     const body: UpdateSolutionRequest = await request.json();
     
     // Validate required fields

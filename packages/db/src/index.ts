@@ -10,3 +10,10 @@ export {
   searchCountries, 
   getRandomCountries 
 } from '../mocks/countries';
+
+// Export technology mocks and search utilities
+export { 
+  technologiesMock, 
+  searchTechnologies, 
+  getTechnologiesByCategory 
+} from '../mocks/technologies';
