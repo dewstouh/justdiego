@@ -104,36 +104,26 @@ model Document {
   type         DocumentType
   tags         Tag[] // A document can have multiple tags
   authorId     String?
-  views       Int           @default(0)
+  views        Int          @default(0)
   author       User?        @relation(fields: [authorId], references: [id])
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 }
 
 model Tool {
-  id                  String       @id @default(cuid())
-  authorId            String
-  slug                String       @unique
-  name                String
-  shortDescription    String?
-  longDescription     String?
-  iconUrl             String?
-  demoUrl             String?
-  problemDescription  String?
-  solutionDescription String?
-  technicalDetails    Json?
-  attachments         String[]     @default([])
-  tags                Tag[] // A tool can have multiple tags
-  technologies        Technology[] // A tool can use multiple technologies
-  solutions           Solution[] // A tool can be associated with multiple solutions
-  socialMediaUrls     String[]     @default([])
-  challenges          String[]
-  outcomes            String[]
-  completedAt         DateTime?
-  isForSale           Boolean      @default(false)
-  price               Decimal?     @default(0.0)
-  createdAt           DateTime     @default(now())
-  updatedAt           DateTime     @updatedAt
+  id               String       @id @default(cuid())
+  slug             String       @unique
+  name             String
+  shortDescription String?
+  longDescription  String?
+  thumbnailUrl     String?
+  attachments      String[]     @default([])
+  tags             Tag[] // A tool can have multiple tags
+  technologies     Technology[] // A tool can use multiple technologies
+  solutions        Solution[] // A tool can be associated with multiple solutions
+  price            Decimal?     @default(0.0)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
 }
 
 model Solution {
@@ -155,7 +145,6 @@ model Solution {
   outcomes            String[]
   completedAt         DateTime?
   isForSale           Boolean   @default(false)
-  price               Decimal?  @default(0.0)
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 

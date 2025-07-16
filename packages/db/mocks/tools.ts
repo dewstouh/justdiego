@@ -8,7 +8,7 @@ export const toolsMock: Prisma.ToolCreateInput[] = [
     name: 'Deployment Automation Suite',
     shortDescription: 'Complete CI/CD automation toolkit for modern web applications',
     longDescription: 'A comprehensive deployment automation suite that streamlines the entire CI/CD pipeline for modern web applications. Built with Docker, Jenkins, and cloud-native technologies, this tool automates testing, building, and deployment processes while providing real-time monitoring and rollback capabilities. Perfect for teams looking to eliminate manual deployment errors and reduce deployment time by up to 90%.',
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png',
+    thumbnailUrl: 'https://cdn-icons-png.flaticon.com/512/2920/2920277.png',
     demoUrl: 'https://deployment-demo.justdiego.dev',
     problemDescription: 'Manual deployments are time-consuming, error-prone, and cause frequent downtime',
     solutionDescription: 'Automated CI/CD pipeline reduces deployment time from hours to minutes with zero manual intervention',

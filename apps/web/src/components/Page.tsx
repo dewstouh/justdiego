@@ -209,9 +209,10 @@ interface SimplePageConfig {
 interface SimplePageProps {
     config: SimplePageConfig;
     children: React.ReactNode;
+    className?: string;
 }
 
-export function SimplePage({ config, children }: SimplePageProps) {
+export function SimplePage({ config, children, className }: SimplePageProps) {
     return (
         <Page
             maxWidth={config.maxWidth}
@@ -219,6 +220,7 @@ export function SimplePage({ config, children }: SimplePageProps) {
             background={config.background}
             showBackHomeButton={config.showBackHomeButton}
             showFooterBorder={config.showFooterBorder}
+            className={className}
         >
             <Page.Header
                 title={config.title}
