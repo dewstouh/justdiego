@@ -1,3 +1,5 @@
+import { Avatar } from '@justdiego/react-utils';
+
 interface Country {
   name: string;
   code: string;
@@ -7,6 +9,7 @@ interface Country {
 interface ReviewAuthor {
   id: string;
   name: string;
+  avatarUrl?: string | null;
   country: Country
 }
 
@@ -31,9 +34,11 @@ export default function ClientReview({ rating, comment, author }: ClientReviewPr
         &ldquo;{comment}&rdquo;
       </blockquote>
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 bg-gray-300 border-2 border-gray-400 rounded-full flex items-center justify-center">
-          <span className="text-gray-600 text-sm font-mono">IMG</span>
-        </div>
+        <Avatar 
+          src={author.avatarUrl} 
+          alt={author.name} 
+          size="lg" 
+        />
         <div>
           <cite className="text-gray-900 font-semibold">{author.name}</cite>
           <p className="text-gray-600">{author.name}</p>

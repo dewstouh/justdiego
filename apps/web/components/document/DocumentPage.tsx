@@ -4,6 +4,7 @@ import { MarkdownPage } from './MarkdownPage';
 import { getDocument } from '../../lib/data/document';
 import { SimplePage } from '../Page';
 import TagList from '../solution-card/TagList';
+import { Avatar } from '@justdiego/react-utils';
 
 interface DocumentPageProps {
     document: NonNullable<Awaited<ReturnType<typeof getDocument>>>
@@ -40,12 +41,14 @@ export default function DocumentPage({ document }: DocumentPageProps) {
                                 )}
                             </div>
                             {author && (
+
                                 <div className="flex items-center gap-2">
                                     <span className="font-medium text-gray-900">Author: </span>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
-                                            {author.name.split(' ').map(n => n[0]).join('').toUpperCase()}
-                                        </div>
+                                        <Avatar
+                                            src={author.avatarUrl}
+                                            alt={author.name}
+                                            size="sm" />
                                         <span className="text-gray-600">{author.name}</span>
                                     </div>
                                 </div>

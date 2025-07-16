@@ -1,4 +1,5 @@
 import { Country, User } from '@justdiego/types';
+import { Avatar } from '@justdiego/react-utils';
 
 interface ReviewCardProps {
   rating: number;
@@ -24,9 +25,11 @@ export default function ReviewCard({ rating, comment, author, country }: ReviewC
           &ldquo;{comment}&rdquo;
         </blockquote>
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gray-300 border-2 border-gray-400 rounded-full flex items-center justify-center">
-            <span className="text-gray-600 text-xs font-mono">IMG</span>
-          </div>
+          <Avatar 
+            src={author.avatarUrl} 
+            alt={author.name} 
+            size="md" 
+          />
           <div className="flex flex-col">
             <cite className="text-sm text-gray-600 font-mono">
               — {author.name}
