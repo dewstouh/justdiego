@@ -188,12 +188,44 @@ export default function EditSolution() {
     handleSolutionChange('technicalDetails', updatedDetails);
   };
 
-  const handleArrayInputChange = (field: 'challenges' | 'outcomes' | 'attachments', value: string, section: 'solution' | 'review') => {
+  const handleArrayInputChange = (field: 'challenges' | 'outcomes', value: string, section: 'solution' | 'review') => {
     const arrayValue = value.split('\\n').filter(item => item.trim() !== '');
     if (section === 'solution') {
       handleSolutionChange(field as keyof SolutionData, arrayValue);
     } else {
       handleReviewChange(field as keyof ReviewData, arrayValue);
+    }
+  };
+
+  const addAttachment = (section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = formData.solution.attachments || [];
+      handleSolutionChange('attachments', [...currentAttachments, '']);
+    } else {
+      const currentAttachments = formData.review.attachments || [];
+      handleReviewChange('attachments', [...currentAttachments, '']);
+    }
+  };
+
+  const updateAttachment = (index: number, value: string, section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = [...(formData.solution.attachments || [])];
+      currentAttachments[index] = value;
+      handleSolutionChange('attachments', currentAttachments);
+    } else {
+      const currentAttachments = [...(formData.review.attachments || [])];
+      currentAttachments[index] = value;
+      handleReviewChange('attachments', currentAttachments);
+    }
+  };
+
+  const removeAttachment = (index: number, section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = formData.solution.attachments?.filter((_, i) => i !== index) || [];
+      handleSolutionChange('attachments', currentAttachments);
+    } else {
+      const currentAttachments = formData.review.attachments?.filter((_, i) => i !== index) || [];
+      handleReviewChange('attachments', currentAttachments);
     }
   };
 
@@ -673,15 +705,36 @@ export default function EditSolution() {
 
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">
-                Solution Attachments (one URL per line)
+                Solution Attachments
               </label>
-              <textarea
-                value={formData.solution.attachments?.join('\\n') || ''}
-                onChange={(e) => handleArrayInputChange('attachments', e.target.value, 'solution')}
-                className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900 h-24"
-                placeholder="https://example.com/screenshot1.png&#10;https://example.com/screenshot2.png&#10;https://example.com/demo-video.mp4"
-              />
-              <p className="text-xs text-gray-500 mt-1">Enter attachment URLs, one per line</p>
+              <div className="space-y-2">
+                {(formData.solution.attachments || []).map((attachment, index) => (
+                  <div key={index} className="flex gap-2">
+                    <input
+                      type="url"
+                      value={attachment}
+                      onChange={(e) => updateAttachment(index, e.target.value, 'solution')}
+                      className="flex-1 px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+                      placeholder="https://example.com/attachment.png"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeAttachment(index, 'solution')}
+                      className="px-3 py-2 bg-red-600 text-white hover:bg-red-700 font-bold"
+                    >
+                      REMOVE
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => addAttachment('solution')}
+                  className="w-full px-3 py-2 border-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-900 hover:text-gray-900 font-bold"
+                >
+                  + ADD ATTACHMENT
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Add URLs for images, videos, or other attachments</p>
             </div>
           </CardContent>
         </Card>
@@ -724,15 +777,36 @@ export default function EditSolution() {
 
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-2">
-                Review Attachments (one URL per line)
+                Review Attachments
               </label>
-              <textarea
-                value={formData.review.attachments?.join('\\n') || ''}
-                onChange={(e) => handleArrayInputChange('attachments', e.target.value, 'review')}
-                className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900 h-20"
-                placeholder="https://example.com/review-image.png&#10;https://example.com/testimonial-video.mp4"
-              />
-              <p className="text-xs text-gray-500 mt-1">Optional: URLs for review attachments</p>
+              <div className="space-y-2">
+                {(formData.review.attachments || []).map((attachment, index) => (
+                  <div key={index} className="flex gap-2">
+                    <input
+                      type="url"
+                      value={attachment}
+                      onChange={(e) => updateAttachment(index, e.target.value, 'review')}
+                      className="flex-1 px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+                      placeholder="https://example.com/review-attachment.png"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeAttachment(index, 'review')}
+                      className="px-3 py-2 bg-red-600 text-white hover:bg-red-700 font-bold"
+                    >
+                      REMOVE
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => addAttachment('review')}
+                  className="w-full px-3 py-2 border-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-900 hover:text-gray-900 font-bold"
+                >
+                  + ADD ATTACHMENT
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Optional: URLs for review-related attachments</p>
             </div>
           </CardContent>
         </Card>

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { UserFormSection } from '@/components/admin/UserFormSection';
-import { CompanyFormSection } from '@/components/admin/CompanyFormSection';
-import { SolutionFormSection } from '@/components/admin/SolutionFormSection';
-import { ReviewFormSection } from '@/components/admin/ReviewFormSection';
+import { UserFormSection } from '@/app/(dashboard)/admin/solutions/_components/UserFormSection';
+import { CompanyFormSection } from '@/app/(dashboard)/admin/solutions/_components/CompanyFormSection';
+import { SolutionFormSection } from '@/app/(dashboard)/admin/solutions/_components/SolutionFormSection';
+import { ReviewFormSection } from '@/app/(dashboard)/admin/solutions/_components/ReviewFormSection';
 import type { Prisma } from '@justdiego/db';
 
 interface Country {
@@ -179,12 +179,44 @@ export default function AdminDashboard() {
     handleSolutionChange('technicalDetails', updatedDetails);
   };
 
-  const handleArrayInputChange = (field: 'challenges' | 'outcomes' | 'attachments', value: string, section: 'solution' | 'review') => {
+  const handleArrayInputChange = (field: 'challenges' | 'outcomes', value: string, section: 'solution' | 'review') => {
     const arrayValue = value.split('\n').filter(item => item.trim() !== '');
     if (section === 'solution') {
       handleSolutionChange(field as keyof SolutionData, arrayValue);
     } else {
       handleReviewChange(field as keyof ReviewData, arrayValue);
+    }
+  };
+
+  const addAttachment = (section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = formData.solution.attachments || [];
+      handleSolutionChange('attachments', [...currentAttachments, '']);
+    } else {
+      const currentAttachments = formData.review.attachments || [];
+      handleReviewChange('attachments', [...currentAttachments, '']);
+    }
+  };
+
+  const updateAttachment = (index: number, value: string, section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = [...(formData.solution.attachments || [])];
+      currentAttachments[index] = value;
+      handleSolutionChange('attachments', currentAttachments);
+    } else {
+      const currentAttachments = [...(formData.review.attachments || [])];
+      currentAttachments[index] = value;
+      handleReviewChange('attachments', currentAttachments);
+    }
+  };
+
+  const removeAttachment = (index: number, section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = formData.solution.attachments?.filter((_, i) => i !== index) || [];
+      handleSolutionChange('attachments', currentAttachments);
+    } else {
+      const currentAttachments = formData.review.attachments?.filter((_, i) => i !== index) || [];
+      handleReviewChange('attachments', currentAttachments);
     }
   };
 
@@ -311,12 +343,17 @@ export default function AdminDashboard() {
           onTechnicalDetailChange={handleTechnicalDetailChange}
           onAddTechnicalDetail={addTechnicalDetail}
           onRemoveTechnicalDetail={removeTechnicalDetail}
+          onAddAttachment={addAttachment}
+          onUpdateAttachment={updateAttachment}
+          onRemoveAttachment={removeAttachment}
         />
 
         <ReviewFormSection 
           formData={formData.review}
           onChange={handleReviewChange}
-          onArrayInputChange={handleArrayInputChange}
+          onAddAttachment={addAttachment}
+          onUpdateAttachment={updateAttachment}
+          onRemoveAttachment={removeAttachment}
         />
 
         {/* Submit Button */}

@@ -10,10 +10,18 @@ interface ReviewData {
 interface ReviewFormSectionProps {
   formData: ReviewData;
   onChange: (field: keyof ReviewData, value: string | number | string[]) => void;
-  onArrayInputChange: (field: 'attachments', value: string, section: 'review') => void;
+  onAddAttachment: (section: 'review') => void;
+  onUpdateAttachment: (index: number, value: string, section: 'review') => void;
+  onRemoveAttachment: (index: number, section: 'review') => void;
 }
 
-export function ReviewFormSection({ formData, onChange, onArrayInputChange }: ReviewFormSectionProps) {
+export function ReviewFormSection({ 
+  formData, 
+  onChange, 
+  onAddAttachment, 
+  onUpdateAttachment, 
+  onRemoveAttachment 
+}: ReviewFormSectionProps) {
   return (
     <Card>
       <CardHeader>
@@ -52,15 +60,36 @@ export function ReviewFormSection({ formData, onChange, onArrayInputChange }: Re
 
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-2">
-            Review Attachments (one URL per line)
+            Review Attachments
           </label>
-          <textarea
-            value={formData.attachments?.join('\n') || ''}
-            onChange={(e) => onArrayInputChange('attachments', e.target.value, 'review')}
-            className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900 h-20"
-            placeholder="https://example.com/review-image.png&#10;https://example.com/testimonial-video.mp4"
-          />
-          <p className="text-xs text-gray-500 mt-1">Optional: URLs for review attachments</p>
+          <div className="space-y-2">
+            {(formData.attachments || []).map((attachment, index) => (
+              <div key={index} className="flex gap-2">
+                <input
+                  type="url"
+                  value={attachment}
+                  onChange={(e) => onUpdateAttachment(index, e.target.value, 'review')}
+                  className="flex-1 px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+                  placeholder="https://example.com/review-attachment.png"
+                />
+                <button
+                  type="button"
+                  onClick={() => onRemoveAttachment(index, 'review')}
+                  className="px-3 py-2 bg-red-600 text-white hover:bg-red-700 font-bold"
+                >
+                  REMOVE
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => onAddAttachment('review')}
+              className="w-full px-3 py-2 border-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-900 hover:text-gray-900 font-bold"
+            >
+              + ADD ATTACHMENT
+            </button>
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Optional: URLs for review-related attachments</p>
         </div>
       </CardContent>
     </Card>
