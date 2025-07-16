@@ -47,8 +47,10 @@ export function useContactForm() {
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
         resetForm();
+        setSubmitStatus('success');
+        // Don't reset form immediately to see the success message
+        
       } else {
         setSubmitStatus('error');
       }
