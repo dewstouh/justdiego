@@ -27,6 +27,16 @@
         "DATABASE_URL"
       ]
     },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "env": [
+        "ADMIN_EMAIL",
+        "ADMIN_PASSWORD",
+        "RESEND_API_KEY",
+        "DATABASE_URL"
+      ]
+    },
     "db:migrate:dev": {
       "cache": false,
       "persistent": true
