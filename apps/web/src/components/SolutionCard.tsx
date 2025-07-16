@@ -7,6 +7,7 @@ import AttachmentGallery from '@/components/solution-card/AttachmentGallery';
 import SolutionActions from '@/components/solution-card/SolutionActions';
 import ProjectOverview from '@/components/solution-card/ProjectOverview';
 import { getSolutions } from '@/lib/data/solution';
+import Link from 'next/link';
 
 interface SolutionCardProps {
   solution: NonNullable<Awaited<ReturnType<typeof getSolutions>>>[number];
@@ -46,6 +47,12 @@ export default function SolutionCard({
             />
 
             <TagList tags={tags} />
+            <Link
+              href={`/solutions/${slug}`}
+              className="inline-block bg-gray-900 text-white px-6 py-3 border-2 border-gray-900 font-bold hover:bg-primary transition-all duration-200"
+            >
+              VIEW FULL STUDY CASE →
+            </Link>
           </div>
 
           {/* Right Column - Review & Content */}
