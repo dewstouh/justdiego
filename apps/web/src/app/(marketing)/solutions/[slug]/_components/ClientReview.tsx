@@ -37,11 +37,10 @@ export default function ClientReview({ rating, comment, author }: ClientReviewPr
         <Avatar 
           src={author.avatarUrl} 
           alt={author.name} 
-          size="lg" 
+          size="sm" 
         />
         <div>
           <cite className="text-gray-900 font-semibold">{author.name}</cite>
-          <p className="text-gray-600">{author.name}</p>
         </div>
       </div>
     </div>
