@@ -83,7 +83,9 @@ export function MarkdownRenderer({
                     </blockquote>
                 ),
                 hr: () => (
-                    <hr className="border-gray-300 my-8" />
+                    <hr 
+                        className="border-gray-300 mt-8 mb-8" 
+                    />
                 ),
                 code: ({ children }) => (
                     <code className="bg-gray-100 text-gray-900 px-1 py-0.5 rounded text-sm font-mono">
