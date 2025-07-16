@@ -12,7 +12,7 @@ interface ProjectOverviewProps {
   solutionId?: string;
 }
 
-export default function ProjectOverview({ attachmentCount, technologies, hasDemoUrl, slug, solutionId }: ProjectOverviewProps) {
+export default function ProjectOverview({ attachmentCount, technologies, solutionId }: ProjectOverviewProps) {
   const { isAdmin } = useAdminAuth();
 
   return (

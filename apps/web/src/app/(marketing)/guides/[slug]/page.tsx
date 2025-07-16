@@ -4,9 +4,9 @@ import { getDocument, getDocuments } from '@/lib/data/document';
 import DocumentPage from '@/components/document/DocumentPage';
 
 interface GuidePageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export async function generateStaticParams() {

@@ -1,5 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "globalEnv": [
+    "ADMIN_EMAIL",
+    "ADMIN_PASSWORD",
+    "RESEND_API_KEY"
+  ],
   "tasks": {
     "build": {
       "dependsOn": [
@@ -13,6 +18,11 @@
         "dist/**",
         ".next/**",
         "!.next/cache/**"
+      ],
+      "env": [
+        "ADMIN_EMAIL",
+        "ADMIN_PASSWORD",
+        "RESEND_API_KEY"
       ]
     },
     "db:migrate:dev": {
