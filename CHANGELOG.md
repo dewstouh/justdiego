@@ -1,5 +1,35 @@
 # Changelog
 
+## [1.1.0](https://github.com/dewstouh/justdiego/compare/v1.0.0...v1.1.0) (2025-07-16)
+
+
+### Features
+
+* add build script for each package and set build path to dist on base.json ([1750b52](https://github.com/dewstouh/justdiego/commit/1750b5268ea4b9e16c5d1b6fb732990c0f0d7986))
+* add build script for each package and set build path to dist on… ([672c337](https://github.com/dewstouh/justdiego/commit/672c3378bf474acfd376ef4678ac47e2a86693e3))
+* **turbo:** add DATABASE_URL on globalEnv ([9b09b88](https://github.com/dewstouh/justdiego/commit/9b09b88002c7c9a0ae0227bbde7f4665c086909f))
+* **turbo:** add environment variables as global environment ([2638c70](https://github.com/dewstouh/justdiego/commit/2638c70263b68d60515060a3c35d5094dc42d83a))
+* **turbo:** add start task ([4347248](https://github.com/dewstouh/justdiego/commit/4347248414da818f1afd6f877eea084b39e81c24))
+
+
+### Bug Fixes
+
+* **db:** handle missing technology description in search filter ([ce6368a](https://github.com/dewstouh/justdiego/commit/ce6368a6c367794abb55fe734eb506f88c1df376))
+* **eslint-config:** remove unneeded build script on eslint-config ([7ea45fb](https://github.com/dewstouh/justdiego/commit/7ea45fb558ea438a8472f5e1925052584c0e3623))
+* initialize resend lazily to avoid build time errors and add DATABASE_URL to global env config in turbo.json ([f73cc9f](https://github.com/dewstouh/justdiego/commit/f73cc9f918ff93d58d30f9012e60f945cd477d54))
+* initialize resend lazily to avoid build time errors and add DATABASE_URL to global env config in turbo.json ([f73cc9f](https://github.com/dewstouh/justdiego/commit/f73cc9f918ff93d58d30f9012e60f945cd477d54))
+* **react-utils:** move build script to scripts instead of devdependencies ([4a10a8a](https://github.com/dewstouh/justdiego/commit/4a10a8ac5135da63632efeb46a2143affa8b3b32))
+* **types:** make GuidePageProps.params a Promise to match async params usage ([3edf43d](https://github.com/dewstouh/justdiego/commit/3edf43df2a3c7af914b89b11b85bb4fc3f1480d7))
+* **web:** add environment variables in turbo config ([5971f7f](https://github.com/dewstouh/justdiego/commit/5971f7f55b07bea1a1a4ab8cba232ea7ba84c817))
+* **web:** add use client to countrysearchexample component ([ee214e8](https://github.com/dewstouh/justdiego/commit/ee214e83cf46e49be4599296a7e331327511447d))
+* **web:** duplicated view study solution button ([39e634e](https://github.com/dewstouh/justdiego/commit/39e634e666faa75c408520e380d3d6a085e32f0e))
+* **web:** duplicated view study solution button ([fc09067](https://github.com/dewstouh/justdiego/commit/fc090673ba02ca341115a6cea40a370c7d5596c9))
+* **web:** sent email alert not showing due to form reset applying before alert ([84a57c4](https://github.com/dewstouh/justdiego/commit/84a57c46601d0306122e912e8e7e326979555fbf))
+* **web:** sent email alert not showing due to form reset applying before alert ([b47fabb](https://github.com/dewstouh/justdiego/commit/b47fabbff3ce9ad7de6272ae851df5575868ce41))
+* **web:** serve unoptimized images to ensure loading from external sources ([90208e6](https://github.com/dewstouh/justdiego/commit/90208e60daa1ce499a05d3644d19888a6c59eebe))
+* **web:** serve unoptimized images to ensure loading from external sources ([90208e6](https://github.com/dewstouh/justdiego/commit/90208e60daa1ce499a05d3644d19888a6c59eebe))
+* **web:** serve unoptimized images to ensure loading from external sources ([f115856](https://github.com/dewstouh/justdiego/commit/f1158564e7d90acccf662333689306a21085bc20))
+
 ## 1.0.0 (2025-07-16)
 
 
