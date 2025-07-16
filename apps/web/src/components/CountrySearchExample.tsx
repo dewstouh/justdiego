@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { CountrySearch } from '@justdiego/react-utils';
 import type { Prisma } from '@justdiego/db';
