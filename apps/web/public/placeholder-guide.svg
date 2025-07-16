@@ -1,0 +1,7 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="600" fill="#F3F4F6"/>
+<path d="M350 250H450V350H350V250Z" fill="#D1D5DB"/>
+<path d="M375 275H425V300H375V275Z" fill="#9CA3AF"/>
+<path d="M375 310H425V325H375V310Z" fill="#9CA3AF"/>
+<text x="400" y="400" text-anchor="middle" fill="#6B7280" font-family="Arial, sans-serif" font-size="24">Business Guide</text>
+</svg>

@@ -9,7 +9,217 @@ generator client {
   output   = "../generated/prisma"
 }
 
+generator zod {
+  provider                  = "zod-prisma-types"
+  output                    = "../generated/zod"
+  createRelationValuesTypes = true
+}
+
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_DIRECT_URL")
+}
+
+model NavigationItem {
+  id        String   @id @default(cuid())
+  href      String
+  iconUrl   String?
+  title     String
+  order     Int?     @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  avatarUrl String?
+  password  String?
+  roles     Role[]
+  countryId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  country   Country    @relation(fields: [countryId], references: [id]) // A user belongs to a country
+  reviews   Review[]
+  documents Document[] // A user can author multiple documents
+  solutions Solution[] // A user can author multiple solutions
+}
+
+model Role {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  users       User[] // A role can be assigned to multiple users
+  permissions Permission[] // A role can have multiple permissions
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  roles       Role[] // A permission can be assigned to multiple roles
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Company {
+  id              String   @id @default(cuid())
+  ownerId         String
+  countryId       String
+  name            String
+  logoUrl         String?
+  website         String?
+  socialMediaUrls String[] @default([])
+  description     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  country   Country    @relation(fields: [countryId], references: [id]) // A company belongs to a country
+  solutions Solution[] // A company can have multiple solutions
+}
+
+model Country {
+  id        String   @id @default(cuid())
+  name      String
+  code      String   @unique
+  flag      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     User[] // A country can have multiple users
+  companies Company[] // A country can have multiple companies
+}
+
+model Document {
+  id           String       @id @default(cuid())
+  title        String
+  description  String
+  thumbnailUrl String?
+  slug         String       @unique
+  content      String
+  type         DocumentType
+  tags         Tag[] // A document can have multiple tags
+  authorId     String?
+  views        Int          @default(0)
+  author       User?        @relation(fields: [authorId], references: [id])
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Tool {
+  id               String       @id @default(cuid())
+  slug             String       @unique
+  name             String
+  shortDescription String?
+  longDescription  String?
+  thumbnailUrl     String?
+  attachments      String[]     @default([])
+  tags             Tag[] // A tool can have multiple tags
+  technologies     Technology[] // A tool can use multiple technologies
+  solutions        Solution[] // A tool can be associated with multiple solutions
+  price            Decimal?     @default(0.0)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Solution {
+  id                  String    @id @default(cuid())
+  customerId          String
+  companyId           String?
+  shortDescription    String
+  longDescription     String
+  title               String
+  slug                String    @unique
+  description         String?
+  thumbnailUrl        String?
+  demoUrl             String?
+  problemDescription  String
+  solutionDescription String
+  technicalDetails    Json?
+  attachments         String[]  @default([])
+  challenges          String[]
+  outcomes            String[]
+  completedAt         DateTime?
+  isForSale           Boolean   @default(false)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  customer User     @relation(fields: [customerId], references: [id])
+  company  Company? @relation(fields: [companyId], references: [id])
+  review   Review?
+
+  tags         Tag[] // A solution can have multiple tags
+  technologies Technology[] // A solution can use multiple technologies
+  tools        Tool[] // A solution can be associated with multiple tools
+}
+
+enum CustomerType {
+  USER
+  COMPANY
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  rating      Int
+  comment     String
+  attachments String[] @default([])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  solutionId String   @unique
+  solution   Solution @relation(fields: [solutionId], references: [id])
+}
+
+model SocialMedia {
+  id        String   @id @default(cuid())
+  platform  String
+  url       String
+  iconUrl   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tag {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  iconUrl     String?
+  color       String   @default("#000000")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tools     Tool[] // A tag can be associated with multiple tools
+  solutions Solution[] // A tag can be associated with multiple solutions
+  documents Document[] // A tag can be associated with multiple documents
+}
+
+model Technology {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  iconUrl     String?
+  color       String   @default("#000000")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tools     Tool[] // A technology can be used in multiple tools
+  solutions Solution[] // A technology can be used in multiple solutions
+}
+
+enum DocumentType {
+  LEGAL
+  GUIDE
+  OTHER
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  GUEST
 }

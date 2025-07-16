@@ -12,19 +12,25 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@justdiego/db": "workspace:*",
     "@justdiego/eslint-config": "workspace:*",
-    "@justdiego/typescript-config": "workspace:*",
-    "@justdiego/mocks": "workspace:*",
+    "@justdiego/utils": "workspace:*",
     "@justdiego/types": "workspace:*",
+    "@justdiego/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
-    "eslint": "^9.30.0",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
+    "eslint": "^9.30.0",
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "@justdiego/utils": "workspace:*",
+    "@react-pdf/renderer": "^4.3.0",
     "date-fns": "^4.1.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1"
   }
 }

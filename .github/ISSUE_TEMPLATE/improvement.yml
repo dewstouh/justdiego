@@ -1,0 +1,150 @@
+name: 🏗️ Project Improvement
+description: Suggest improvements to project structure, tooling, or processes
+title: "[Improvement]: "
+labels: ["improvement", "needs-triage"]
+assignees: ["dewstouh"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a project improvement! This could be related to build tools, project structure, development workflow, or other non-feature improvements.
+
+  - type: dropdown
+    id: improvement-type
+    attributes:
+      label: Improvement Type
+      description: What area does this improvement target?
+      options:
+        - Build System/Tooling
+        - Project Structure
+        - Development Workflow
+        - CI/CD Pipeline
+        - Code Quality/Linting
+        - Testing Infrastructure
+        - Documentation Structure
+        - Package Management
+        - Performance Optimization
+        - Security Enhancement
+        - Developer Experience
+        - Monitoring/Analytics
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-situation
+    attributes:
+      label: Current Situation
+      description: Describe the current state and what could be improved.
+      placeholder: |
+        Currently, the project...
+        The current approach has these issues...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed Improvement
+      description: Describe your suggested improvement in detail.
+      placeholder: |
+        I suggest we...
+        This would work by...
+        The benefits would be...
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Expected Benefits
+      description: What benefits would this improvement provide?
+      placeholder: |
+        - Improved developer experience
+        - Better performance
+        - Easier maintenance
+        - Enhanced security
+        - Better code quality
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Details
+      description: If you have ideas about how to implement this, share them here.
+      placeholder: |
+        This could be implemented by...
+        Tools/libraries that could help...
+        Migration steps...
+
+  - type: textarea
+    id: drawbacks
+    attributes:
+      label: Potential Drawbacks
+      description: Are there any potential negative effects or challenges?
+      placeholder: |
+        This might...
+        Potential challenges include...
+        Trade-offs to consider...
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact Level
+      description: How significant would this improvement be?
+      options:
+        - Low - Minor improvement
+        - Medium - Noticeable improvement
+        - High - Significant improvement
+        - Critical - Major improvement needed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Implementation Complexity
+      description: How complex do you think this would be to implement?
+      options:
+        - Low - Simple change
+        - Medium - Moderate effort required
+        - High - Significant effort required
+        - Very High - Major undertaking
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples/References
+      description: Any examples from other projects or resources that demonstrate this improvement?
+      placeholder: |
+        Similar implementations:
+        - Project X does this by...
+        - Tool Y provides this feature...
+        
+        References:
+        - Documentation: https://...
+        - Article: https://...
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to help implement this improvement
+        - label: I can provide additional research/documentation
+        - label: I can help with testing the implementation
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing improvement suggestions
+          required: true
+        - label: I have considered the impact and complexity of this change
+          required: true
+        - label: This improvement would benefit the project and its contributors
+          required: true

@@ -1,25 +1,28 @@
 
-# TODO List
-## Features
-- [ ] Create page template for pages
-- [ ] Add book a call section with Calendly
-- [ ] Auto PDF generation for solutions
-- [ ] Add Policies
-- [ ] Add CONTRIBUTING and related documents
-- [ ] Create dev branch for development and leave main for production
-- [ ] Add auto translation based on user browser language
-
-## Improvements
-- [ ] Add `AutoBreadcrumb` to all pages
-- [ ] Add padding top on pages
-- [ ] Remove tag colors
-
-## Bug Fixes
-- [ ] Fix responsive issues on the website (`AutoBreadcrumb`, etc)
-- [ ] Fix paddings on pages so they all have the same margings
-- [ ] Use actual title in solution slug broadcrumb instead of replacing
-
-
-
 ## DONE
+- [x] ~~Add category guides~~
+- [x] ~~Add about page with Diego's story and information~~
+- [x] ~~Add document author~~
+- [x] ~~Refactor of whole app~~
+- [x] ~~Add a way to generate pages with metadata and data fetching automatically~~
+- [x] ~~Skeletons and Loading states for data fetching~~
+- [x] ~~Better caching~~
+- [x] ~~Add guides on how to improve your business~~
+- [x] ~~Fix typings for `getSolutions`~~
+- [x] ~~Fix navbar background when scrolled and website is refreshed~~
+- [x] ~~Create dev branch for development and leave main for production~~
+- [x] ~~Update CTA section with new punchline~~
+- [x] ~~Add constants for website metadata~~
+- [x] ~~Add constants for contact information~~
+- [x] ~~Auto PDF generation for solutions~~
+- [x] ~~Add CONTRIBUTING and related documents~~
+- [x] ~~Use actual title in solution slug broadcrumb instead of replacing~~
+- [x] ~~Fix responsive issues on the website (`AutoBreadcrumb`, etc)~~
+- [x] ~~Add Policies~~
+- [x] ~~Fix paddings on pages so they all have the same margings~~
+- [x] ~~Add padding top on pages~~
+- [x] ~~Add `AutoBreadcrumb` to all pages~~
+- [x] ~~Add book a call section with Calendly~~
+- [x] ~~Remove tag colors~~
+- [x] ~~Create a section template for marketing sections~~
 - [x] ~~Fix buttons from @justdiego/ui not applying proper CSS~~

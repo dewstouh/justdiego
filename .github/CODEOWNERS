@@ -1,0 +1,55 @@
+# Global owners - these users will be requested for review on all PRs
+* @dewstouh
+
+# Documentation
+*.md @dewstouh
+/docs/ @dewstouh
+
+# Configuration files
+package.json @dewstouh
+pnpm-lock.yaml @dewstouh
+pnpm-workspace.yaml @dewstouh
+turbo.json @dewstouh
+tsconfig*.json @dewstouh
+
+# Security and legal documents
+SECURITY.md @dewstouh
+CONTRIBUTOR_LICENSE_AGREEMENT.md @dewstouh
+LICENSE @dewstouh
+
+# GitHub workflows and templates
+/.github/ @dewstouh
+
+# Main web application
+/apps/web/ @dewstouh
+
+# Database and schema
+/packages/db/ @dewstouh
+/packages/db/prisma/schema.prisma @dewstouh
+
+# Core packages
+/packages/types/ @dewstouh
+/packages/constants/ @dewstouh
+/packages/utils/ @dewstouh
+
+# UI components
+/packages/ui/ @dewstouh
+/apps/web/src/components/ @dewstouh
+
+# ESLint and formatting
+eslint.config.* @dewstouh
+.prettierrc* @dewstouh
+/packages/eslint-config/ @dewstouh
+
+# Build and deployment
+Dockerfile* @dewstouh
+docker-compose*.yml @dewstouh
+/apps/web/src/next.config.js @dewstouh
+
+# Styles and design
+/apps/web/src/app/globals.css @dewstouh
+/apps/web/src/tailwind.config.js @dewstouh
+/apps/web/src/lib/colors.ts @dewstouh
+
+# API routes
+/apps/web/src/app/api/ @dewstouh

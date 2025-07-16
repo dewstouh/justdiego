@@ -1,0 +1,105 @@
+name: 📚 Documentation Issue
+description: Report an issue with documentation or suggest improvements
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+assignees: ["dewstouh"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Please provide details about the documentation issue or improvement.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation issue is this?
+      options:
+        - README
+        - Contributing Guide
+        - API Documentation
+        - Code Comments
+        - Setup Instructions
+        - Deployment Guide
+        - Security Policy
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What kind of documentation issue is this?
+      options:
+        - Missing Information
+        - Incorrect Information
+        - Outdated Information
+        - Unclear Instructions
+        - Typo/Grammar
+        - Broken Links
+        - Missing Examples
+        - Improvement Suggestion
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Which file or section has the issue?
+      placeholder: e.g., README.md, CONTRIBUTING.md line 45, /docs/api/setup.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current Content
+      description: What does the current documentation say? (copy/paste the relevant section)
+      placeholder: Paste the current content here...
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue Description
+      description: Describe the problem with the current documentation.
+      placeholder: What's wrong or confusing about the current documentation?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-content
+    attributes:
+      label: Suggested Improvement
+      description: How should the documentation be improved?
+      placeholder: |
+        What should the documentation say instead?
+        Or what should be added?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: |
+        Why is this improvement needed? Who would benefit?
+        Any examples from other projects?
+      placeholder: |
+        This would help new contributors because...
+        I got confused when trying to...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing documentation issues
+          required: true
+        - label: I have provided specific details about the location and issue
+          required: true
+        - label: I am willing to help improve this documentation if needed
+          required: false
