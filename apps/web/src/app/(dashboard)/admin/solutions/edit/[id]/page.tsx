@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardContent } from '@/app/(marketing)/contact/_components/ui/Card';
+import { TagSelector } from '@justdiego/react-utils';
+import type { Prisma } from '@justdiego/db';
 
 interface Country {
   id: string;
@@ -53,6 +55,7 @@ interface SolutionData {
   completedAt?: string;
   isForSale: boolean;
   companyId?: string;
+  tags?: Prisma.TagCreateInput[];
 }
 
 interface FormData {
@@ -98,6 +101,7 @@ export default function EditSolution() {
       challenges: [],
       outcomes: [],
       isForSale: false,
+      tags: [],
     },
     review: {
       rating: 5,
@@ -155,7 +159,7 @@ export default function EditSolution() {
     }));
   };
 
-  const handleSolutionChange = (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Record<string, unknown>) => {
+  const handleSolutionChange = (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TagCreateInput[] | Record<string, unknown>) => {
     setFormData(prev => ({
       ...prev,
       solution: { ...prev.solution, [field]: value }
@@ -249,12 +253,33 @@ export default function EditSolution() {
     setSubmitStatus({type: null, message: ''});
 
     try {
+      // Transform tags from objects to IDs before sending to API
+      const submissionData = {
+        ...formData,
+        solution: {
+          ...formData.solution,
+          tags: (formData.solution.tags || []).map((tag) => {
+            // Handle both TagCreateInput objects and strings
+            if (typeof tag === 'object' && tag !== null) {
+              // If it's a TagCreateInput object with an id field, use the id
+              if ('id' in tag && typeof tag.id === 'string') {
+                return tag.id;
+              }
+              // If it's a TagCreateInput without id, it shouldn't happen in edit mode, but handle gracefully
+              return '';
+            }
+            // If it's already a string (tag ID), use it as is
+            return tag;
+          }).filter(id => id !== '') // Remove any empty strings
+        }
+      };
+
       const response = await fetch(`/api/admin/solutions/${solutionId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
       });
 
       const result = await response.json();
@@ -630,6 +655,17 @@ export default function EditSolution() {
                   <span className="text-sm font-bold text-gray-700">For Sale</span>
                 </label>
               </div>
+            </div>
+
+            {/* Tags Section */}
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">
+                Tags
+              </label>
+              <TagSelector
+                selectedTags={formData.solution.tags || []}
+                onTagsChange={(tags) => handleSolutionChange('tags', tags)}
+              />
             </div>
 
             {/* Technical Details Section */}

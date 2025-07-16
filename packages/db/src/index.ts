@@ -17,3 +17,9 @@ export {
   searchTechnologies, 
   getTechnologiesByCategory 
 } from '../mocks/technologies';
+
+// Export tag mocks and search utilities
+export { 
+  tagsMock, 
+  searchTags
+} from '../mocks/tags';

@@ -57,6 +57,7 @@ interface SolutionData {
   isForSale: boolean;
   companyId?: string;
   technologies?: Prisma.TechnologyCreateInput[];
+  tags?: Prisma.TagCreateInput[];
 }
 
 interface FormData {
@@ -98,6 +99,7 @@ export default function AdminDashboard() {
       outcomes: [],
       isForSale: false,
       technologies: [],
+      tags: [],
     },
     review: {
       rating: 5,
@@ -146,7 +148,7 @@ export default function AdminDashboard() {
     }));
   };
 
-  const handleSolutionChange = (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TechnologyCreateInput[]) => {
+  const handleSolutionChange = (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TechnologyCreateInput[] | Prisma.TagCreateInput[]) => {
     setFormData(prev => ({
       ...prev,
       solution: { ...prev.solution, [field]: value }
@@ -280,12 +282,21 @@ export default function AdminDashboard() {
     setSubmitStatus({type: null, message: ''});
 
     try {
+      // Transform the form data to match API expectations
+      const requestData = {
+        ...formData,
+        solution: {
+          ...formData.solution,
+          tags: formData.solution.tags?.map(tag => tag.id).filter(Boolean) || []
+        }
+      };
+
       const response = await fetch('/api/admin/solutions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(requestData),
       });
 
       const result = await response.json();

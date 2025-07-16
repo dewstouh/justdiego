@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/app/(marketing)/contact/_components/ui/Card';
-import { TechnologySelector } from '@justdiego/react-utils';
+import { TechnologySelector, TagSelector } from '@justdiego/react-utils';
 import type { Prisma } from '@justdiego/db';
 
 interface TechnicalDetail {
@@ -26,11 +26,12 @@ interface SolutionData {
   isForSale: boolean;
   companyId?: string;
   technologies?: Prisma.TechnologyCreateInput[];
+  tags?: Prisma.TagCreateInput[];
 }
 
 interface SolutionFormSectionProps {
   formData: SolutionData;
-  onChange: (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TechnologyCreateInput[]) => void;
+  onChange: (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TechnologyCreateInput[] | Prisma.TagCreateInput[]) => void;
   onArrayInputChange: (field: 'challenges' | 'outcomes', value: string, section: 'solution') => void;
   onTitleChange: (title: string) => void;
   onTechnicalDetailChange: (index: number, field: 'title' | 'content', value: string) => void;
@@ -56,6 +57,10 @@ export function SolutionFormSection({
   
   const handleTechnologiesChange = (technologies: Prisma.TechnologyCreateInput[]) => {
     onChange('technologies', technologies);
+  };
+
+  const handleTagsChange = (tags: Prisma.TagCreateInput[]) => {
+    onChange('tags', tags);
   };
 
   return (
@@ -174,6 +179,21 @@ export function SolutionFormSection({
             limit={30}
             showIcons={true}
           />
+        </div>
+
+        {/* Tags Section */}
+        <div>
+          <label className="block text-sm font-bold text-gray-700 mb-2">
+            Tags
+          </label>
+          <TagSelector
+            selectedTags={formData.tags || []}
+            onTagsChange={handleTagsChange}
+            placeholder="Search and select tags..."
+            limit={30}
+            showIcons={true}
+          />
+          <p className="text-xs text-gray-500 mt-1">Select tags that categorize this solution</p>
         </div>
 
         {/* URLs */}

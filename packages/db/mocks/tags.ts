@@ -236,3 +236,16 @@ export const tagsMock: Prisma.TagCreateInput[] = [
         updatedAt: new Date('2024-01-01')
     }
 ];
+
+// Utility function to search tags
+export function searchTags(query: string): Prisma.TagCreateInput[] {
+    if (!query.trim()) {
+        return tagsMock;
+    }
+    
+    const searchTerm = query.toLowerCase();
+    return tagsMock.filter(tag => 
+        tag.name.toLowerCase().includes(searchTerm) ||
+        tag.description?.toLowerCase().includes(searchTerm)
+    );
+}
