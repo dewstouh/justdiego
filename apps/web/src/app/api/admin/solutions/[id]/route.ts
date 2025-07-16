@@ -37,6 +37,7 @@ interface UpdateSolutionRequest {
     completedAt?: string;
     isForSale: boolean;
     companyId?: string;
+    tags?: string[];
   };
   review: {
     rating: number;
@@ -112,6 +113,7 @@ export async function GET(
         completedAt: solution.completedAt ? solution.completedAt.toISOString().split('T')[0] : '',
         isForSale: solution.isForSale,
         companyId: solution.companyId,
+        tags: solution.tags || [],
       },
       review: {
         rating: solution.review?.rating || 5,
@@ -252,6 +254,11 @@ export async function PUT(
           completedAt: body.solution.completedAt ? new Date(body.solution.completedAt) : null,
           isForSale: body.solution.isForSale,
           companyId: company.id,
+          // Update tags - disconnect all and connect new ones
+          tags: {
+            set: [], // Clear existing connections
+            connect: (body.solution.tags || []).map(tagId => ({ id: tagId }))
+          }
         }
       });
 

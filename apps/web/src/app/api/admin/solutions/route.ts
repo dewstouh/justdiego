@@ -37,6 +37,7 @@ interface CreateSolutionRequest {
     completedAt?: string;
     isForSale: boolean;
     companyId?: string;
+    tags?: string[];
   };
   review: {
     rating: number;
@@ -132,6 +133,9 @@ export async function POST(request: NextRequest) {
           isForSale: body.solution.isForSale,
           customerId: user.id,
           companyId: company.id,
+          tags: {
+            connect: (body.solution.tags || []).map((tagId: string) => ({ id: tagId }))
+          }
         }
       });
 
