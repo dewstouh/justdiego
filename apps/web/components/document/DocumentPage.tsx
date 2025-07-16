@@ -3,13 +3,14 @@ import { formatDate } from '@justdiego/utils';
 import { MarkdownPage } from './MarkdownPage';
 import { getDocument } from '../../lib/data/document';
 import { SimplePage } from '../Page';
+import TagList from '../solution-card/TagList';
 
 interface DocumentPageProps {
     document: NonNullable<Awaited<ReturnType<typeof getDocument>>>
 }
 
 export default function DocumentPage({ document }: DocumentPageProps) {
-    const { title, description, content, thumbnailUrl, createdAt, updatedAt, author } = document;
+    const { title, description, content, thumbnailUrl, createdAt, updatedAt, author, tags } = document;
     return (
         <SimplePage config={{
             title,
@@ -51,6 +52,11 @@ export default function DocumentPage({ document }: DocumentPageProps) {
                             )}
                         </div>
                     </div>
+                </div>
+            )}
+            {tags && tags.length > 0 && (
+                <div className="mb-6">
+                    <TagList tags={tags} />
                 </div>
             )}
             <MarkdownPage content={content} />
