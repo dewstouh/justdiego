@@ -92,9 +92,9 @@ async function main() {
 
     // 11. Seed Reviews
     console.log('⭐ Seeding reviews...');
-    for (const review of reviewsMock) {
+    /*for (const review of reviewsMock) {
         await prisma.review.create({ data: review });
-    }
+    }*/
 
     // 12. Seed Navigation Items
     console.log('🧭 Seeding navigation items...');

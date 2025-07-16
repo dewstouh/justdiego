@@ -6,29 +6,243 @@ export const legalDocumentsMock: Prisma.DocumentCreateInput[] = [
     slug: "privacy-policy",
     title: "Privacy Policy",
     type: "LEGAL",
-    description: "This Privacy Policy describes how JustDiego collects, uses, and protects your personal information when you use our technology solutions services.",
+    description: "This Privacy Policy explains in detail how JustDiego.com collects, uses, stores, and protects your data, and your rights as a user.",
     author: { connect: { id: 'user-diego' } },
-    content: "# Privacy Policy\n\n**Effective Date: January 1, 2025**\n\n## 1. Introduction\n\nJustDiego Sp. z o.o. (\"we,\" \"us,\" or \"our\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website justdiego.com or use our technology solutions services.\n\n## 2. Information We Collect\n\n### 2.1 Personal Information\nWe may collect personal information that you voluntarily provide to us when you:\n- Request information about our services\n- Contact us for support or inquiries\n- Subscribe to our newsletter\n- Engage our services\n\nThis information may include:\n- Name and contact information (email, phone number)\n- Company name and business information\n- Technical requirements and project specifications\n- Communication preferences\n\n### 2.2 Automatically Collected Information\nWe automatically collect certain information when you visit our website:\n- IP address and location data\n- Browser type and version\n- Device information\n- Website usage statistics\n- Cookies and similar tracking technologies\n\n## 3. How We Use Your Information\n\nWe use the collected information for:\n- Providing and improving our technology solutions services\n- Communicating with you about projects and services\n- Responding to your inquiries and support requests\n- Sending marketing communications (with your consent)\n- Analyzing website usage and improving user experience\n- Complying with legal obligations\n\n## 4. Information Sharing and Disclosure\n\nWe do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:\n- With your explicit consent\n- To comply with legal obligations\n- To protect our rights and interests\n- With trusted service providers who assist in our operations (under strict confidentiality agreements)\n\n## 5. Data Security\n\nWe implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.\n\n## 6. Data Retention\n\nWe retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required by law.\n\n## 7. Your Rights (GDPR)\n\nUnder the General Data Protection Regulation (GDPR), you have the right to:\n- Access your personal data\n- Rectify inaccurate personal data\n- Erase your personal data\n- Restrict processing of your personal data\n- Data portability\n- Object to processing\n- Withdraw consent\n\n## 8. Cookies\n\nOur website uses cookies to enhance your browsing experience. You can control cookie preferences through your browser settings.\n\n## 9. Contact Information\n\nFor any privacy-related questions or to exercise your rights, please contact us:\n\n**JustDiego Sp. z o.o.**\nul. Marszałkowska 84/92, 00-514 Warsaw, Poland\nEmail: contact@justdiego.com\nPhone: +48 22 123 4567\n\n## 10. Changes to This Privacy Policy\n\nWe may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the \"Last Updated\" date.",
+    content: `
+# Privacy Policy
+
+**Last updated: July 16, 2025**
+
+This Privacy Policy describes how justdiego.com (“we”, “us”, “our”, or “the website”) collects, uses, stores, and protects your personal information when you access or use our website, products, and services.
+
+## 1. Introduction
+
+We are committed to protecting your privacy and handling your information transparently and securely.  
+By accessing justdiego.com, you agree to this Privacy Policy.
+
+## 2. What Information We Collect
+
+### 2.1 Information You Provide Directly
+- When you contact us via forms, email, or any feedback method, we collect the information you submit. This may include:
+  - Name
+  - Email address
+  - Company (if provided)
+  - Message content, feedback, or requests
+
+### 2.2 Information Collected Automatically
+- When you visit justdiego.com, we may automatically collect basic technical information, including:
+  - IP address and approximate geolocation
+  - Device type, browser, and operating system
+  - Pages viewed and access times
+  - Referrer URLs
+
+**We do not use marketing cookies, tracking pixels, or any third-party analytics tools that profile users for advertising.**
+
+### 2.3 Cookies and Local Storage
+- By default, we use only essential cookies for site functionality and security (e.g., session management, rate limiting).
+- You will not be tracked for advertising or cross-site profiling.
+
+## 3. How We Use Your Information
+
+We process your information only for these purposes:
+- Responding to your inquiries, requests, or feedback
+- Providing and maintaining website functionality
+- Improving site performance, reliability, and security
+- Fulfilling any contractual obligations if you order a service
+- Meeting legal and regulatory requirements
+
+## 4. How We Share Your Data
+
+- We do **not** sell, rent, or trade your data to third parties.
+- Your data may be shared with trusted service providers (such as hosting, security, or legal advisors) only when strictly necessary and always under confidentiality.
+- We may disclose information if required by law, court order, or government regulation.
+
+## 5. Data Security
+
+We implement appropriate technical and organizational measures to protect your information against loss, theft, unauthorized access, or misuse, including:
+- Secure encrypted data storage
+- Access controls (only the site owner can access raw data)
+- Regular security monitoring and software updates
+
+No system is 100% secure. If there is ever a breach, we will notify affected users as required by law.
+
+## 6. Data Retention
+
+- We only retain your data as long as necessary for the purpose it was collected or as required by law.
+- You can request deletion of your data at any time by emailing contact@justdiego.com.  
+- Backups may persist briefly before being purged.
+
+## 7. Your Rights
+
+Depending on your location, you have the right to:
+- Access your personal data
+- Correct inaccurate or outdated information
+- Request deletion (“right to be forgotten”)
+- Restrict or object to processing
+- Withdraw consent where applicable
+
+To exercise any of these rights, contact: **contact@justdiego.com**  
+We will process requests as fast as possible, typically within 30 days.
+
+## 8. International Data Transfers
+
+If you are located outside of the country where our servers are based, your data may be transferred internationally. We take steps to ensure your information receives adequate protection as required by applicable law.
+
+## 9. Third-Party Links
+
+Our website may link to third-party sites. We are not responsible for the privacy or security practices of these sites. Please review their privacy policies separately.
+
+## 10. Children’s Privacy
+
+justdiego.com is not intended for use by children under 16. We do not knowingly collect data from minors. If you believe we have inadvertently received such information, please contact us for prompt removal.
+
+## 11. Changes to this Privacy Policy
+
+We may update this policy to reflect changes in our practices or the law. Updates will be posted here with a new “Last updated” date.  
+Continued use of the site after changes means you accept the revised policy.
+
+## 12. Contact
+
+For privacy-related questions, concerns, or requests, contact:  
+**contact@justdiego.com**
+    `.trim(),
   },
+
   {
     id: "terms-of-service-2025",
     title: "Terms of Service",
     slug: "terms-of-service",
-    description: "These Terms of Service govern the use of JustDiego's technology solutions services and website.",
+    description: "These Terms of Service govern your use of justdiego.com, its services, and your responsibilities as a user.",
     type: "LEGAL",
     author: { connect: { id: 'user-diego' } },
-    content: "# Terms of Service\n\n**Effective Date: January 1, 2025**\n\n## 1. Acceptance of Terms\n\nBy accessing and using the services provided by JustDiego Sp. z o.o. (\"Company,\" \"we,\" \"us,\" or \"our\"), you (\"Client,\" \"you,\" or \"your\") agree to be bound by these Terms of Service (\"Terms\").\n\n## 2. Description of Services\n\nJustDiego provides technology solutions including but not limited to:\n- Business process automation\n- Server setup and configuration\n- Cloud infrastructure management\n- Custom software development\n- IT consulting and support\n- System integration services\n\n## 3. Service Agreement\n\n### 3.1 Project Scope\nEach project will be governed by a separate Statement of Work (SOW) that outlines:\n- Project deliverables and timeline\n- Payment terms and schedule\n- Specific terms and conditions\n- Technical specifications\n\n### 3.2 Client Responsibilities\nYou agree to:\n- Provide accurate and complete information\n- Cooperate in good faith during project execution\n- Provide timely feedback and approvals\n- Ensure access to necessary systems and resources\n- Maintain confidentiality of proprietary information\n\n## 4. Payment Terms\n\n### 4.1 Fees\n- All fees are as specified in the applicable SOW\n- Prices are in PLN unless otherwise specified\n- Additional work outside the original scope may incur extra charges\n\n### 4.2 Payment Schedule\n- Payment terms are net 30 days unless otherwise agreed\n- Late payments may incur interest charges of 1.5% per month\n- We reserve the right to suspend services for overdue accounts\n\n## 5. Intellectual Property\n\n### 5.1 Ownership\n- We retain ownership of our proprietary methodologies, tools, and pre-existing intellectual property\n- You retain ownership of your data and business-specific content\n- Custom developments will be owned by you upon full payment, unless otherwise agreed\n\n### 5.2 License\nWe grant you a non-exclusive, non-transferable license to use delivered solutions for your business operations.\n\n## 6. Confidentiality\n\nBoth parties agree to maintain confidentiality of proprietary information shared during the course of our business relationship.\n\n## 7. Warranties and Disclaimers\n\n### 7.1 Service Warranty\nWe warrant that our services will be performed with professional skill and care consistent with industry standards.\n\n### 7.2 Disclaimer\nEXCEPT AS EXPRESSLY SET FORTH HEREIN, WE MAKE NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.\n\n## 8. Limitation of Liability\n\nOur total liability for any claim shall not exceed the amount paid by you for the specific services giving rise to the claim.\n\n## 9. Indemnification\n\nYou agree to indemnify and hold us harmless from any claims arising from your use of our services or breach of these Terms.\n\n## 10. Term and Termination\n\n### 10.1 Term\nThese Terms remain in effect until terminated by either party.\n\n### 10.2 Termination\nEither party may terminate with 30 days written notice. We may terminate immediately for breach of Terms.\n\n## 11. Governing Law\n\nThese Terms are governed by the laws of Poland. Any disputes will be resolved in the courts of Warsaw, Poland.\n\n## 12. Contact Information\n\n**JustDiego Sp. z o.o.**\nul. Marszałkowska 84/92, 00-514 Warsaw, Poland\nEmail: contact@justdiego.com\nPhone: +48 22 123 4567\n\n## 13. Changes to Terms\n\nWe reserve the right to modify these Terms at any time. Continued use of our services constitutes acceptance of modified Terms.",
+    content: `
+# Terms of Service
+
+**Last updated: July 16, 2025**
+
+These Terms of Service ("Terms") govern your access to and use of justdiego.com ("the website", "we", "us").  
+By using this website, you accept these Terms.
+
+## 1. Website Usage
+
+- The website and all content are provided for informational purposes and business support only.
+- You agree not to misuse, attack, or interfere with the operation of justdiego.com.
+- Automated scraping, mass requests, or unauthorized access to restricted areas is strictly forbidden.
+- You may use available tools and services only as intended and within the limits described on the site.
+
+## 2. User Content
+
+- If you submit content (messages, reviews, feedback, code), you grant us a non-exclusive license to use, display, and store it to provide and improve services.
+- You must not submit unlawful, harmful, or offensive content.
+
+## 3. Service Availability and Changes
+
+- We strive to keep the site available and functional, but make no guarantees regarding uptime, accuracy, or completeness.
+- We reserve the right to modify, suspend, or discontinue any part of the website or services at any time, without prior notice.
+
+## 4. Intellectual Property
+
+- All content, code, and materials on justdiego.com are owned by Diego Rodriguez unless otherwise specified.
+- You may not copy, reproduce, distribute, or use content without explicit written permission.
+
+## 5. Payments & Services
+
+- Paid services, if offered, are subject to specific terms presented at the time of purchase.
+- All sales are final unless otherwise stated.  
+- Chargebacks or fraudulent claims will result in account termination and possible legal action.
+
+## 6. Limitation of Liability
+
+- We are not liable for any direct, indirect, incidental, or consequential damages resulting from your use of the site or services.
+- All use is at your own risk.  
+- No advice or information obtained from justdiego.com creates any warranty not expressly stated.
+
+## 7. Indemnification
+
+You agree to indemnify and hold harmless Diego Rodriguez and justdiego.com from any claims, damages, or losses arising from your use of the website or violation of these Terms.
+
+## 8. Third-Party Links
+
+Links to external sites are provided for convenience only. We do not endorse or control third-party content and are not responsible for it.
+
+## 9. Changes to Terms
+
+We may revise these Terms at any time. The latest version will always be posted on this page. Continued use of the website after changes means acceptance of the new Terms.
+
+## 10. Governing Law
+
+These Terms are governed by the laws of Spain (or Poland, if/when registered as such), and any disputes will be resolved in the courts of Madrid or Warsaw as applicable.
+
+## 11. Contact
+
+For questions about these Terms, email: **contact@justdiego.com**
+    `.trim(),
   },
+
   {
     id: "legal-notice-2025",
     title: "Legal Notice",
     slug: "legal-notice",
     type: "LEGAL",
-    description: "Legal notice and imprint information for JustDiego Sp. z o.o., including company registration details and regulatory information.",
+    description: "Legal notice, company and regulatory information for JustDiego.com and its owner.",
     author: { connect: { id: 'user-diego' } },
-    content: "# Legal Notice\n\n\n## Company Information\n\n**Company Name:** JustDiego Sp. z o.o.\n**Legal Form:** Limited Liability Company (Spółka z ograniczoną odpowiedzialnością)\n**Registration Number:** KRS 0000123456\n**Tax ID (NIP):** PL1234567890\n**REGON:** 123456789\n\n## Registered Address\n\nul. Marszałkowska 84/92\n00-514 Warsaw, Poland\n\n## Contact Information\n\n**Website:** https://justdiego.com\n**Email:** contact@justdiego.com\n**Phone:** +48 22 123 4567\n**Business Hours:** Monday - Friday, 9:00 AM - 6:00 PM CET\n\n## Business Activity\n\nPrimary business activities include:\n- Information technology consulting (PKD 62.02.Z)\n- Computer programming activities (PKD 62.01.Z)\n- Computer facilities management activities (PKD 62.03.Z)\n- Other information technology and computer service activities (PKD 62.09.Z)\n\n## Management\n\n**Managing Director:** Diego Rodriguez\n**Authorized Representative:** Diego Rodriguez\n\n## Share Capital\n\nInitial share capital: 5,000 PLN (fully paid)\n\n## Professional Liability Insurance\n\nProfessional liability insurance coverage maintained with:\n**Insurer:** PZU S.A.\n**Policy Number:** [Policy details available upon request]\n**Coverage:** Professional indemnity up to 1,000,000 PLN\n\n## Regulatory Information\n\nJustDiego Sp. z o.o. is registered with:\n- **Registry Court:** District Court for the Capital City of Warsaw in Warsaw, 12th Commercial Division of the National Court Register\n- **VAT Registration:** Active VAT taxpayer\n- **GDPR Compliance:** Data controller registration with Polish Data Protection Authority (UODO)\n\n## Intellectual Property\n\nAll content on this website, including text, graphics, logos, and software, is the property of JustDiego Sp. z o.o. or its licensors and is protected by Polish and international copyright laws.\n\n## Disclaimer\n\nThe information provided on this website is for general informational purposes only. While we strive to keep the information accurate and up-to-date, we make no representations or warranties about the completeness, accuracy, reliability, or availability of the information.\n\n## External Links\n\nOur website may contain links to external websites. We are not responsible for the content or privacy practices of these external sites.\n\n## Dispute Resolution\n\n### Alternative Dispute Resolution\nWe are committed to resolving disputes amicably. For consumer disputes, you may contact:\n- **Consumer Rights Ombudsman:** https://www.uokik.gov.pl\n- **European Online Dispute Resolution Platform:** https://ec.europa.eu/consumers/odr\n\n### Jurisdiction\nAny legal disputes will be subject to the exclusive jurisdiction of the courts in Warsaw, Poland.\n\n## Professional Standards\n\nJustDiego Sp. z o.o. adheres to:\n- Polish Chamber of Information Technology and Telecommunications standards\n- ISO 27001 information security management principles\n- GDPR data protection requirements\n- Industry best practices for technology service providers\n\n## Website Technical Information\n\n**Domain Registration:** justdiego.com\n**Hosting Provider:** [Hosting details maintained separately]\n**SSL Certificate:** Extended Validation SSL Certificate\n**Content Management:** Proprietary system\n\n## Accessibility\n\nWe are committed to making our website accessible to all users. If you experience any accessibility issues, please contact us at contact@justdiego.com.\n\n## Environmental Responsibility\n\nJustDiego is committed to sustainable business practices and reducing our environmental impact through digital-first operations and green technology solutions.\n\n---\n\nFor any questions regarding this legal notice or our company information, please contact us using the details provided above.",
+    content: `
+# Legal Notice
+
+**Website:** https://justdiego.com  
+**Email:** contact@justdiego.com
+
+---
+
+## Site Operator
+
+This website is operated and maintained by Diego Rodriguez (“the owner”).
+
+**Business Address:**  
+[Your real address or registered office, if applicable]
+
+**Contact Email:** contact@justdiego.com  
+**Contact Phone:** [Your business phone, if applicable]
+
+## Intellectual Property
+
+All content, including text, code, graphics, and media, is the exclusive property of Diego Rodriguez unless otherwise noted. Unauthorized use or reproduction is prohibited.
+
+## Disclaimer
+
+- All information on this site is provided for general informational and business solution purposes only.
+- No liability is assumed for the accuracy, completeness, or currency of content.  
+- Use of the site is at your own risk.
+
+## External Links
+
+justdiego.com may contain links to external sites. We are not responsible for the content or practices of these sites.
+
+## Professional Standards
+
+justdiego.com operates in accordance with best practices for IT services, security, and data protection.
+
+## Regulatory Information
+
+If required by local law, company registration, tax ID, or regulatory information will be displayed here.  
+For now, the site is operated as an individual business entity.
+
+## GDPR and Data Protection
+
+The owner is committed to GDPR compliance and user data protection.  
+See the [Privacy Policy](/privacy-policy) for details.
+
+## Dispute Resolution
+
+For legal matters, disputes will be resolved in the courts of Madrid, Spain, or Warsaw, Poland, depending on official company registration.
+
+---
+
+For any legal or regulatory questions, contact: contact@justdiego.com
+    `.trim(),
   }
 ];
+
 
 export const guideDocumentsMock: Prisma.DocumentCreateInput[] = [
   {
@@ -108,7 +322,6 @@ export const aboutDocument: Prisma.DocumentCreateInput = {
   title: "About",
   type: "OTHER",
   description: "justdiego.com exists to expose, fix, and automate what’s holding your business back. Born from actual pain, built for survival, focused on results.",
-  thumbnailUrl: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&h=600&fit=crop&crop=entropy&auto=format&q=80",
   content: `# About
 
 ## What is justdiego.com?
