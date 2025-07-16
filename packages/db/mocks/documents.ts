@@ -689,13 +689,6 @@ But speed means nothing without real knowledge behind it.
 ![](https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:33xetlzqkgajy63l7xz4zscx/bafkreiczw2ll7w2npqufxh7uhdacyztuqer6i67s335vrdj5wm5j4oyd2i@jpeg)
 
 ---
-
-## Want to See More?
-
-If you’re a business or an individual who’s having the same problems,  
-check out [these tools](https://justdiego.com/tools) that will **expose** your performance issues, uncover vulnerabilities, and automate what’s wasting your time and money.
-
-In case you need a specific solution, reach out [here](ttps://justdiego.com/contact) or send an email to contact@justdiego.com
 `,
   author: { connect: { id: 'user-diego' } },
 }
