@@ -32,7 +32,7 @@ export default function Hero() {
               <rect x="13" y="13" width="6" height="6" rx="1" fill="white" />
               <rect x="8" y="8" width="6" height="6" rx="1" fill="white" />
             </svg>
-            SOLUTIONS
+            TRACK YOUR BUSINESS
           </CTAButton>
           <CTAButton
           href="/contact" 
