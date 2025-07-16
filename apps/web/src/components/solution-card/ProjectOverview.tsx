@@ -28,20 +28,10 @@ export default function ProjectOverview({ attachmentCount, technologies, hasDemo
             <span className="text-gray-600">Technologies:</span>
             <span className="font-mono text-gray-900">{technologies.length} tools</span>
           </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Demo Available:</span>
-            <span className="font-mono text-gray-900">{hasDemoUrl ? 'Yes' : 'No'}</span>
-          </div>
         </div>
       </div>
 
       <div className="text-center space-y-3">
-        <Link
-          href={`/solutions/${slug}`}
-          className="inline-block bg-gray-900 text-white px-8 py-3 border-2 border-gray-900 font-bold hover:bg-primary transition-all duration-200"
-        >
-          VIEW STUDY CASE →
-        </Link>
         
         {isAdmin && solutionId && (
           <div className="flex gap-3 justify-center">
