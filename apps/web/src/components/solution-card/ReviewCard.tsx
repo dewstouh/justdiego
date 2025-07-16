@@ -28,7 +28,7 @@ export default function ReviewCard({ rating, comment, author, country }: ReviewC
           <Avatar 
             src={author.avatarUrl} 
             alt={author.name} 
-            size="md" 
+            size="lg" 
           />
           <div className="flex flex-col">
             <cite className="text-sm text-gray-600 font-mono">
