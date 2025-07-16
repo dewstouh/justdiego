@@ -15,7 +15,9 @@ export default function Navbar() {
       </div>
 
       <MobileNavToggle>
-        <NavList />
+        <Suspense fallback={<NavSkeleton />}>
+          <NavList />
+        </Suspense>
       </MobileNavToggle>
     </ScrollNavbar>
   );
