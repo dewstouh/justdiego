@@ -23,7 +23,7 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <CTAButton 
-          href="/solutions"
+          href="/tools"
           >
             <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
               <rect x="3" y="3" width="6" height="6" rx="1" fill="white" />
