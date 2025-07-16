@@ -13,6 +13,11 @@
         "dist/**",
         ".next/**",
         "!.next/cache/**"
+      ],
+      "env": [
+        "ADMIN_EMAIL",
+        "ADMIN_PASSWORD",
+        "RESEND_API_KEY"
       ]
     },
     "db:migrate:dev": {
