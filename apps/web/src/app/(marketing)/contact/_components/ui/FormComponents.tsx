@@ -54,10 +54,10 @@ export function FormTextarea({ label, error, className = "", ...props }: Textare
 }
 
 export function StatusMessage({ type, children }: StatusMessageProps) {
-  const baseClasses = "px-4 py-3 border-2";
+  const baseClasses = "px-6 py-4 border-2 rounded-lg font-medium text-center";
   const typeClasses = {
-    success: "bg-green-50 border-green-200 text-green-800",
-    error: "bg-red-50 border-red-200 text-red-800"
+    success: "bg-green-50 border-green-300 text-green-800 shadow-md",
+    error: "bg-red-50 border-red-300 text-red-800 shadow-md"
   };
 
   return (

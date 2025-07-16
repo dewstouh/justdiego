@@ -78,7 +78,7 @@ export default function ContactForm() {
           <div className="mt-6 space-y-4 flex-shrink-0">
             {submitStatus === 'success' && (
               <StatusMessage type="success">
-                Thank you! Your message has been sent successfully. I&apos;ll get back to you soon.
+                🎉 Email successfully sent! You will get a reply in less than 24h.
               </StatusMessage>
             )}
 
