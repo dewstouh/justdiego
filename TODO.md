@@ -1,22 +1,4 @@
 
-# TODO List
-## Features
-- [ ] Implement contact form with email sending
-- [ ] Add auto translation based on user browser language
-- [ ] Add husky and lint-staged for pre-commit hooks
-- [ ] Add Google Analytics
-- [ ] Create a dashboard to configure the website (nav links, metadata, socials, etc.)
-- [ ] Link projects to solutions (a project or projects can be used on a solution)
-- [ ] Add cookie notice
-- [ ] Add faq in marketing and projects / shop
-
-## Improvements
-
-## Bug Fixes
-- [ ] Add "View Demo" button to solutions
-- [ ] Fix PDF generators
-
-
 ## DONE
 - [x] ~~Add category guides~~
 - [x] ~~Add about page with Diego's story and information~~
