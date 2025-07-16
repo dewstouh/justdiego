@@ -2,7 +2,7 @@ import { CTAButton } from "@justdiego/ui/button";
 
 export default function Hero() {
   return (
-    <main className="flex-1 flex items-center justify-center w-full relative">
+    <main className="min-h-screen w-full flex-1 flex flex-col items-center justify-center px-8 lg:px-24 pixel-gradient">
       <div className="text-center max-w-4xl mx-auto">
         {/* Main Headline */}
         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-1 leading-tight">
