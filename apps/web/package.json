@@ -12,8 +12,8 @@
     "page:create": "tsx scripts/generate-page.ts"
   },
   "dependencies": {
-    "@justdiego/db": "workspace:*",
     "@justdiego/constants": "workspace:*",
+    "@justdiego/db": "workspace:*",
     "@justdiego/react-utils": "workspace:*",
     "@justdiego/ui": "workspace:*",
     "@justdiego/utils": "workspace:*",
@@ -23,6 +23,7 @@
     "postcss": "^8.5.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "resend": "^4.6.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
