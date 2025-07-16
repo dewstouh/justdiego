@@ -6,6 +6,7 @@ export default function Page() {
             title: "Tools to Level Up Your Business",
             description: "Find every leak, automate the inefficiency, and fix what’s losing you money.",
         }}>
+            s
         </SimplePage>
     )
 }

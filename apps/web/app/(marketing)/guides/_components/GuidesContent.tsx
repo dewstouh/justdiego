@@ -1,9 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
-import { GuideCard } from './GuideCard';
+import React, { useState, useMemo } from 'react';
+import { Tag } from '@justdiego/types';
+import Categories from './Categories';
+import LatestGuides from './LatestGuides';
+import AllGuides from './AllGuides';
+import EmptyState from './EmptyState';
 
-interface Guide {
+export interface Guide {
   id: string;
   slug: string;
   title: string;
@@ -12,101 +16,83 @@ interface Guide {
   type: string;
   createdAt: Date;
   updatedAt: Date;
+  tags?: Tag[];
 }
 
 interface GuidesContentProps {
   guides: Guide[];
 }
 
-// Define guide categories
-const categories = [
-  { id: 'all', name: 'All Guides', icon: '📚' },
-  { id: 'business', name: 'Business', icon: '💼' },
-  { id: 'automation', name: 'Automation', icon: '🤖' },
-  { id: 'productivity', name: 'Productivity', icon: '⚡' },
-  { id: 'marketing', name: 'Marketing', icon: '📢' },
-  { id: 'transformation', name: 'Digital', icon: '🔄' },
-];
-
+export interface Category {
+  id: string;
+  name: string;
+  icon: string;
+}
 
 export default function GuidesContent({ guides }: GuidesContentProps) {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const latestGuides = guides.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+  // Generate categories dynamically based on available guide tags
+  const categories = useMemo(() => {
+    const allCategory: Category = { id: 'all', name: 'All Guides', icon: '📚' };
+    
+    // Get all unique tags from guides that have tags
+    const tagMap = new Map<string, Tag>();
+    guides.forEach(guide => {
+      guide.tags?.forEach(tag => {
+        tagMap.set(tag.id, tag);
+      });
+    });
+
+    // Convert tags to categories format, only including tags that are used in guides
+    const tagCategories: Category[] = Array.from(tagMap.values()).map(tag => ({
+      id: tag.id,
+      name: tag.name,
+      icon: tag.iconUrl || '🏷️' // fallback icon if no iconUrl is provided
+    }));
+
+    // Sort categories alphabetically by name
+    tagCategories.sort((a, b) => a.name.localeCompare(b.name));
+
+    return [allCategory, ...tagCategories];
+  }, [guides]);
+
+  // Filter guides based on selected category
+  const filteredGuides = useMemo(() => {
+    if (selectedCategory === 'all') {
+      return guides;
+    }
+    
+    return guides.filter(guide => 
+      guide.tags?.some(tag => tag.id === selectedCategory)
+    );
+  }, [guides, selectedCategory]);
 
   return (
     <>
-      {/* Categories Section */}
-      <div className="border-b border-gray-300 pb-8 mb-12">
-        <h2 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
-          CATEGORIES
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`p-4 border border-gray-300 bg-white hover:border-gray-900 hover:bg-gray-50 transition-colors duration-200 text-center ${
-                selectedCategory === category.id 
-                  ? 'border-gray-900 bg-gray-50' 
-                  : ''
-              }`}
-            >
-              <div className="text-2xl mb-2">{category.icon}</div>
-              <div className="text-xs font-bold uppercase tracking-wide text-gray-900">
-                {category.name}
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
+      <Categories 
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategorySelect={setSelectedCategory}
+      />
 
-      {/* Guides Section */}
       <div>
-        {/* Latest Guides Row - only show when "all" is selected */}
         {selectedCategory === 'all' && (
-          <div className="mb-12">
-            <h2 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
-              LATEST GUIDES
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {latestGuides.slice(0, 4).map((guide) => (
-                <GuideCard key={guide.id} thumbnailUrl={guide.thumbnailUrl} slug={guide.slug} title={guide.title} description={guide.description} />
-              ))}
-            </div>
-          </div>
+          <LatestGuides guides={guides} />
         )}
 
-        {/* All Guides Row */}
-        <div>
-          <h2 className="text-sm font-bold text-gray-900 mb-6 uppercase tracking-wide">
-            {selectedCategory === 'all' 
-              ? 'ALL GUIDES' 
-              : `${categories.find(c => c.id === selectedCategory)?.name.toUpperCase()} GUIDES`
-            }
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {guides.map((guide) => (
-              <GuideCard key={guide.id} thumbnailUrl={guide.thumbnailUrl} slug={guide.slug} title={guide.title} description={guide.description} />
-            ))}
-          </div>
-        </div>
+        <AllGuides 
+          guides={filteredGuides}
+          selectedCategory={selectedCategory}
+          categories={categories}
+        />
       </div>
 
-      {/* Empty State */}
-      {guides.length === 0 && (
-        <div className="text-center py-24 border border-gray-300 bg-white">
-          <div className="text-4xl mb-4 text-gray-400">📄</div>
-          <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
-            NO GUIDES AVAILABLE
-          </h3>
-          <p className="text-gray-600 text-xs">
-            {selectedCategory === 'all' 
-              ? 'Check back soon for business optimization resources.'
-              : `No guides found in the ${categories.find(c => c.id === selectedCategory)?.name} category.`
-            }
-          </p>
-        </div>
+      {filteredGuides.length === 0 && (
+        <EmptyState 
+          selectedCategory={selectedCategory}
+          categories={categories}
+        />
       )}
     </>
   );
