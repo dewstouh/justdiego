@@ -98,7 +98,7 @@ export async function GET(
         problemDescription: solution.problemDescription,
         solutionDescription: solution.solutionDescription,
         technicalDetails: Array.isArray(solution.technicalDetails) 
-        // @ts-ignore
+        // @ts-expect-error - Type assertion needed for dynamic data
           ? solution.technicalDetails as TechnicalDetail[]
           : [],
         attachments: Array.isArray(solution.attachments) 
