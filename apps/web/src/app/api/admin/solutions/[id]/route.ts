@@ -26,16 +26,13 @@ interface UpdateSolutionRequest {
     shortDescription: string;
     longDescription: string;
     description?: string;
-    thumbnailUrl?: string;
-    demoUrl?: string;
     problemDescription: string;
     solutionDescription: string;
     technicalDetails?: TechnicalDetail[];
     attachments?: string[];
     challenges?: string[];
     outcomes?: string[];
-    completedAt?: string;
-    isForSale: boolean;
+    completedAt: string;
     companyId?: string;
     tags?: string[];
   };
@@ -243,16 +240,13 @@ export async function PUT(
           shortDescription: body.solution.shortDescription,
           longDescription: body.solution.longDescription,
           description: body.solution.description,
-          thumbnailUrl: body.solution.thumbnailUrl,
-          demoUrl: body.solution.demoUrl,
           problemDescription: body.solution.problemDescription,
           solutionDescription: body.solution.solutionDescription,
           technicalDetails: JSON.parse(JSON.stringify(body.solution.technicalDetails || [])),
           attachments: body.solution.attachments || [],
           challenges: body.solution.challenges || [],
           outcomes: body.solution.outcomes || [],
-          completedAt: body.solution.completedAt ? new Date(body.solution.completedAt) : null,
-          isForSale: body.solution.isForSale,
+          completedAt: new Date(body.solution.completedAt),
           companyId: company.id,
           // Update tags - disconnect all and connect new ones
           tags: {

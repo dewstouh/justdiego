@@ -44,16 +44,13 @@ interface SolutionData {
   shortDescription: string;
   longDescription: string;
   description?: string;
-  thumbnailUrl?: string;
-  demoUrl?: string;
   problemDescription: string;
   solutionDescription: string;
   technicalDetails?: TechnicalDetail[];
   attachments?: string[];
   challenges?: string[];
   outcomes?: string[];
-  completedAt?: string;
-  isForSale: boolean;
+  completedAt: string;
   companyId?: string;
   tags?: Prisma.TagCreateInput[];
 }
@@ -92,15 +89,13 @@ export default function EditSolution() {
       shortDescription: '',
       longDescription: '',
       description: '',
-      thumbnailUrl: '',
-      demoUrl: '',
       problemDescription: '',
       solutionDescription: '',
       technicalDetails: [],
       attachments: [],
       challenges: [],
       outcomes: [],
-      isForSale: false,
+      completedAt: new Date().toISOString().split('T')[0]!,
       tags: [],
     },
     review: {
@@ -580,31 +575,17 @@ export default function EditSolution() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
-                  Thumbnail URL
-                </label>
-                <input
-                  type="url"
-                  value={formData.solution.thumbnailUrl}
-                  onChange={(e) => handleSolutionChange('thumbnailUrl', e.target.value)}
-                  className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
-                  placeholder="https://example.com/thumbnail.jpg"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
-                  Demo URL
-                </label>
-                <input
-                  type="url"
-                  value={formData.solution.demoUrl}
-                  onChange={(e) => handleSolutionChange('demoUrl', e.target.value)}
-                  className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
-                  placeholder="https://demo.example.com"
-                />
-              </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">
+                Completed Date *
+              </label>
+              <input
+                type="date"
+                required
+                value={formData.solution.completedAt}
+                onChange={(e) => handleSolutionChange('completedAt', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -629,31 +610,6 @@ export default function EditSolution() {
                   className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900 h-24"
                   placeholder="Outcome 1&#10;Outcome 2&#10;Outcome 3"
                 />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
-                  Completed Date
-                </label>
-                <input
-                  type="date"
-                  value={formData.solution.completedAt}
-                  onChange={(e) => handleSolutionChange('completedAt', e.target.value)}
-                  className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
-                />
-              </div>
-              <div className="flex items-center">
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={formData.solution.isForSale}
-                    onChange={(e) => handleSolutionChange('isForSale', e.target.checked)}
-                    className="w-4 h-4 border-2 border-gray-300"
-                  />
-                  <span className="text-sm font-bold text-gray-700">For Sale</span>
-                </label>
               </div>
             </div>
 

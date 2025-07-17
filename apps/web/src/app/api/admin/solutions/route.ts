@@ -13,16 +13,13 @@ interface CreateSolutionRequest {
     shortDescription: string;
     longDescription: string;
     description?: string;
-    thumbnailUrl?: string;
-    demoUrl?: string;
     problemDescription: string;
     solutionDescription: string;
     technicalDetails?: TechnicalDetail[];
     attachments?: string[];
     challenges?: string[];
     outcomes?: string[];
-    completedAt?: string;
-    isForSale: boolean;
+    completedAt: string;
     customerId: string;
     companyId?: string;
     technologies?: string[];
@@ -108,16 +105,13 @@ export async function POST(request: NextRequest) {
           shortDescription: body.solution.shortDescription,
           longDescription: body.solution.longDescription,
           description: body.solution.description,
-          thumbnailUrl: body.solution.thumbnailUrl,
-          demoUrl: body.solution.demoUrl,
           problemDescription: body.solution.problemDescription,
           solutionDescription: body.solution.solutionDescription,
           technicalDetails: JSON.parse(JSON.stringify(body.solution.technicalDetails || [])),
           attachments: body.solution.attachments || [],
           challenges: body.solution.challenges || [],
           outcomes: body.solution.outcomes || [],
-          completedAt: body.solution.completedAt ? new Date(body.solution.completedAt) : null,
-          isForSale: body.solution.isForSale,
+          completedAt: new Date(body.solution.completedAt),
           customerId: body.solution.customerId,
           companyId: body.solution.companyId || null,
           tags: {
