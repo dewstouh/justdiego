@@ -60,13 +60,20 @@ async function SolutionContent({ slug }: { slug: string }) {
         companyName={company?.name || "Unknown Company"}
         companyUrl={company?.website || ""}
         companyImage={company?.logoUrl || ''}
-        countryFlag={customer?.country?.flag}
+        countryFlag={(company || customer)?.country?.flag}
         tags={solution.tags}
         description={solution.shortDescription}
         completedAt={solution.completedAt}
       />
 
       <ProblemResult problem={problemDescription} result={solutionDescription} />
+
+      {attachments && attachments.length > 0 && (
+        <div className="mb-6">
+          {/* Make the gallery bigger */}
+          <AttachmentGallery attachments={attachments} />
+        </div>
+      )}
 
       <TechnicalDetails technicalDetails={technicalDetails as TechnicalDetail[]} />
 
@@ -75,12 +82,6 @@ async function SolutionContent({ slug }: { slug: string }) {
       {technologies && technologies.length > 0 && (
         <div className="mb-6">
           <Technologies technologies={technologies} />
-        </div>
-      )}
-
-      {attachments && attachments.length > 0 && (
-        <div className="mb-6">
-          <AttachmentGallery attachments={attachments} />
         </div>
       )}
 
