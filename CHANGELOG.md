@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.0](https://github.com/dewstouh/justdiego/compare/v1.2.0...v1.3.0) (2025-07-17)
+
+
+### Features
+
+* **web:** add api endpoint to get and update documents ([52acca8](https://github.com/dewstouh/justdiego/commit/52acca8e62a7cf2fcec8445a2e904c35b074f4d9))
+* **web:** add api endpoint to get, update and delete document ([629233b](https://github.com/dewstouh/justdiego/commit/629233b90b51ad4d5a1dad5039c6bf8990b96c5f))
+* **web:** add docuent dashboard to manage the documents ([bad0cfc](https://github.com/dewstouh/justdiego/commit/bad0cfc585c102f075ddacbeb364428f54dfd494))
+* **web:** add documents link to admin nav ([c345687](https://github.com/dewstouh/justdiego/commit/c345687758b5ab1aeba89a4d03904da3fd6dc08c))
+
 ## [1.2.0](https://github.com/dewstouh/justdiego/compare/v1.1.0...v1.2.0) (2025-07-17)
 
 
