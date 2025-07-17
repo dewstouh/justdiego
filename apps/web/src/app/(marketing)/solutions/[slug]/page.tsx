@@ -1,5 +1,3 @@
-"use cache";
-
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import SolutionHeader from './_components/SolutionHeader';
@@ -70,7 +68,6 @@ async function SolutionContent({ slug }: { slug: string }) {
 
       {attachments && attachments.length > 0 && (
         <div className="mb-6">
-          {/* Make the gallery bigger */}
           <AttachmentGallery attachments={attachments} />
         </div>
       )}
@@ -99,6 +96,7 @@ async function SolutionContent({ slug }: { slug: string }) {
           rating={review.rating}
           comment={review.comment}
           author={review.author}
+          attachments={attachments}
         />
       )}
 
