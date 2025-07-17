@@ -16,13 +16,50 @@ This repository is the backbone of justdiego.com , a platform built to deliver r
 - If your business is leaking cash or time, this platform is designed to find it and kill it, fast.
 
 ## Features
-- Instant Business Audits: Automated scripts scan for vulnerabilities, bottlenecks, and inefficiencies.
+- **Solutions Marketplace**: Browse and deploy solutions tailored to your business needs.
 
-- **Tool Suite:** Includes SEO analyzers, DNS checkers, uptime monitors, and more — all production-ready.
+![](https://i.imgur.com/0d4rVX2.png)
 
-- **Integrations:** Ready-to-use bots for Discord, Telegram, and WhatsApp to automate business operations.
+- **Client Reviews**: Read real feedback from clients who have used the solutions.
 
-- **Real-Time Insights:** Dashboards and reports that show you exactly where you’re losing money or time.
+![](https://i.imgur.com/5ukPpaq.png)
+
+- **Attachment Gallery**: View and manage attachments related to client reviews.
+
+![](https://i.imgur.com/h1GFp4H.png)
+
+- **Admin Dashboard**: Manage companies, solutions, and client reviews with ease.
+
+![](https://i.imgur.com/SUXgXJc.png)
+
+# Installation
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/dewstouh/justdiego.git
+    ```
+
+2. Navigate to the project directory:
+    ```bash
+    cd justdiego
+    ```
+
+3. Install dependencies using [pnpm](https://pnpm.io/):
+    ```bash
+    pnpm install
+    ```
+4. Set up environment variables:
+    - Create a `.env` file in the root directory.
+    - Copy the contents of `.env.example` to `.env` and update the values as needed.
+    - Make sure to set up your database connection and any other required environment variables.
+    - For local development, you can use SQLite or set up a PostgreSQL database.
+
+5. Initialize the project:
+    ```bash
+    pnpm run dev
+    ```
+
+6. Access the application:
+    - Open your browser and go to `http://localhost:3000` to view the platform.
 
 # License
 justdiego.com is licensed under the [MIT License](./LICENSE).
