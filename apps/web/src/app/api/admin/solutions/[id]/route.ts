@@ -7,19 +7,6 @@ interface TechnicalDetail {
 }
 
 interface UpdateSolutionRequest {
-  user: {
-    email: string;
-    name: string;
-    avatarUrl?: string;
-    countryId: string;
-  };
-  company: {
-    name: string;
-    description: string;
-    logoUrl?: string;
-    website?: string;
-    countryId: string;
-  };
   solution: {
     title: string;
     slug: string;
@@ -33,13 +20,16 @@ interface UpdateSolutionRequest {
     challenges?: string[];
     outcomes?: string[];
     completedAt: string;
+    customerId: string;
     companyId?: string;
     tags?: string[];
+    technologies?: string[];
   };
   review: {
     rating: number;
     comment: string;
     attachments?: string[];
+    authorId: string;
   };
 }
 
@@ -90,34 +80,62 @@ export async function GET(
         shortDescription: solution.shortDescription,
         longDescription: solution.longDescription,
         description: solution.description || '',
-        thumbnailUrl: solution.thumbnailUrl || '',
-        demoUrl: solution.demoUrl || '',
         problemDescription: solution.problemDescription,
         solutionDescription: solution.solutionDescription,
-        technicalDetails: Array.isArray(solution.technicalDetails) 
-        // @ts-expect-error - Type assertion needed for dynamic data
-          ? solution.technicalDetails as TechnicalDetail[]
-          : [],
-        attachments: Array.isArray(solution.attachments) 
-          ? solution.attachments as string[]
-          : [],
-        challenges: Array.isArray(solution.challenges) 
-          ? solution.challenges as string[]
-          : [],
-        outcomes: Array.isArray(solution.outcomes) 
-          ? solution.outcomes as string[]
-          : [],
+        technicalDetails: (() => {
+          try {
+            return Array.isArray(solution.technicalDetails) 
+              ? solution.technicalDetails as unknown as TechnicalDetail[]
+              : [];
+          } catch {
+            return [];
+          }
+        })(),
+        attachments: (() => {
+          try {
+            return Array.isArray(solution.attachments) 
+              ? solution.attachments as unknown as string[]
+              : [];
+          } catch {
+            return [];
+          }
+        })(),
+        challenges: (() => {
+          try {
+            return Array.isArray(solution.challenges) 
+              ? solution.challenges as unknown as string[]
+              : [];
+          } catch {
+            return [];
+          }
+        })(),
+        outcomes: (() => {
+          try {
+            return Array.isArray(solution.outcomes) 
+              ? solution.outcomes as unknown as string[]
+              : [];
+          } catch {
+            return [];
+          }
+        })(),
         completedAt: solution.completedAt ? solution.completedAt.toISOString().split('T')[0] : '',
-        isForSale: solution.isForSale,
+        customerId: solution.customerId,
         companyId: solution.companyId,
-        tags: solution.tags || [],
+        tags: solution.tags.map((tag: {id: string}) => tag.id),
+        technologies: solution.technologies.map((tech: {id: string}) => tech.id),
       },
       review: {
         rating: solution.review?.rating || 5,
         comment: solution.review?.comment || '',
-        attachments: Array.isArray(solution.review?.attachments) 
-          ? solution.review.attachments as string[]
-          : [],
+        attachments: (() => {
+          try {
+            return Array.isArray(solution.review?.attachments) 
+              ? solution.review.attachments as unknown as string[]
+              : [];
+          } catch {
+            return [];
+          }
+        })(),
       },
     };
 
@@ -138,21 +156,23 @@ export async function PUT(
 ) {
   try {
     const { id: solutionId } = await params;
-    const body: UpdateSolutionRequest = await request.json();
     
-    // Validate required fields
-    if (!body.user.email || !body.user.name || !body.company.name || !body.company.description || !body.solution.title || !body.review.comment) {
+    let body: UpdateSolutionRequest;
+    try {
+      body = await request.json();
+      console.log('Successfully parsed request body:', body);
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError);
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Invalid JSON in request body' },
         { status: 400 }
       );
     }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.user.email)) {
+    
+    // Validate required fields
+    if (!body.solution.title || !body.solution.customerId || !body.review.comment) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
+        { error: 'Missing required fields' },
         { status: 400 }
       );
     }
@@ -191,46 +211,8 @@ export async function PUT(
       }
     }
 
-    // Start transaction to update everything
+    // Start transaction to update solution and review
     const result = await db.$transaction(async (tx) => {
-      // Update user
-      const user = await tx.user.update({
-        where: { id: existingSolution.customerId },
-        data: {
-          email: body.user.email,
-          name: body.user.name,
-          avatarUrl: body.user.avatarUrl,
-          countryId: body.user.countryId,
-        }
-      });
-
-      // Update company
-      let company;
-      if (existingSolution.companyId) {
-        company = await tx.company.update({
-          where: { id: existingSolution.companyId },
-          data: {
-            name: body.company.name,
-            description: body.company.description,
-            logoUrl: body.company.logoUrl,
-            website: body.company.website,
-            countryId: body.company.countryId,
-          }
-        });
-      } else {
-        // Create new company if it doesn't exist
-        company = await tx.company.create({
-          data: {
-            name: body.company.name,
-            description: body.company.description,
-            logoUrl: body.company.logoUrl,
-            website: body.company.website,
-            countryId: body.company.countryId,
-            ownerId: user.id,
-          }
-        });
-      }
-
       // Update solution
       const solution = await tx.solution.update({
         where: { id: solutionId },
@@ -242,16 +224,24 @@ export async function PUT(
           description: body.solution.description,
           problemDescription: body.solution.problemDescription,
           solutionDescription: body.solution.solutionDescription,
-          technicalDetails: JSON.parse(JSON.stringify(body.solution.technicalDetails || [])),
+          // Handle JSON fields safely
+          technicalDetails: body.solution.technicalDetails ? 
+            JSON.parse(JSON.stringify(body.solution.technicalDetails)) : null,
           attachments: body.solution.attachments || [],
           challenges: body.solution.challenges || [],
           outcomes: body.solution.outcomes || [],
           completedAt: new Date(body.solution.completedAt),
-          companyId: company.id,
+          customerId: body.solution.customerId,
+          companyId: body.solution.companyId,
           // Update tags - disconnect all and connect new ones
           tags: {
             set: [], // Clear existing connections
             connect: (body.solution.tags || []).map(tagId => ({ id: tagId }))
+          },
+          // Update technologies - disconnect all and connect new ones
+          technologies: {
+            set: [], // Clear existing connections
+            connect: (body.solution.technologies || []).map(techId => ({ id: techId }))
           }
         }
       });
@@ -265,18 +255,17 @@ export async function PUT(
           rating: body.review.rating,
           comment: body.review.comment,
           attachments: body.review.attachments || [],
+          authorId: body.review.authorId,
         }
       });
 
-      return { user, company, solution, review };
+      return { solution, review };
     });
 
     return NextResponse.json(
       { 
         message: 'Solution updated successfully',
         data: {
-          userId: result.user.id,
-          companyId: result.company.id,
           solutionId: result.solution.id,
           reviewId: result.review.id,
           slug: result.solution.slug
