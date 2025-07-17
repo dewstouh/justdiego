@@ -20,7 +20,7 @@ export default function SolutionCard({
   showSeparator = true
 }: SolutionCardProps) {
 
-  const { id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, company, review } = solution;
+  const { id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, company, review } = solution;
 
 
   return (
