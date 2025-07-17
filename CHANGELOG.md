@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/dewstouh/justdiego/compare/v1.1.0...v1.2.0) (2025-07-17)
+
+
+### Features
+
+* **web/admin:** add navigation href to manage users, companies, and technologies ([27f8188](https://github.com/dewstouh/justdiego/commit/27f818846c55bd3a54812acf7a582e9402f7fc6d))
+* **web:** add API endpoints to manage companies, solutions, tags, technologies and users ([691d543](https://github.com/dewstouh/justdiego/commit/691d5434b152e732ad85be8b372e344b05ce23cf))
+* **web:** add dashboard forms to manage companies, tags, technologies and users ([5f43822](https://github.com/dewstouh/justdiego/commit/5f43822ac0414a9e8330a6e395f703bb0e5bdbef))
+* **web:** display review attachments ([c2923a9](https://github.com/dewstouh/justdiego/commit/c2923a9e9c224c4d6b93dd21c6ebeed953a9fcd1))
+* **web:** increase displayed solutions from 2 to 3 in SolutionsList ([09ee757](https://github.com/dewstouh/justdiego/commit/09ee7571814e13d6738e2ef63c3b11fa57d1caae))
+
+
+### Bug Fixes
+
+* **web:** await params in api endpoints ([b177256](https://github.com/dewstouh/justdiego/commit/b17725620bdc411797622e2c84ea59963c8ea94a))
+* **web:** client review was using normal attachemnts instead of review attachments ([02dd9f1](https://github.com/dewstouh/justdiego/commit/02dd9f11537217bd294a1979b203a26b566dd0bf))
+* **web:** prevent rendering components with empty technicalDetails, challenges or outcomes ([1f186b4](https://github.com/dewstouh/justdiego/commit/1f186b4651671a716aac9c6e83b17357330c85bb))
+
 ## [1.1.0](https://github.com/dewstouh/justdiego/compare/v1.0.0...v1.1.0) (2025-07-16)
 
 
