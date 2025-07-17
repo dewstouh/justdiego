@@ -34,3 +34,47 @@ export async function DELETE(
     );
   }
 }
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const body = await request.json();
+
+    // Check if tag exists
+    const existingTag = await db.tag.findUnique({
+      where: { id },
+    });
+
+    if (!existingTag) {
+      return NextResponse.json(
+        { error: 'Tag not found' },
+        { status: 404 }
+      );
+    }
+
+    // Update the tag
+    const updatedTag = await db.tag.update({
+      where: { id },
+      data: {
+        name: body.name,
+        description: body.description,
+        iconUrl: body.iconUrl,
+        color: body.color,
+      },
+    });
+
+    return NextResponse.json({
+      message: 'Tag updated successfully',
+      tag: updatedTag,
+    });
+  } catch (error) {
+    console.error('Error updating tag:', error);
+    return NextResponse.json(
+      { error: 'Failed to update tag' },
+      { status: 500 }
+    );
+  }
+}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import UserForm from './_components/UserForm';
 
 interface Country {
   id: string;
@@ -19,8 +20,7 @@ interface User {
   createdAt: string;
 }
 
-interface CreateUserData {
-  email: string;
+interface UserData {
   name: string;
   avatarUrl?: string;
   countryId: string;
@@ -28,21 +28,14 @@ interface CreateUserData {
 
 export default function ManageUsers() {
   const [users, setUsers] = useState<User[]>([]);
-  const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCreating, setIsCreating] = useState(false);
+  const [editingUser, setEditingUser] = useState<string | null>(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [createData, setCreateData] = useState<CreateUserData>({
-    email: '',
-    name: '',
-    avatarUrl: '',
-    countryId: '',
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{type: 'success' | 'error' | null, message: string}>({type: null, message: ''});
 
   useEffect(() => {
     loadUsers();
-    loadCountries();
   }, []);
 
   const loadUsers = async () => {
@@ -58,19 +51,8 @@ export default function ManageUsers() {
     }
   };
 
-  const loadCountries = async () => {
-    try {
-      const response = await fetch('/api/admin/countries');
-      const data = await response.json();
-      setCountries(data.countries || []);
-    } catch (error) {
-      console.error('Failed to load countries:', error);
-    }
-  };
-
-  const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsCreating(true);
+  const handleCreateSubmit = async (userData: UserData) => {
+    setIsSubmitting(true);
     setStatus({type: null, message: ''});
 
     try {
@@ -79,12 +61,11 @@ export default function ManageUsers() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(createData),
+        body: JSON.stringify(userData),
       });
 
       if (response.ok) {
         setStatus({type: 'success', message: 'User created successfully!'});
-        setCreateData({ email: '', name: '', avatarUrl: '', countryId: '' });
         setShowCreateForm(false);
         loadUsers();
       } else {
@@ -95,7 +76,38 @@ export default function ManageUsers() {
       console.error('Error creating user:', error);
       setStatus({type: 'error', message: 'Network error. Please try again.'});
     } finally {
-      setIsCreating(false);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleEditSubmit = async (userData: UserData) => {
+    if (!editingUser) return;
+
+    setIsSubmitting(true);
+    setStatus({type: null, message: ''});
+
+    try {
+      const response = await fetch(`/api/admin/users/${editingUser}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        setStatus({type: 'success', message: 'User updated successfully!'});
+        setEditingUser(null);
+        loadUsers();
+      } else {
+        const result = await response.json();
+        setStatus({type: 'error', message: result.error || 'Failed to update user'});
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+      setStatus({type: 'error', message: 'Network error. Please try again.'});
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -118,6 +130,14 @@ export default function ManageUsers() {
       console.error('Error deleting user:', error);
       setStatus({type: 'error', message: 'Network error. Please try again.'});
     }
+  };
+
+  const transformUserToFormData = (user: User): UserData => {
+    return {
+      name: user.name,
+      avatarUrl: user.avatarUrl,
+      countryId: user.countryId,
+    };
   };
 
   if (isLoading) {
@@ -154,72 +174,14 @@ export default function ManageUsers() {
 
       {/* Create Form */}
       {showCreateForm && (
-        <form onSubmit={handleCreate} className="bg-gray-50 p-6 border-2 border-gray-300 space-y-4">
+        <div className="bg-gray-50 p-6 border-2 border-gray-300">
           <h3 className="text-xl font-bold text-gray-900 mb-4">CREATE NEW USER</h3>
-          
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">EMAIL *</label>
-            <input
-              type="email"
-              value={createData.email}
-              onChange={(e) => setCreateData(prev => ({...prev, email: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">NAME *</label>
-            <input
-              type="text"
-              value={createData.name}
-              onChange={(e) => setCreateData(prev => ({...prev, name: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">AVATAR URL</label>
-            <input
-              type="url"
-              value={createData.avatarUrl}
-              onChange={(e) => setCreateData(prev => ({...prev, avatarUrl: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">COUNTRY *</label>
-            <select
-              value={createData.countryId}
-              onChange={(e) => setCreateData(prev => ({...prev, countryId: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            >
-              <option value="">Select a country</option>
-              {countries.map((country) => (
-                <option key={country.id} value={country.id}>
-                  {country.flag} {country.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="text-center">
-            <button
-              type="submit"
-              disabled={isCreating}
-              className={`px-6 py-2 border-2 border-gray-900 font-bold text-white transition-colors ${
-                isCreating 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gray-900 hover:bg-white hover:text-gray-900'
-              }`}
-            >
-              {isCreating ? 'CREATING...' : 'CREATE USER'}
-            </button>
-          </div>
-        </form>
+          <UserForm
+            onSubmit={handleCreateSubmit}
+            isSubmitting={isSubmitting}
+            submitStatus={status}
+          />
+        </div>
       )}
 
       {/* Users List */}
@@ -231,25 +193,56 @@ export default function ManageUsers() {
         ) : (
           <div className="grid gap-4">
             {users.map((user) => (
-              <div key={user.id} className="bg-white p-6 border-2 border-gray-300 flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                  {user.avatarUrl && (
-                    <Image src={user.avatarUrl} alt={user.name} width={48} height={48} className="rounded-full object-cover" />
-                  )}
-                  <div>
-                    <h4 className="font-bold text-gray-900">{user.name}</h4>
-                    <p className="text-gray-600">{user.email}</p>
-                    <p className="text-sm text-gray-500">
-                      {user.country.flag} {user.country.name} • Created: {new Date(user.createdAt).toLocaleDateString()}
-                    </p>
+              <div key={user.id} className="bg-white border-2 border-gray-300">
+                {editingUser === user.id ? (
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-bold text-gray-900">EDIT USER</h3>
+                      <button
+                        onClick={() => setEditingUser(null)}
+                        className="px-4 py-2 border-2 border-gray-600 text-gray-600 font-bold hover:bg-gray-600 hover:text-white transition-colors"
+                      >
+                        CANCEL
+                      </button>
+                    </div>
+                    <UserForm
+                      initialData={transformUserToFormData(user)}
+                      isEditing={true}
+                      onSubmit={handleEditSubmit}
+                      isSubmitting={isSubmitting}
+                      submitStatus={status}
+                    />
                   </div>
-                </div>
-                <button
-                  onClick={() => handleDelete(user.id)}
-                  className="px-4 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
-                >
-                  DELETE
-                </button>
+                ) : (
+                  <div className="p-6 flex justify-between items-center">
+                    <div className="flex items-center space-x-4">
+                      {user.avatarUrl && (
+                        <Image src={user.avatarUrl} alt={user.name} width={48} height={48} className="rounded-full object-cover" />
+                      )}
+                      <div>
+                        <h4 className="font-bold text-gray-900">{user.name}</h4>
+                        <p className="text-gray-600">{user.email}</p>
+                        <p className="text-sm text-gray-500">
+                          {user.country.flag} {user.country.name} • Created: {new Date(user.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => setEditingUser(user.id)}
+                        className="px-4 py-2 border-2 border-gray-900 text-gray-900 font-bold hover:bg-gray-900 hover:text-white transition-colors"
+                      >
+                        EDIT
+                      </button>
+                      <button
+                        onClick={() => handleDelete(user.id)}
+                        className="px-4 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                      >
+                        DELETE
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

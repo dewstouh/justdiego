@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import TagForm from './_components/TagForm';
 
 interface Tag {
   id: string;
@@ -11,24 +12,12 @@ interface Tag {
   createdAt: string;
 }
 
-interface CreateTagData {
-  name: string;
-  description: string;
-  iconUrl?: string;
-  color: string;
-}
-
 export default function ManageTags() {
   const [tags, setTags] = useState<Tag[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCreating, setIsCreating] = useState(false);
+  const [editingTag, setEditingTag] = useState<string | null>(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [createData, setCreateData] = useState<CreateTagData>({
-    name: '',
-    description: '',
-    iconUrl: '',
-    color: '#000000',
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{type: 'success' | 'error' | null, message: string}>({type: null, message: ''});
 
   useEffect(() => {
@@ -48,9 +37,13 @@ export default function ManageTags() {
     }
   };
 
-  const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsCreating(true);
+  const handleSubmit = async (tagData: {
+    name: string;
+    description?: string;
+    iconUrl?: string;
+    color: string;
+  }) => {
+    setIsSubmitting(true);
     setStatus({type: null, message: ''});
 
     try {
@@ -59,12 +52,11 @@ export default function ManageTags() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(createData),
+        body: JSON.stringify(tagData),
       });
 
       if (response.ok) {
         setStatus({type: 'success', message: 'Tag created successfully!'});
-        setCreateData({ name: '', description: '', iconUrl: '', color: '#000000' });
         setShowCreateForm(false);
         loadTags();
       } else {
@@ -75,8 +67,53 @@ export default function ManageTags() {
       console.error('Error creating tag:', error);
       setStatus({type: 'error', message: 'Network error. Please try again.'});
     } finally {
-      setIsCreating(false);
+      setIsSubmitting(false);
     }
+  };
+
+  const handleEditSubmit = async (tagData: {
+    name: string;
+    description?: string;
+    iconUrl?: string;
+    color: string;
+  }) => {
+    if (!editingTag) return;
+
+    setIsSubmitting(true);
+    setStatus({type: null, message: ''});
+
+    try {
+      const response = await fetch(`/api/admin/tags/${editingTag}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(tagData),
+      });
+
+      if (response.ok) {
+        setStatus({type: 'success', message: 'Tag updated successfully!'});
+        setEditingTag(null);
+        loadTags();
+      } else {
+        const result = await response.json();
+        setStatus({type: 'error', message: result.error || 'Failed to update tag'});
+      }
+    } catch (error) {
+      console.error('Error updating tag:', error);
+      setStatus({type: 'error', message: 'Network error. Please try again.'});
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const transformTagToFormData = (tag: Tag) => {
+    return {
+      name: tag.name,
+      description: tag.description,
+      iconUrl: tag.iconUrl,
+      color: tag.color,
+    };
   };
 
   const handleDelete = async (id: string) => {
@@ -134,72 +171,14 @@ export default function ManageTags() {
 
       {/* Create Form */}
       {showCreateForm && (
-        <form onSubmit={handleCreate} className="bg-gray-50 p-6 border-2 border-gray-300 space-y-4">
+        <div className="bg-gray-50 p-6 border-2 border-gray-300">
           <h3 className="text-xl font-bold text-gray-900 mb-4">CREATE NEW TAG</h3>
-          
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">TAG NAME *</label>
-            <input
-              type="text"
-              value={createData.name}
-              onChange={(e) => setCreateData(prev => ({...prev, name: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">DESCRIPTION</label>
-            <textarea
-              value={createData.description}
-              onChange={(e) => setCreateData(prev => ({...prev, description: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">ICON URL</label>
-            <input
-              type="url"
-              value={createData.iconUrl}
-              onChange={(e) => setCreateData(prev => ({...prev, iconUrl: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">COLOR</label>
-            <div className="flex space-x-4">
-              <input
-                type="color"
-                value={createData.color}
-                onChange={(e) => setCreateData(prev => ({...prev, color: e.target.value}))}
-                className="w-20 h-12 border-2 border-gray-300 rounded"
-              />
-              <input
-                type="text"
-                value={createData.color}
-                onChange={(e) => setCreateData(prev => ({...prev, color: e.target.value}))}
-                className="flex-1 p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-                placeholder="#000000"
-              />
-            </div>
-          </div>
-
-          <div className="text-center">
-            <button
-              type="submit"
-              disabled={isCreating}
-              className={`px-6 py-2 border-2 border-gray-900 font-bold text-white transition-colors ${
-                isCreating 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gray-900 hover:bg-white hover:text-gray-900'
-              }`}
-            >
-              {isCreating ? 'CREATING...' : 'CREATE TAG'}
-            </button>
-          </div>
-        </form>
+          <TagForm
+            onSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
+            submitStatus={status}
+          />
+        </div>
       )}
 
       {/* Tags List */}
@@ -211,33 +190,64 @@ export default function ManageTags() {
         ) : (
           <div className="grid gap-4">
             {tags.map((tag) => (
-              <div key={tag.id} className="bg-white p-6 border-2 border-gray-300 flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                  <div 
-                    className="w-8 h-8 rounded"
-                    style={{ backgroundColor: tag.color }}
-                  ></div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">{tag.name}</h4>
-                    {tag.description && <p className="text-gray-600">{tag.description}</p>}
-                    {tag.iconUrl && (
-                      <p className="text-sm text-blue-600">
-                        <a href={tag.iconUrl} target="_blank" rel="noopener noreferrer">
-                          View Icon
-                        </a>
-                      </p>
-                    )}
-                    <p className="text-sm text-gray-500">
-                      Created: {new Date(tag.createdAt).toLocaleDateString()}
-                    </p>
+              <div key={tag.id} className="bg-white border-2 border-gray-300">
+                {editingTag === tag.id ? (
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-bold text-gray-900">EDIT TAG</h3>
+                      <button
+                        onClick={() => setEditingTag(null)}
+                        className="px-4 py-2 border-2 border-gray-600 text-gray-600 font-bold hover:bg-gray-600 hover:text-white transition-colors"
+                      >
+                        CANCEL
+                      </button>
+                    </div>
+                    <TagForm
+                      initialData={transformTagToFormData(tag)}
+                      isEditing={true}
+                      onSubmit={handleEditSubmit}
+                      isSubmitting={isSubmitting}
+                      submitStatus={status}
+                    />
                   </div>
-                </div>
-                <button
-                  onClick={() => handleDelete(tag.id)}
-                  className="px-4 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
-                >
-                  DELETE
-                </button>
+                ) : (
+                  <div className="p-6 flex justify-between items-center">
+                    <div className="flex items-center space-x-4">
+                      <div 
+                        className="w-8 h-8 rounded"
+                        style={{ backgroundColor: tag.color }}
+                      ></div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">{tag.name}</h4>
+                        {tag.description && <p className="text-gray-600">{tag.description}</p>}
+                        {tag.iconUrl && (
+                          <p className="text-sm text-blue-600">
+                            <a href={tag.iconUrl} target="_blank" rel="noopener noreferrer">
+                              View Icon
+                            </a>
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-500">
+                          Created: {new Date(tag.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => setEditingTag(tag.id)}
+                        className="px-4 py-2 border-2 border-gray-900 text-gray-900 font-bold hover:bg-gray-900 hover:text-white transition-colors"
+                      >
+                        EDIT
+                      </button>
+                      <button
+                        onClick={() => handleDelete(tag.id)}
+                        className="px-4 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                      >
+                        DELETE
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

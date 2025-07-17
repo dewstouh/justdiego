@@ -178,13 +178,21 @@ export async function POST(request: NextRequest) {
 
 export async function GET(): Promise<NextResponse> {
   try {
-    // Get recent solutions for admin overview
+    // Get recent solutions for admin overview with complete data for editing
     const solutions = await db.solution.findMany({
       take: 10,
       orderBy: { createdAt: 'desc' },
       include: {
-        customer: true,
-        company: true,
+        customer: {
+          include: {
+            country: true
+          }
+        },
+        company: {
+          include: {
+            country: true
+          }
+        },
         review: true,
         tags: true,
         technologies: true,

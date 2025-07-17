@@ -74,20 +74,14 @@ export default function EditSolution() {
           completedAt: data.solution.completedAt ? new Date(data.solution.completedAt).toISOString().split('T')[0]! : new Date().toISOString().split('T')[0]!,
           customerId: data.solution.customerId || '',
           companyId: data.solution.companyId || '',
-          // Handle both string arrays and object arrays for technologies/tags
-          technologies: Array.isArray(data.solution.technologies) 
-            ? data.solution.technologies.map((tech: string | {id: string}) => typeof tech === 'string' ? tech : tech.id) 
-            : [],
-          tags: Array.isArray(data.solution.tags) 
-            ? data.solution.tags.map((tag: string | {id: string}) => typeof tag === 'string' ? tag : tag.id) 
-            : [],
+          technologies: data.solution.technologies?.map((tech: {id: string}) => tech.id) || [],
+          tags: data.solution.tags?.map((tag: {id: string}) => tag.id) || [],
         },
         review: {
           rating: data.review?.rating || 5,
           comment: data.review?.comment || '',
           attachments: data.review?.attachments || [],
-          // Default review author to the customer (same user)
-          authorId: data.review?.authorId || data.solution.customerId || '',
+          authorId: data.review?.authorId || '',
         },
       };
       
