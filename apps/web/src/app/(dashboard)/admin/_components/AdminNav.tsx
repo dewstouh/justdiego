@@ -42,6 +42,12 @@ export default function AdminNav() {
         >
           MANAGE TECHNOLOGIES
         </Link>
+        <Link 
+          href="/admin/documents"
+          className={`text-sm font-bold px-3 py-2 border-2 transition-colors`}
+        >
+          MANAGE DOCUMENTS
+        </Link>
       </div>
     </nav>
   );
