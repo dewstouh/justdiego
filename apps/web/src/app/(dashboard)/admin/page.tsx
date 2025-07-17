@@ -1,11 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { UserFormSection } from '@/app/(dashboard)/admin/solutions/_components/UserFormSection';
-import { CompanyFormSection } from '@/app/(dashboard)/admin/solutions/_components/CompanyFormSection';
-import { SolutionFormSection } from '@/app/(dashboard)/admin/solutions/_components/SolutionFormSection';
-import { ReviewFormSection } from '@/app/(dashboard)/admin/solutions/_components/ReviewFormSection';
-import type { Prisma } from '@justdiego/db';
+import Image from 'next/image';
 
 interface Country {
   id: string;
@@ -13,25 +9,39 @@ interface Country {
   flag: string;
 }
 
-interface UserData {
+interface User {
+  id: string;
   email: string;
   name: string;
   avatarUrl?: string;
   countryId: string;
+  country: Country;
 }
 
-interface CompanyData {
+interface Company {
+  id: string;
   name: string;
-  description: string;
+  description?: string;
   logoUrl?: string;
   website?: string;
   countryId: string;
+  country: Country;
 }
 
-interface ReviewData {
-  rating: number;
-  comment: string;
-  attachments?: string[];
+interface Tag {
+  id: string;
+  name: string;
+  description?: string;
+  iconUrl?: string;
+  color: string;
+}
+
+interface Technology {
+  id: string;
+  name: string;
+  description?: string;
+  iconUrl?: string;
+  color: string;
 }
 
 interface TechnicalDetail {
@@ -55,34 +65,31 @@ interface SolutionData {
   outcomes?: string[];
   completedAt?: string;
   isForSale: boolean;
+  customerId: string;
   companyId?: string;
-  technologies?: Prisma.TechnologyCreateInput[];
-  tags?: Prisma.TagCreateInput[];
+  technologies?: string[];
+  tags?: string[];
+}
+
+interface ReviewData {
+  rating: number;
+  comment: string;
+  attachments?: string[];
+  authorId: string;
 }
 
 interface FormData {
-  user: UserData;
-  company: CompanyData;
   solution: SolutionData;
   review: ReviewData;
 }
 
 export default function AdminDashboard() {
-  const [countries, setCountries] = useState<Country[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [companies, setCompanies] = useState<Company[]>([]);
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [technologies, setTechnologies] = useState<Technology[]>([]);
+  
   const [formData, setFormData] = useState<FormData>({
-    user: {
-      email: 'example@example.com',
-      name: '',
-      avatarUrl: '',
-      countryId: 'country-spain', // Default to Spain
-    },
-    company: {
-      name: '',
-      description: '',
-      logoUrl: '',
-      website: '',
-      countryId: 'country-spain', // Default to Spain
-    },
     solution: {
       title: '',
       slug: '',
@@ -98,6 +105,8 @@ export default function AdminDashboard() {
       challenges: [],
       outcomes: [],
       isForSale: false,
+      customerId: '',
+      companyId: '',
       technologies: [],
       tags: [],
     },
@@ -105,50 +114,62 @@ export default function AdminDashboard() {
       rating: 5,
       comment: '',
       attachments: [],
+      authorId: '',
     },
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error' | null, message: string}>({type: null, message: ''});
 
-  // Load countries on component mount
+  // Load data on component mount
   useEffect(() => {
-    const loadCountries = async () => {
-      try {
-        const response = await fetch('/api/admin/countries');
-        const data = await response.json();
-        setCountries(data.countries || []);
-      } catch (error) {
-        console.error('Failed to load countries:', error);
-        // Fallback countries
-        setCountries([
-          { id: 'es', name: 'Spain', flag: '🇪🇸' },
-          { id: 'us', name: 'United States', flag: '🇺🇸' },
-          { id: 'gb', name: 'United Kingdom', flag: '🇬🇧' },
-          { id: 'de', name: 'Germany', flag: '🇩🇪' },
-          { id: 'fr', name: 'France', flag: '🇫🇷' },
-        ]);
-      }
-    };
-
-    loadCountries();
+    loadUsers();
+    loadCompanies();
+    loadTags();
+    loadTechnologies();
   }, []);
 
-  const handleUserChange = (field: keyof UserData, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      user: { ...prev.user, [field]: value }
-    }));
+  const loadUsers = async () => {
+    try {
+      const response = await fetch('/api/admin/users');
+      const data = await response.json();
+      setUsers(data.users || []);
+    } catch (error) {
+      console.error('Failed to load users:', error);
+    }
   };
 
-  const handleCompanyChange = (field: keyof CompanyData, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      company: { ...prev.company, [field]: value }
-    }));
+  const loadCompanies = async () => {
+    try {
+      const response = await fetch('/api/admin/companies');
+      const data = await response.json();
+      setCompanies(data.companies || []);
+    } catch (error) {
+      console.error('Failed to load companies:', error);
+    }
   };
 
-  const handleSolutionChange = (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TechnologyCreateInput[] | Prisma.TagCreateInput[]) => {
+  const loadTags = async () => {
+    try {
+      const response = await fetch('/api/admin/tags');
+      const data = await response.json();
+      setTags(data.tags || []);
+    } catch (error) {
+      console.error('Failed to load tags:', error);
+    }
+  };
+
+  const loadTechnologies = async () => {
+    try {
+      const response = await fetch('/api/admin/technologies');
+      const data = await response.json();
+      setTechnologies(data.technologies || []);
+    } catch (error) {
+      console.error('Failed to load technologies:', error);
+    }
+  };
+
+  const handleSolutionChange = (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | undefined) => {
     setFormData(prev => ({
       ...prev,
       solution: { ...prev.solution, [field]: value }
@@ -181,45 +202,9 @@ export default function AdminDashboard() {
     handleSolutionChange('technicalDetails', updatedDetails);
   };
 
-  const handleArrayInputChange = (field: 'challenges' | 'outcomes', value: string, section: 'solution' | 'review') => {
+  const handleArrayInputChange = (field: 'challenges' | 'outcomes', value: string) => {
     const arrayValue = value.split('\n').filter(item => item.trim() !== '');
-    if (section === 'solution') {
-      handleSolutionChange(field as keyof SolutionData, arrayValue);
-    } else {
-      handleReviewChange(field as keyof ReviewData, arrayValue);
-    }
-  };
-
-  const addAttachment = (section: 'solution' | 'review') => {
-    if (section === 'solution') {
-      const currentAttachments = formData.solution.attachments || [];
-      handleSolutionChange('attachments', [...currentAttachments, '']);
-    } else {
-      const currentAttachments = formData.review.attachments || [];
-      handleReviewChange('attachments', [...currentAttachments, '']);
-    }
-  };
-
-  const updateAttachment = (index: number, value: string, section: 'solution' | 'review') => {
-    if (section === 'solution') {
-      const currentAttachments = [...(formData.solution.attachments || [])];
-      currentAttachments[index] = value;
-      handleSolutionChange('attachments', currentAttachments);
-    } else {
-      const currentAttachments = [...(formData.review.attachments || [])];
-      currentAttachments[index] = value;
-      handleReviewChange('attachments', currentAttachments);
-    }
-  };
-
-  const removeAttachment = (index: number, section: 'solution' | 'review') => {
-    if (section === 'solution') {
-      const currentAttachments = formData.solution.attachments?.filter((_, i) => i !== index) || [];
-      handleSolutionChange('attachments', currentAttachments);
-    } else {
-      const currentAttachments = formData.review.attachments?.filter((_, i) => i !== index) || [];
-      handleReviewChange('attachments', currentAttachments);
-    }
+    handleSolutionChange(field, arrayValue);
   };
 
   const generateSlug = (title: string) => {
@@ -238,19 +223,6 @@ export default function AdminDashboard() {
 
   const resetForm = () => {
     setFormData({
-      user: {
-        email: 'example@example.com',
-        name: '',
-        avatarUrl: '',
-        countryId: 'country-spain',
-      },
-      company: {
-        name: '',
-        description: '',
-        logoUrl: '',
-        website: '',
-        countryId: 'country-spain',
-      },
       solution: {
         title: '',
         slug: '',
@@ -266,12 +238,16 @@ export default function AdminDashboard() {
         challenges: [],
         outcomes: [],
         isForSale: false,
+        customerId: '',
+        companyId: '',
         technologies: [],
+        tags: [],
       },
       review: {
         rating: 5,
         comment: '',
         attachments: [],
+        authorId: '',
       },
     });
   };
@@ -282,21 +258,12 @@ export default function AdminDashboard() {
     setSubmitStatus({type: null, message: ''});
 
     try {
-      // Transform the form data to match API expectations
-      const requestData = {
-        ...formData,
-        solution: {
-          ...formData.solution,
-          tags: formData.solution.tags?.map(tag => tag.id).filter(Boolean) || []
-        }
-      };
-
       const response = await fetch('/api/admin/solutions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
@@ -320,7 +287,7 @@ export default function AdminDashboard() {
       <div className="text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">ADD NEW SOLUTION</h2>
         <div className="w-24 h-1 bg-gray-900 mx-auto mb-6"></div>
-        <p className="text-lg text-gray-600">Create new solutions with automatic user and company creation</p>
+        <p className="text-lg text-gray-600">Create new solutions by selecting existing users and companies</p>
       </div>
 
       {submitStatus.type && (
@@ -334,38 +301,426 @@ export default function AdminDashboard() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        <UserFormSection 
-          formData={formData.user}
-          countries={countries}
-          onChange={handleUserChange}
-        />
+        {/* User Selection */}
+        <div className="bg-white p-6 border-2 border-gray-300">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">SELECT USER</h3>
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">CUSTOMER *</label>
+            
+            {/* Selected User Preview */}
+            {formData.solution.customerId && (
+              <div className="mb-4 p-4 border-2 border-green-300 bg-green-50 rounded">
+                {(() => {
+                  const selectedUser = users.find(u => u.id === formData.solution.customerId);
+                  return selectedUser ? (
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0">
+                        {selectedUser.avatarUrl ? (
+                          <Image 
+                            src={selectedUser.avatarUrl} 
+                            alt={selectedUser.name}
+                            width={48}
+                            height={48}
+                            className="rounded-full object-cover border-2 border-gray-300"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-gray-400 border-2 border-gray-300 flex items-center justify-center">
+                            <span className="text-white font-bold text-lg">
+                              {selectedUser.name.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900">{selectedUser.name}</div>
+                        <div className="text-sm text-gray-600">{selectedUser.email}</div>
+                        <div className="text-sm text-gray-500">
+                          {selectedUser.country.flag} {selectedUser.country.name}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null;
+                })()}
+              </div>
+            )}
+            
+            <select
+              value={formData.solution.customerId}
+              onChange={(e) => handleSolutionChange('customerId', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              required
+            >
+              <option value="">Select a user</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name} ({user.email}) - {user.country.flag} {user.country.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-        <CompanyFormSection 
-          formData={formData.company}
-          countries={countries}
-          onChange={handleCompanyChange}
-        />
+        {/* Company Selection */}
+        <div className="bg-white p-6 border-2 border-gray-300">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">SELECT COMPANY (Optional)</h3>
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">COMPANY</label>
+            
+            {/* Selected Company Preview */}
+            {formData.solution.companyId && (
+              <div className="mb-4 p-4 border-2 border-blue-300 bg-blue-50 rounded">
+                {(() => {
+                  const selectedCompany = companies.find(c => c.id === formData.solution.companyId);
+                  return selectedCompany ? (
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0">
+                        {selectedCompany.logoUrl ? (
+                          <Image 
+                            src={selectedCompany.logoUrl} 
+                            alt={selectedCompany.name}
+                            width={48}
+                            height={48}
+                            className="rounded object-cover border-2 border-gray-300"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded bg-blue-500 border-2 border-gray-300 flex items-center justify-center">
+                            <span className="text-white font-bold text-lg">
+                              {selectedCompany.name.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900">{selectedCompany.name}</div>
+                        <div className="text-sm text-gray-600">{selectedCompany.description}</div>
+                        {selectedCompany.website && (
+                          <div className="text-sm text-blue-600">
+                            <a href={selectedCompany.website} target="_blank" rel="noopener noreferrer">
+                              {selectedCompany.website}
+                            </a>
+                          </div>
+                        )}
+                        <div className="text-sm text-gray-500">
+                          {selectedCompany.country.flag} {selectedCompany.country.name}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null;
+                })()}
+              </div>
+            )}
+            
+            <select
+              value={formData.solution.companyId || ''}
+              onChange={(e) => handleSolutionChange('companyId', e.target.value || undefined)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+            >
+              <option value="">No company</option>
+              {companies.map((company) => (
+                <option key={company.id} value={company.id}>
+                  {company.name} - {company.country.flag} {company.country.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
-        <SolutionFormSection 
-          formData={formData.solution}
-          onChange={handleSolutionChange}
-          onArrayInputChange={handleArrayInputChange}
-          onTitleChange={handleTitleChange}
-          onTechnicalDetailChange={handleTechnicalDetailChange}
-          onAddTechnicalDetail={addTechnicalDetail}
-          onRemoveTechnicalDetail={removeTechnicalDetail}
-          onAddAttachment={addAttachment}
-          onUpdateAttachment={updateAttachment}
-          onRemoveAttachment={removeAttachment}
-        />
+        {/* Solution Details */}
+        <div className="bg-white p-6 border-2 border-gray-300 space-y-4">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">SOLUTION DETAILS</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">TITLE *</label>
+              <input
+                type="text"
+                value={formData.solution.title}
+                onChange={(e) => handleTitleChange(e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">SLUG</label>
+              <input
+                type="text"
+                value={formData.solution.slug}
+                onChange={(e) => handleSolutionChange('slug', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none bg-gray-100"
+                readOnly
+              />
+            </div>
+          </div>
 
-        <ReviewFormSection 
-          formData={formData.review}
-          onChange={handleReviewChange}
-          onAddAttachment={addAttachment}
-          onUpdateAttachment={updateAttachment}
-          onRemoveAttachment={removeAttachment}
-        />
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">SHORT DESCRIPTION *</label>
+            <textarea
+              value={formData.solution.shortDescription}
+              onChange={(e) => handleSolutionChange('shortDescription', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">LONG DESCRIPTION *</label>
+            <textarea
+              value={formData.solution.longDescription}
+              onChange={(e) => handleSolutionChange('longDescription', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-32"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">PROBLEM DESCRIPTION *</label>
+            <textarea
+              value={formData.solution.problemDescription}
+              onChange={(e) => handleSolutionChange('problemDescription', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">SOLUTION DESCRIPTION *</label>
+            <textarea
+              value={formData.solution.solutionDescription}
+              onChange={(e) => handleSolutionChange('solutionDescription', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+              required
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">THUMBNAIL URL</label>
+              <input
+                type="url"
+                value={formData.solution.thumbnailUrl || ''}
+                onChange={(e) => handleSolutionChange('thumbnailUrl', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2">DEMO URL</label>
+              <input
+                type="url"
+                value={formData.solution.demoUrl || ''}
+                onChange={(e) => handleSolutionChange('demoUrl', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">
+              <input
+                type="checkbox"
+                checked={formData.solution.isForSale}
+                onChange={(e) => handleSolutionChange('isForSale', e.target.checked)}
+                className="mr-2"
+              />
+              IS FOR SALE
+            </label>
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">CHALLENGES (one per line)</label>
+            <textarea
+              value={formData.solution.challenges?.join('\n') || ''}
+              onChange={(e) => handleArrayInputChange('challenges', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">OUTCOMES (one per line)</label>
+            <textarea
+              value={formData.solution.outcomes?.join('\n') || ''}
+              onChange={(e) => handleArrayInputChange('outcomes', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+            />
+          </div>
+        </div>
+
+        {/* Technical Details */}
+        <div className="bg-white p-6 border-2 border-gray-300 space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="text-xl font-bold text-gray-900">TECHNICAL DETAILS</h3>
+            <button
+              type="button"
+              onClick={addTechnicalDetail}
+              className="px-4 py-2 border-2 border-gray-900 bg-gray-900 text-white font-bold hover:bg-white hover:text-gray-900 transition-colors"
+            >
+              ADD DETAIL
+            </button>
+          </div>
+          
+          {formData.solution.technicalDetails?.map((detail, index) => (
+            <div key={index} className="border-2 border-gray-200 p-4 space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="font-bold">Detail #{index + 1}</span>
+                <button
+                  type="button"
+                  onClick={() => removeTechnicalDetail(index)}
+                  className="px-3 py-1 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                >
+                  REMOVE
+                </button>
+              </div>
+              <input
+                type="text"
+                placeholder="Title"
+                value={detail.title}
+                onChange={(e) => handleTechnicalDetailChange(index, 'title', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              />
+              <textarea
+                placeholder="Content"
+                value={detail.content}
+                onChange={(e) => handleTechnicalDetailChange(index, 'content', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Tags Selection */}
+        <div className="bg-white p-6 border-2 border-gray-300">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">SELECT TAGS</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {tags.map((tag) => (
+              <label key={tag.id} className="flex items-center space-x-2 p-2 border border-gray-300 rounded hover:bg-gray-50">
+                <input
+                  type="checkbox"
+                  checked={formData.solution.tags?.includes(tag.id) || false}
+                  onChange={(e) => {
+                    const currentTags = formData.solution.tags || [];
+                    if (e.target.checked) {
+                      handleSolutionChange('tags', [...currentTags, tag.id]);
+                    } else {
+                      handleSolutionChange('tags', currentTags.filter(id => id !== tag.id));
+                    }
+                  }}
+                />
+                <div className="w-4 h-4 rounded" style={{ backgroundColor: tag.color }}></div>
+                <span className="text-sm">{tag.name}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Technologies Selection */}
+        <div className="bg-white p-6 border-2 border-gray-300">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">SELECT TECHNOLOGIES</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {technologies.map((technology) => (
+              <label key={technology.id} className="flex items-center space-x-2 p-2 border border-gray-300 rounded hover:bg-gray-50">
+                <input
+                  type="checkbox"
+                  checked={formData.solution.technologies?.includes(technology.id) || false}
+                  onChange={(e) => {
+                    const currentTechnologies = formData.solution.technologies || [];
+                    if (e.target.checked) {
+                      handleSolutionChange('technologies', [...currentTechnologies, technology.id]);
+                    } else {
+                      handleSolutionChange('technologies', currentTechnologies.filter(id => id !== technology.id));
+                    }
+                  }}
+                />
+                <div className="w-4 h-4 rounded" style={{ backgroundColor: technology.color }}></div>
+                <span className="text-sm">{technology.name}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Review Section */}
+        <div className="bg-white p-6 border-2 border-gray-300 space-y-4">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">REVIEW DETAILS</h3>
+          
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">REVIEW AUTHOR *</label>
+            
+            {/* Selected Review Author Preview */}
+            {formData.review.authorId && (
+              <div className="mb-4 p-4 border-2 border-purple-300 bg-purple-50 rounded">
+                {(() => {
+                  const selectedAuthor = users.find(u => u.id === formData.review.authorId);
+                  return selectedAuthor ? (
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0">
+                        {selectedAuthor.avatarUrl ? (
+                          <Image 
+                            src={selectedAuthor.avatarUrl} 
+                            alt={selectedAuthor.name}
+                            width={48}
+                            height={48}
+                            className="rounded-full object-cover border-2 border-gray-300"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-purple-500 border-2 border-gray-300 flex items-center justify-center">
+                            <span className="text-white font-bold text-lg">
+                              {selectedAuthor.name.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900">{selectedAuthor.name}</div>
+                        <div className="text-sm text-gray-600">{selectedAuthor.email}</div>
+                        <div className="text-sm text-gray-500">
+                          {selectedAuthor.country.flag} {selectedAuthor.country.name}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null;
+                })()}
+              </div>
+            )}
+            
+            <select
+              value={formData.review.authorId}
+              onChange={(e) => handleReviewChange('authorId', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              required
+            >
+              <option value="">Select a reviewer</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name} ({user.email})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">RATING *</label>
+            <select
+              value={formData.review.rating}
+              onChange={(e) => handleReviewChange('rating', parseInt(e.target.value))}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+              required
+            >
+              <option value={1}>⭐ 1 Star</option>
+              <option value={2}>⭐⭐ 2 Stars</option>
+              <option value={3}>⭐⭐⭐ 3 Stars</option>
+              <option value={4}>⭐⭐⭐⭐ 4 Stars</option>
+              <option value={5}>⭐⭐⭐⭐⭐ 5 Stars</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-gray-700 mb-2">COMMENT *</label>
+            <textarea
+              value={formData.review.comment}
+              onChange={(e) => handleReviewChange('comment', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+              required
+            />
+          </div>
+        </div>
 
         {/* Submit Button */}
         <div className="text-center">

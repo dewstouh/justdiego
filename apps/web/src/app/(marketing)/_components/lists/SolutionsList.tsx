@@ -5,7 +5,7 @@ export default async function SolutionsList() {
     const solutions = await getSolutions();
   return (
       <div className="grid gap-8 lg:gap-12">
-          {solutions.slice(0, 2).map((solution, index) => {
+          {solutions.slice(0, 3).map((solution, index) => {
               return (
                   <SolutionCard
                       solution={solution}

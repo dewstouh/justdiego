@@ -5,7 +5,6 @@ import TagList from '@/components/solution-card/TagList';
 import ReviewCard from '@/components/solution-card/ReviewCard';
 import AttachmentGallery from '@/components/solution-card/AttachmentGallery';
 import SolutionActions from '@/components/solution-card/SolutionActions';
-import ProjectOverview from '@/components/solution-card/ProjectOverview';
 import { getSolutions } from '@/lib/data/solution';
 import Link from 'next/link';
 
@@ -15,24 +14,24 @@ interface SolutionCardProps {
   showSeparator?: boolean;
 }
 
-export default function SolutionCard({ 
+export default function SolutionCard({
   solution,
   variant = 'full',
-  showSeparator = true 
+  showSeparator = true
 }: SolutionCardProps) {
 
-  const {id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, demoUrl, technologies, company, review } = solution;
+  const { id, title, slug, shortDescription, problemDescription, solutionDescription, completedAt, tags, attachments, company, review } = solution;
 
 
   return (
     <>
       <div className="relative">
         <SolutionCardSeparator show={showSeparator} />
-        
+
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* Left Column - Project Info */}
           <div className="space-y-6">
-            <CompanyHeader 
+            <CompanyHeader
               company={company}
               completedAt={completedAt}
             />
@@ -59,26 +58,15 @@ export default function SolutionCard({
           {review && (
             <div className="space-y-6">
               <ReviewCard rating={review.rating} comment={review.comment} author={review.author} country={review.author.country} />
-
-              {variant === 'compact' ? (
-                <div className="space-y-6">
-                  {attachments && attachments.length > 0 && (
-                    <AttachmentGallery attachments={attachments} />
-                  )}
-                  <SolutionActions slug={slug} solutionId={id} />
-                </div>
-              ) : (
-                <ProjectOverview
-                  attachmentCount={attachments?.length || 0}
-                  technologies={technologies}
-                  hasDemoUrl={!!demoUrl}
-                  slug={slug}
-                  solutionId={id}
-                />
-              )}
+              <div className="space-y-6">
+                {attachments && attachments.length > 0 && (
+                  <AttachmentGallery attachments={attachments} />
+                )}
+                <SolutionActions slug={slug} solutionId={id} />
+              </div>
             </div>
           )}
-          
+
         </div>
       </div>
     </>

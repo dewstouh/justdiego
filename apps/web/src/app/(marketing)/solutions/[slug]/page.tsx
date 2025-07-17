@@ -1,5 +1,3 @@
-"use cache";
-
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import SolutionHeader from './_components/SolutionHeader';
@@ -60,7 +58,7 @@ async function SolutionContent({ slug }: { slug: string }) {
         companyName={company?.name || "Unknown Company"}
         companyUrl={company?.website || ""}
         companyImage={company?.logoUrl || ''}
-        countryFlag={customer?.country?.flag}
+        countryFlag={(company || customer)?.country?.flag}
         tags={solution.tags}
         description={solution.shortDescription}
         completedAt={solution.completedAt}
@@ -68,19 +66,23 @@ async function SolutionContent({ slug }: { slug: string }) {
 
       <ProblemResult problem={problemDescription} result={solutionDescription} />
 
-      <TechnicalDetails technicalDetails={technicalDetails as TechnicalDetail[]} />
-
-      <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
-
-      {technologies && technologies.length > 0 && (
-        <div className="mb-6">
-          <Technologies technologies={technologies} />
-        </div>
-      )}
-
       {attachments && attachments.length > 0 && (
         <div className="mb-6">
           <AttachmentGallery attachments={attachments} />
+        </div>
+      )}
+
+      {technicalDetails && (technicalDetails as TechnicalDetail[]).length > 0 && (
+        <TechnicalDetails technicalDetails={technicalDetails as TechnicalDetail[]} />
+      )}
+
+      {challenges && challenges.length && outcomes && outcomes.length > 0 && (
+        <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
+      )}
+      
+      {technologies && technologies.length > 0 && (
+        <div className="mb-6">
+          <Technologies technologies={technologies} />
         </div>
       )}
 
@@ -94,6 +96,7 @@ async function SolutionContent({ slug }: { slug: string }) {
           rating={review.rating}
           comment={review.comment}
           author={review.author}
+          attachments={review.attachments}
         />
       )}
 
