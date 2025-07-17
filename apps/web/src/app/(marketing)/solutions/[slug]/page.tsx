@@ -96,7 +96,7 @@ async function SolutionContent({ slug }: { slug: string }) {
           rating={review.rating}
           comment={review.comment}
           author={review.author}
-          attachments={attachments}
+          attachments={review.attachments}
         />
       )}
 
