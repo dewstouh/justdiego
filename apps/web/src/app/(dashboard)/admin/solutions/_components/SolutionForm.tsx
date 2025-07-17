@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import SearchableSelect from './SearchableSelect';
 
 interface Country {
   id: string;
@@ -143,6 +144,19 @@ export default function SolutionForm({
       setFormData(initialData);
     }
   }, [initialData]);
+
+  // Auto-set review author to customer when customer changes
+  useEffect(() => {
+    if (formData.solution.customerId && formData.review.authorId !== formData.solution.customerId) {
+      setFormData(prev => ({
+        ...prev,
+        review: {
+          ...prev.review,
+          authorId: formData.solution.customerId
+        }
+      }));
+    }
+  }, [formData.solution.customerId, formData.review.authorId]);
 
   const loadUsers = async () => {
     try {
@@ -503,15 +517,6 @@ export default function SolutionForm({
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">DESCRIPTION</label>
-            <textarea
-              value={formData.solution.description || ''}
-              onChange={(e) => handleSolutionChange('description', e.target.value)}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-20"
-            />
-          </div>
-
-          <div>
             <label className="block text-sm font-bold text-gray-700 mb-2">PROBLEM DESCRIPTION *</label>
             <textarea
               value={formData.solution.problemDescription}
@@ -684,58 +689,24 @@ export default function SolutionForm({
 
         {/* Technologies */}
         <div className="bg-white p-6 border-2 border-gray-300">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">TECHNOLOGIES</h3>
-          <div className="space-y-4">
-            {technologies.map((tech) => (
-              <label key={tech.id} className="flex items-center space-x-3">
-                <input
-                  type="checkbox"
-                  checked={formData.solution.technologies?.includes(tech.id) || false}
-                  onChange={(e) => {
-                    const currentTechs = formData.solution.technologies || [];
-                    if (e.target.checked) {
-                      handleSolutionChange('technologies', [...currentTechs, tech.id]);
-                    } else {
-                      handleSolutionChange('technologies', currentTechs.filter(t => t !== tech.id));
-                    }
-                  }}
-                  className="w-4 h-4"
-                />
-                <span className="text-gray-700">{tech.name}</span>
-                {tech.description && (
-                  <span className="text-sm text-gray-500">- {tech.description}</span>
-                )}
-              </label>
-            ))}
-          </div>
+          <SearchableSelect
+            options={technologies}
+            selectedIds={formData.solution.technologies || []}
+            onSelectionChange={(selectedIds) => handleSolutionChange('technologies', selectedIds)}
+            placeholder="Search for technologies..."
+            title="TECHNOLOGIES"
+          />
         </div>
 
         {/* Tags */}
         <div className="bg-white p-6 border-2 border-gray-300">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">TAGS</h3>
-          <div className="space-y-4">
-            {tags.map((tag) => (
-              <label key={tag.id} className="flex items-center space-x-3">
-                <input
-                  type="checkbox"
-                  checked={formData.solution.tags?.includes(tag.id) || false}
-                  onChange={(e) => {
-                    const currentTags = formData.solution.tags || [];
-                    if (e.target.checked) {
-                      handleSolutionChange('tags', [...currentTags, tag.id]);
-                    } else {
-                      handleSolutionChange('tags', currentTags.filter(t => t !== tag.id));
-                    }
-                  }}
-                  className="w-4 h-4"
-                />
-                <span className="text-gray-700">{tag.name}</span>
-                {tag.description && (
-                  <span className="text-sm text-gray-500">- {tag.description}</span>
-                )}
-              </label>
-            ))}
-          </div>
+          <SearchableSelect
+            options={tags}
+            selectedIds={formData.solution.tags || []}
+            onSelectionChange={(selectedIds) => handleSolutionChange('tags', selectedIds)}
+            placeholder="Search for tags..."
+            title="TAGS"
+          />
         </div>
 
         {/* Review Section */}
@@ -769,20 +740,18 @@ export default function SolutionForm({
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">REVIEW AUTHOR *</label>
-            <select
-              value={formData.review.authorId}
-              onChange={(e) => handleReviewChange('authorId', e.target.value)}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            >
-              <option value="">Select review author</option>
-              {users.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.name} ({user.email})
-                </option>
-              ))}
-            </select>
+            <label className="block text-sm font-bold text-gray-700 mb-2">REVIEW AUTHOR</label>
+            <div className="p-3 border-2 border-gray-300 bg-gray-50 text-gray-600">
+              {(() => {
+                const selectedUser = users.find(u => u.id === formData.solution.customerId);
+                return selectedUser 
+                  ? `${selectedUser.name} (${selectedUser.email}) - Customer`
+                  : 'Customer (will be set automatically)';
+              })()}
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Review author is automatically set to the customer
+            </p>
           </div>
         </div>
 

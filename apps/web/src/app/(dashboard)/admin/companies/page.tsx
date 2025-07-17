@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import CompanyForm from './_components/CompanyForm';
 
 interface Country {
   id: string;
@@ -20,32 +21,16 @@ interface Company {
   createdAt: string;
 }
 
-interface CreateCompanyData {
-  name: string;
-  description: string;
-  logoUrl?: string;
-  website?: string;
-  countryId: string;
-}
-
 export default function ManageCompanies() {
   const [companies, setCompanies] = useState<Company[]>([]);
-  const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCreating, setIsCreating] = useState(false);
+  const [editingCompany, setEditingCompany] = useState<string | null>(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [createData, setCreateData] = useState<CreateCompanyData>({
-    name: '',
-    description: '',
-    logoUrl: '',
-    website: '',
-    countryId: '',
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{type: 'success' | 'error' | null, message: string}>({type: null, message: ''});
 
   useEffect(() => {
     loadCompanies();
-    loadCountries();
   }, []);
 
   const loadCompanies = async () => {
@@ -61,19 +46,15 @@ export default function ManageCompanies() {
     }
   };
 
-  const loadCountries = async () => {
-    try {
-      const response = await fetch('/api/admin/countries');
-      const data = await response.json();
-      setCountries(data.countries || []);
-    } catch (error) {
-      console.error('Failed to load countries:', error);
-    }
-  };
-
-  const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsCreating(true);
+  const handleSubmit = async (companyData: {
+    name: string;
+    description: string;
+    logoUrl?: string;
+    website?: string;
+    countryId: string;
+    ownerId: string;
+  }) => {
+    setIsSubmitting(true);
     setStatus({type: null, message: ''});
 
     try {
@@ -82,12 +63,11 @@ export default function ManageCompanies() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(createData),
+        body: JSON.stringify(companyData),
       });
 
       if (response.ok) {
         setStatus({type: 'success', message: 'Company created successfully!'});
-        setCreateData({ name: '', description: '', logoUrl: '', website: '', countryId: '' });
         setShowCreateForm(false);
         loadCompanies();
       } else {
@@ -98,8 +78,57 @@ export default function ManageCompanies() {
       console.error('Error creating company:', error);
       setStatus({type: 'error', message: 'Network error. Please try again.'});
     } finally {
-      setIsCreating(false);
+      setIsSubmitting(false);
     }
+  };
+
+  const handleEditSubmit = async (companyData: {
+    name: string;
+    description: string;
+    logoUrl?: string;
+    website?: string;
+    countryId: string;
+    ownerId: string;
+  }) => {
+    if (!editingCompany) return;
+
+    setIsSubmitting(true);
+    setStatus({type: null, message: ''});
+
+    try {
+      const response = await fetch(`/api/admin/companies/${editingCompany}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(companyData),
+      });
+
+      if (response.ok) {
+        setStatus({type: 'success', message: 'Company updated successfully!'});
+        setEditingCompany(null);
+        loadCompanies();
+      } else {
+        const result = await response.json();
+        setStatus({type: 'error', message: result.error || 'Failed to update company'});
+      }
+    } catch (error) {
+      console.error('Error updating company:', error);
+      setStatus({type: 'error', message: 'Network error. Please try again.'});
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const transformCompanyToFormData = (company: Company) => {
+    return {
+      name: company.name,
+      description: company.description || '',
+      logoUrl: company.logoUrl,
+      website: company.website,
+      countryId: company.countryId,
+      ownerId: 'user-1', // Default owner, should be improved
+    };
   };
 
   const handleDelete = async (id: string) => {
@@ -157,81 +186,14 @@ export default function ManageCompanies() {
 
       {/* Create Form */}
       {showCreateForm && (
-        <form onSubmit={handleCreate} className="bg-gray-50 p-6 border-2 border-gray-300 space-y-4">
+        <div className="bg-gray-50 p-6 border-2 border-gray-300">
           <h3 className="text-xl font-bold text-gray-900 mb-4">CREATE NEW COMPANY</h3>
-          
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">COMPANY NAME *</label>
-            <input
-              type="text"
-              value={createData.name}
-              onChange={(e) => setCreateData(prev => ({...prev, name: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">DESCRIPTION *</label>
-            <textarea
-              value={createData.description}
-              onChange={(e) => setCreateData(prev => ({...prev, description: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">LOGO URL</label>
-            <input
-              type="url"
-              value={createData.logoUrl}
-              onChange={(e) => setCreateData(prev => ({...prev, logoUrl: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">WEBSITE</label>
-            <input
-              type="url"
-              value={createData.website}
-              onChange={(e) => setCreateData(prev => ({...prev, website: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">COUNTRY *</label>
-            <select
-              value={createData.countryId}
-              onChange={(e) => setCreateData(prev => ({...prev, countryId: e.target.value}))}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              required
-            >
-              <option value="">Select a country</option>
-              {countries.map((country) => (
-                <option key={country.id} value={country.id}>
-                  {country.flag} {country.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="text-center">
-            <button
-              type="submit"
-              disabled={isCreating}
-              className={`px-6 py-2 border-2 border-gray-900 font-bold text-white transition-colors ${
-                isCreating 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gray-900 hover:bg-white hover:text-gray-900'
-              }`}
-            >
-              {isCreating ? 'CREATING...' : 'CREATE COMPANY'}
-            </button>
-          </div>
-        </form>
+          <CompanyForm
+            onSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
+            submitStatus={status}
+          />
+        </div>
       )}
 
       {/* Companies List */}
@@ -243,32 +205,63 @@ export default function ManageCompanies() {
         ) : (
           <div className="grid gap-4">
             {companies.map((company) => (
-              <div key={company.id} className="bg-white p-6 border-2 border-gray-300 flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                  {company.logoUrl && (
-                    <Image src={company.logoUrl} alt={company.name} width={48} height={48} className="rounded object-cover" />
-                  )}
-                  <div>
-                    <h4 className="font-bold text-gray-900">{company.name}</h4>
-                    <p className="text-gray-600">{company.description}</p>
-                    {company.website && (
-                      <p className="text-sm text-blue-600">
-                        <a href={company.website} target="_blank" rel="noopener noreferrer">
-                          {company.website}
-                        </a>
-                      </p>
-                    )}
-                    <p className="text-sm text-gray-500">
-                      {company.country.flag} {company.country.name} • Created: {new Date(company.createdAt).toLocaleDateString()}
-                    </p>
+              <div key={company.id} className="bg-white border-2 border-gray-300">
+                {editingCompany === company.id ? (
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-bold text-gray-900">EDIT COMPANY</h3>
+                      <button
+                        onClick={() => setEditingCompany(null)}
+                        className="px-4 py-2 border-2 border-gray-600 text-gray-600 font-bold hover:bg-gray-600 hover:text-white transition-colors"
+                      >
+                        CANCEL
+                      </button>
+                    </div>
+                    <CompanyForm
+                      initialData={transformCompanyToFormData(company)}
+                      isEditing={true}
+                      onSubmit={handleEditSubmit}
+                      isSubmitting={isSubmitting}
+                      submitStatus={status}
+                    />
                   </div>
-                </div>
-                <button
-                  onClick={() => handleDelete(company.id)}
-                  className="px-4 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
-                >
-                  DELETE
-                </button>
+                ) : (
+                  <div className="p-6 flex justify-between items-center">
+                    <div className="flex items-center space-x-4">
+                      {company.logoUrl && (
+                        <Image src={company.logoUrl} alt={company.name} width={48} height={48} className="rounded object-cover" />
+                      )}
+                      <div>
+                        <h4 className="font-bold text-gray-900">{company.name}</h4>
+                        <p className="text-gray-600">{company.description}</p>
+                        {company.website && (
+                          <p className="text-sm text-blue-600">
+                            <a href={company.website} target="_blank" rel="noopener noreferrer">
+                              {company.website}
+                            </a>
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-500">
+                          {company.country.flag} {company.country.name} • Created: {new Date(company.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => setEditingCompany(company.id)}
+                        className="px-4 py-2 border-2 border-gray-900 text-gray-900 font-bold hover:bg-gray-900 hover:text-white transition-colors"
+                      >
+                        EDIT
+                      </button>
+                      <button
+                        onClick={() => handleDelete(company.id)}
+                        className="px-4 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                      >
+                        DELETE
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
