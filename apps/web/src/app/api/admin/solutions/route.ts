@@ -7,19 +7,6 @@ interface TechnicalDetail {
 }
 
 interface CreateSolutionRequest {
-  user: {
-    email: string;
-    name: string;
-    avatarUrl?: string;
-    countryId: string;
-  };
-  company: {
-    name: string;
-    description: string;
-    logoUrl?: string;
-    website?: string;
-    countryId: string;
-  };
   solution: {
     title: string;
     slug: string;
@@ -36,13 +23,16 @@ interface CreateSolutionRequest {
     outcomes?: string[];
     completedAt?: string;
     isForSale: boolean;
+    customerId: string;
     companyId?: string;
+    technologies?: string[];
     tags?: string[];
   };
   review: {
     rating: number;
     comment: string;
     attachments?: string[];
+    authorId: string;
   };
 }
 
@@ -51,18 +41,9 @@ export async function POST(request: NextRequest) {
     const body: CreateSolutionRequest = await request.json();
     
     // Validate required fields
-    if (!body.user.email || !body.user.name || !body.company.name || !body.company.description || !body.solution.title || !body.review.comment) {
+    if (!body.solution.title || !body.solution.customerId || !body.review.comment || !body.review.authorId) {
       return NextResponse.json(
         { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.user.email)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
         { status: 400 }
       );
     }
@@ -79,40 +60,46 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Start transaction to create user, company, solution, and review
-    const result = await db.$transaction(async (tx) => {
-      // Check if user already exists, if not create them
-      let user = await tx.user.findUnique({
-        where: { email: body.user.email }
+    // Verify that customer exists
+    const customer = await db.user.findUnique({
+      where: { id: body.solution.customerId }
+    });
+
+    if (!customer) {
+      return NextResponse.json(
+        { error: 'Customer not found' },
+        { status: 400 }
+      );
+    }
+
+    // Verify that review author exists
+    const reviewer = await db.user.findUnique({
+      where: { id: body.review.authorId }
+    });
+
+    if (!reviewer) {
+      return NextResponse.json(
+        { error: 'Review author not found' },
+        { status: 400 }
+      );
+    }
+
+    // If company is specified, verify it exists
+    if (body.solution.companyId) {
+      const company = await db.company.findUnique({
+        where: { id: body.solution.companyId }
       });
 
-      if (!user) {
-        // Create new user with default role
-        user = await tx.user.create({
-          data: {
-            email: body.user.email,
-            name: body.user.name,
-            avatarUrl: body.user.avatarUrl,
-            countryId: body.user.countryId,
-            roles: {
-              connect: [{ id: 'role-user' }] // Default user role
-            }
-          }
-        });
+      if (!company) {
+        return NextResponse.json(
+          { error: 'Company not found' },
+          { status: 400 }
+        );
       }
+    }
 
-      // Create company
-      const company = await tx.company.create({
-        data: {
-          name: body.company.name,
-          description: body.company.description,
-          logoUrl: body.company.logoUrl,
-          website: body.company.website,
-          countryId: body.company.countryId,
-          ownerId: user.id,
-        }
-      });
-
+    // Start transaction to create solution and review
+    const result = await db.$transaction(async (tx) => {
       // Create solution
       const solution = await tx.solution.create({
         data: {
@@ -131,10 +118,13 @@ export async function POST(request: NextRequest) {
           outcomes: body.solution.outcomes || [],
           completedAt: body.solution.completedAt ? new Date(body.solution.completedAt) : null,
           isForSale: body.solution.isForSale,
-          customerId: user.id,
-          companyId: company.id,
+          customerId: body.solution.customerId,
+          companyId: body.solution.companyId || null,
           tags: {
             connect: (body.solution.tags || []).map((tagId: string) => ({ id: tagId }))
+          },
+          technologies: {
+            connect: (body.solution.technologies || []).map((techId: string) => ({ id: techId }))
           }
         }
       });
@@ -145,20 +135,18 @@ export async function POST(request: NextRequest) {
           rating: body.review.rating,
           comment: body.review.comment,
           attachments: body.review.attachments || [],
-          authorId: user.id,
+          authorId: body.review.authorId,
           solutionId: solution.id,
         }
       });
 
-      return { user, company, solution, review };
+      return { solution, review };
     });
 
     return NextResponse.json(
       { 
         message: 'Solution created successfully',
         data: {
-          userId: result.user.id,
-          companyId: result.company.id,
           solutionId: result.solution.id,
           reviewId: result.review.id,
           slug: result.solution.slug
@@ -174,14 +162,14 @@ export async function POST(request: NextRequest) {
     if (error instanceof Error) {
       if (error.message.includes('Unique constraint')) {
         return NextResponse.json(
-          { error: 'A solution with this slug or email already exists' },
+          { error: 'A solution with this slug already exists' },
           { status: 400 }
         );
       }
       
       if (error.message.includes('Foreign key constraint')) {
         return NextResponse.json(
-          { error: 'Invalid country ID or company ID' },
+          { error: 'Invalid customer ID, company ID, tag ID, or technology ID' },
           { status: 400 }
         );
       }
