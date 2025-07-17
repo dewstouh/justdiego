@@ -12,9 +12,9 @@ export default function AttachmentGallery({ attachments }: AttachmentGalleryProp
   }
 
   return (
-    <div className="space-y-3">
-      <h5 className="font-bold text-sm text-gray-700 mb-3">ATTACHMENTS:</h5>
-      <div className="grid grid-cols-3 gap-2">
+    <div className={`space-y-4`}>
+      <h5 className="font-bold text-sm text-gray-700 mb-4">EVIDENCE:</h5>
+      <div className="grid grid-cols-3 gap-4">
         {attachments.map((attachment, index) => (
           <Attachment
             key={index}
