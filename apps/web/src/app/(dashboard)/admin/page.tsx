@@ -55,16 +55,13 @@ interface SolutionData {
   shortDescription: string;
   longDescription: string;
   description?: string;
-  thumbnailUrl?: string;
-  demoUrl?: string;
   problemDescription: string;
   solutionDescription: string;
   technicalDetails?: TechnicalDetail[];
   attachments?: string[];
   challenges?: string[];
   outcomes?: string[];
-  completedAt?: string;
-  isForSale: boolean;
+  completedAt: string;
   customerId: string;
   companyId?: string;
   technologies?: string[];
@@ -96,15 +93,13 @@ export default function AdminDashboard() {
       shortDescription: '',
       longDescription: '',
       description: '',
-      thumbnailUrl: '',
-      demoUrl: '',
       problemDescription: '',
       solutionDescription: '',
       technicalDetails: [],
       attachments: [],
       challenges: [],
       outcomes: [],
-      isForSale: false,
+      completedAt: new Date().toISOString().split('T')[0]!, // Today's date as default
       customerId: '',
       companyId: '',
       technologies: [],
@@ -202,9 +197,70 @@ export default function AdminDashboard() {
     handleSolutionChange('technicalDetails', updatedDetails);
   };
 
-  const handleArrayInputChange = (field: 'challenges' | 'outcomes', value: string) => {
-    const arrayValue = value.split('\n').filter(item => item.trim() !== '');
-    handleSolutionChange(field, arrayValue);
+  // New functions for individual challenge/outcome management
+  const addChallenge = () => {
+    const currentChallenges = formData.solution.challenges || [];
+    handleSolutionChange('challenges', [...currentChallenges, '']);
+  };
+
+  const updateChallenge = (index: number, value: string) => {
+    const currentChallenges = [...(formData.solution.challenges || [])];
+    currentChallenges[index] = value;
+    handleSolutionChange('challenges', currentChallenges);
+  };
+
+  const removeChallenge = (index: number) => {
+    const currentChallenges = formData.solution.challenges?.filter((_, i) => i !== index) || [];
+    handleSolutionChange('challenges', currentChallenges);
+  };
+
+  const addOutcome = () => {
+    const currentOutcomes = formData.solution.outcomes || [];
+    handleSolutionChange('outcomes', [...currentOutcomes, '']);
+  };
+
+  const updateOutcome = (index: number, value: string) => {
+    const currentOutcomes = [...(formData.solution.outcomes || [])];
+    currentOutcomes[index] = value;
+    handleSolutionChange('outcomes', currentOutcomes);
+  };
+
+  const removeOutcome = (index: number) => {
+    const currentOutcomes = formData.solution.outcomes?.filter((_, i) => i !== index) || [];
+    handleSolutionChange('outcomes', currentOutcomes);
+  };
+
+  // Attachment management functions
+  const addAttachment = (section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = formData.solution.attachments || [];
+      handleSolutionChange('attachments', [...currentAttachments, '']);
+    } else {
+      const currentAttachments = formData.review.attachments || [];
+      handleReviewChange('attachments', [...currentAttachments, '']);
+    }
+  };
+
+  const updateAttachment = (index: number, value: string, section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = [...(formData.solution.attachments || [])];
+      currentAttachments[index] = value;
+      handleSolutionChange('attachments', currentAttachments);
+    } else {
+      const currentAttachments = [...(formData.review.attachments || [])];
+      currentAttachments[index] = value;
+      handleReviewChange('attachments', currentAttachments);
+    }
+  };
+
+  const removeAttachment = (index: number, section: 'solution' | 'review') => {
+    if (section === 'solution') {
+      const currentAttachments = formData.solution.attachments?.filter((_, i) => i !== index) || [];
+      handleSolutionChange('attachments', currentAttachments);
+    } else {
+      const currentAttachments = formData.review.attachments?.filter((_, i) => i !== index) || [];
+      handleReviewChange('attachments', currentAttachments);
+    }
   };
 
   const generateSlug = (title: string) => {
@@ -229,15 +285,13 @@ export default function AdminDashboard() {
         shortDescription: '',
         longDescription: '',
         description: '',
-        thumbnailUrl: '',
-        demoUrl: '',
         problemDescription: '',
         solutionDescription: '',
         technicalDetails: [],
         attachments: [],
         challenges: [],
         outcomes: [],
-        isForSale: false,
+        completedAt: new Date().toISOString().split('T')[0]!,
         customerId: '',
         companyId: '',
         technologies: [],
@@ -492,55 +546,123 @@ export default function AdminDashboard() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2">THUMBNAIL URL</label>
-              <input
-                type="url"
-                value={formData.solution.thumbnailUrl || ''}
-                onChange={(e) => handleSolutionChange('thumbnailUrl', e.target.value)}
-                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2">DEMO URL</label>
-              <input
-                type="url"
-                value={formData.solution.demoUrl || ''}
-                onChange={(e) => handleSolutionChange('demoUrl', e.target.value)}
-                className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
-              />
-            </div>
-          </div>
-
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              <input
-                type="checkbox"
-                checked={formData.solution.isForSale}
-                onChange={(e) => handleSolutionChange('isForSale', e.target.checked)}
-                className="mr-2"
-              />
-              IS FOR SALE
-            </label>
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">CHALLENGES (one per line)</label>
-            <textarea
-              value={formData.solution.challenges?.join('\n') || ''}
-              onChange={(e) => handleArrayInputChange('challenges', e.target.value)}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
+            <label className="block text-sm font-bold text-gray-700 mb-2">COMPLETED DATE *</label>
+            <input
+              type="date"
+              required
+              value={formData.solution.completedAt}
+              onChange={(e) => handleSolutionChange('completedAt', e.target.value)}
+              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">OUTCOMES (one per line)</label>
-            <textarea
-              value={formData.solution.outcomes?.join('\n') || ''}
-              onChange={(e) => handleArrayInputChange('outcomes', e.target.value)}
-              className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
-            />
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700">CHALLENGES</label>
+              <button
+                type="button"
+                onClick={addChallenge}
+                className="px-3 py-1 border-2 border-gray-900 bg-gray-900 text-white text-sm font-bold hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                ADD CHALLENGE
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(formData.solution.challenges || []).map((challenge, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    value={challenge}
+                    onChange={(e) => updateChallenge(index, e.target.value)}
+                    className="flex-1 p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+                    placeholder={`Challenge ${index + 1}`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeChallenge(index)}
+                    className="px-3 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              ))}
+              {!formData.solution.challenges?.length && (
+                <p className="text-gray-500 text-sm">No challenges added yet. Click &quot;ADD CHALLENGE&quot; to add one.</p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700">OUTCOMES</label>
+              <button
+                type="button"
+                onClick={addOutcome}
+                className="px-3 py-1 border-2 border-gray-900 bg-gray-900 text-white text-sm font-bold hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                ADD OUTCOME
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(formData.solution.outcomes || []).map((outcome, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    value={outcome}
+                    onChange={(e) => updateOutcome(index, e.target.value)}
+                    className="flex-1 p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+                    placeholder={`Outcome ${index + 1}`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeOutcome(index)}
+                    className="px-3 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              ))}
+              {!formData.solution.outcomes?.length && (
+                <p className="text-gray-500 text-sm">No outcomes added yet. Click &quot;ADD OUTCOME&quot; to add one.</p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700">SOLUTION ATTACHMENTS</label>
+              <button
+                type="button"
+                onClick={() => addAttachment('solution')}
+                className="px-3 py-1 border-2 border-gray-900 bg-gray-900 text-white text-sm font-bold hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                ADD ATTACHMENT
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(formData.solution.attachments || []).map((attachment, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="url"
+                    value={attachment}
+                    onChange={(e) => updateAttachment(index, e.target.value, 'solution')}
+                    className="flex-1 p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+                    placeholder={`https://example.com/attachment-${index + 1}.png`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeAttachment(index, 'solution')}
+                    className="px-3 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              ))}
+              {!formData.solution.attachments?.length && (
+                <p className="text-gray-500 text-sm">No attachments added yet. Click &quot;ADD ATTACHMENT&quot; to add one.</p>
+              )}
+            </div>
           </div>
         </div>
 
@@ -719,6 +841,42 @@ export default function AdminDashboard() {
               className="w-full p-3 border-2 border-gray-300 focus:border-gray-900 outline-none h-24"
               required
             />
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700">REVIEW ATTACHMENTS</label>
+              <button
+                type="button"
+                onClick={() => addAttachment('review')}
+                className="px-3 py-1 border-2 border-gray-900 bg-gray-900 text-white text-sm font-bold hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                ADD ATTACHMENT
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(formData.review.attachments || []).map((attachment, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="url"
+                    value={attachment}
+                    onChange={(e) => updateAttachment(index, e.target.value, 'review')}
+                    className="flex-1 p-3 border-2 border-gray-300 focus:border-gray-900 outline-none"
+                    placeholder={`https://example.com/review-attachment-${index + 1}.png`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeAttachment(index, 'review')}
+                    className="px-3 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              ))}
+              {!formData.review.attachments?.length && (
+                <p className="text-gray-500 text-sm">No review attachments added yet. Click &quot;ADD ATTACHMENT&quot; to add one.</p>
+              )}
+            </div>
           </div>
         </div>
 

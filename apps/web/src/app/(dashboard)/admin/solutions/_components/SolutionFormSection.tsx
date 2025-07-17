@@ -14,16 +14,13 @@ interface SolutionData {
   shortDescription: string;
   longDescription: string;
   description?: string;
-  thumbnailUrl?: string;
-  demoUrl?: string;
   problemDescription: string;
   solutionDescription: string;
   technicalDetails?: TechnicalDetail[];
   attachments?: string[];
   challenges?: string[];
   outcomes?: string[];
-  completedAt?: string;
-  isForSale: boolean;
+  completedAt: string;
   companyId?: string;
   technologies?: Prisma.TechnologyCreateInput[];
   tags?: Prisma.TagCreateInput[];
@@ -32,7 +29,6 @@ interface SolutionData {
 interface SolutionFormSectionProps {
   formData: SolutionData;
   onChange: (field: keyof SolutionData, value: string | boolean | string[] | TechnicalDetail[] | Prisma.TechnologyCreateInput[] | Prisma.TagCreateInput[]) => void;
-  onArrayInputChange: (field: 'challenges' | 'outcomes', value: string, section: 'solution') => void;
   onTitleChange: (title: string) => void;
   onTechnicalDetailChange: (index: number, field: 'title' | 'content', value: string) => void;
   onAddTechnicalDetail: () => void;
@@ -40,19 +36,30 @@ interface SolutionFormSectionProps {
   onAddAttachment: (section: 'solution') => void;
   onUpdateAttachment: (index: number, value: string, section: 'solution') => void;
   onRemoveAttachment: (index: number, section: 'solution') => void;
+  onAddChallenge: () => void;
+  onUpdateChallenge: (index: number, value: string) => void;
+  onRemoveChallenge: (index: number) => void;
+  onAddOutcome: () => void;
+  onUpdateOutcome: (index: number, value: string) => void;
+  onRemoveOutcome: (index: number) => void;
 }
 
 export function SolutionFormSection({
   formData,
   onChange,
-  onArrayInputChange,
   onTitleChange,
   onTechnicalDetailChange,
   onAddTechnicalDetail,
   onRemoveTechnicalDetail,
   onAddAttachment,
   onUpdateAttachment,
-  onRemoveAttachment
+  onRemoveAttachment,
+  onAddChallenge,
+  onUpdateChallenge,
+  onRemoveChallenge,
+  onAddOutcome,
+  onUpdateOutcome,
+  onRemoveOutcome
 }: SolutionFormSectionProps) {
   
   const handleTechnologiesChange = (technologies: Prisma.TechnologyCreateInput[]) => {
@@ -196,84 +203,92 @@ export function SolutionFormSection({
           <p className="text-xs text-gray-500 mt-1">Select tags that categorize this solution</p>
         </div>
 
-        {/* URLs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              Thumbnail URL
-            </label>
-            <input
-              type="url"
-              value={formData.thumbnailUrl}
-              onChange={(e) => onChange('thumbnailUrl', e.target.value)}
-              className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
-              placeholder="https://example.com/thumbnail.jpg"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              Demo URL
-            </label>
-            <input
-              type="url"
-              value={formData.demoUrl}
-              onChange={(e) => onChange('demoUrl', e.target.value)}
-              className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
-              placeholder="https://demo.example.com"
-            />
-          </div>
-        </div>
-
         {/* Challenges & Outcomes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              Challenges (one per line)
-            </label>
-            <textarea
-              value={formData.challenges?.join('\n') || ''}
-              onChange={(e) => onArrayInputChange('challenges', e.target.value, 'solution')}
-              className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900 h-24"
-              placeholder="Challenge 1&#10;Challenge 2&#10;Challenge 3"
-            />
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700">Challenges</label>
+              <button
+                type="button"
+                onClick={onAddChallenge}
+                className="px-3 py-1 border-2 border-gray-900 bg-gray-900 text-white text-sm font-bold hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                ADD CHALLENGE
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(formData.challenges || []).map((challenge, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    value={challenge}
+                    onChange={(e) => onUpdateChallenge(index, e.target.value)}
+                    className="flex-1 px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+                    placeholder={`Challenge ${index + 1}`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => onRemoveChallenge(index)}
+                    className="px-3 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              ))}
+              {!formData.challenges?.length && (
+                <p className="text-gray-500 text-sm">No challenges added yet. Click &quot;ADD CHALLENGE&quot; to add one.</p>
+              )}
+            </div>
           </div>
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              Outcomes (one per line)
-            </label>
-            <textarea
-              value={formData.outcomes?.join('\n') || ''}
-              onChange={(e) => onArrayInputChange('outcomes', e.target.value, 'solution')}
-              className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900 h-24"
-              placeholder="Outcome 1&#10;Outcome 2&#10;Outcome 3"
-            />
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-bold text-gray-700">Outcomes</label>
+              <button
+                type="button"
+                onClick={onAddOutcome}
+                className="px-3 py-1 border-2 border-gray-900 bg-gray-900 text-white text-sm font-bold hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                ADD OUTCOME
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(formData.outcomes || []).map((outcome, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    value={outcome}
+                    onChange={(e) => onUpdateOutcome(index, e.target.value)}
+                    className="flex-1 px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+                    placeholder={`Outcome ${index + 1}`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => onRemoveOutcome(index)}
+                    className="px-3 py-2 border-2 border-red-600 text-red-600 font-bold hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              ))}
+              {!formData.outcomes?.length && (
+                <p className="text-gray-500 text-sm">No outcomes added yet. Click &quot;ADD OUTCOME&quot; to add one.</p>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Date & Sale Status */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
-              Completed Date
-            </label>
-            <input
-              type="date"
-              value={formData.completedAt}
-              onChange={(e) => onChange('completedAt', e.target.value)}
-              className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
-            />
-          </div>
-          <div className="flex items-center">
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={formData.isForSale}
-                onChange={(e) => onChange('isForSale', e.target.checked)}
-                className="w-4 h-4 border-2 border-gray-300"
-              />
-              <span className="text-sm font-bold text-gray-700">For Sale</span>
-            </label>
-          </div>
+        {/* Date */}
+        <div>
+          <label className="block text-sm font-bold text-gray-700 mb-2">
+            Completed Date *
+          </label>
+          <input
+            type="date"
+            required
+            value={formData.completedAt}
+            onChange={(e) => onChange('completedAt', e.target.value)}
+            className="w-full px-3 py-2 border-2 border-gray-300 bg-white text-gray-900 focus:border-gray-900"
+          />
         </div>
 
         {/* Technical Details */}
