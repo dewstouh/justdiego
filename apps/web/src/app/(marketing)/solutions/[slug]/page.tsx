@@ -75,10 +75,14 @@ async function SolutionContent({ slug }: { slug: string }) {
         </div>
       )}
 
-      <TechnicalDetails technicalDetails={technicalDetails as TechnicalDetail[]} />
+      {technicalDetails && (technicalDetails as TechnicalDetail[]).length > 0 && (
+        <TechnicalDetails technicalDetails={technicalDetails as TechnicalDetail[]} />
+      )}
 
-      <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
-
+      {challenges && challenges.length && outcomes && outcomes.length > 0 && (
+        <ChallengesOutcomes challenges={challenges} outcomes={outcomes} />
+      )}
+      
       {technologies && technologies.length > 0 && (
         <div className="mb-6">
           <Technologies technologies={technologies} />
