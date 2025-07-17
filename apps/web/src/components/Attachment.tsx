@@ -39,13 +39,13 @@ export default function Attachment({
         className="relative group cursor-pointer"
         onClick={openModal}
       >
-      <div className="w-full h-40 bg-gray-200 border-2 border-gray-300 hover:border-gray-900 group-hover:bg-gray-100 transition-colors overflow-hidden">
+      <div className="w-full h-56 bg-gray-200 border-2 border-gray-300 hover:border-gray-900 group-hover:bg-gray-100 transition-colors overflow-hidden">
         {isImage ? (
           <Image
             src={attachment}
             alt={`Attachment ${index + 1}`}
             width={200}
-            height={160}
+            height={224}
             className="w-full h-full object-cover"
             onError={handleImageError}
           />
