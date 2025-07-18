@@ -61,6 +61,22 @@ This repository is the backbone of justdiego.com , a platform built to deliver r
 6. Access the application:
     - Open your browser and go to `http://localhost:3000` to view the platform.
 
+## Docker Setup
+The fastest way to get Quick Status running:
+
+```bash
+# Option 1: Build and run directly from GitHub
+docker build -t justdiego https://github.com/dewstouh/justdiego.git#main:docker/images/justdiego
+docker run -p 3000:3000 justdiego
+
+# Option 2: Clone and use docker-compose
+git clone https://github.com/dewstouh/justdiego.git
+cd justdiego/docker/images/justdiego
+docker compose up
+```
+
+Visit http://localhost:3000 to see the page!
+
 # License
 justdiego.com is licensed under the [MIT License](./LICENSE).
 
