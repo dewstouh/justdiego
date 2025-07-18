@@ -11,7 +11,6 @@ import {
     permissionsMock,
     rolesMock,
     toolsMock,
-    reviewsMock
 } from '../mocks';
 import { navigationsMock } from '../mocks/website/navigations';
 

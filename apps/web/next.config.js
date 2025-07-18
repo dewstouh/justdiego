@@ -8,6 +8,7 @@ const nextConfig = {
   experimental: {
     useCache: true
   },
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
