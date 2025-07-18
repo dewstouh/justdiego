@@ -51,10 +51,11 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=sha,prefix={{branch}}-
+            type=sha,prefix={{branch}}-,enable={{is_default_branch}}
+            type=sha,prefix=pr-,enable=${{ github.event_name == 'pull_request' }}
             type=raw,value=latest,enable={{is_default_branch}}
 
-      - name: Build and push Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -64,4 +65,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ github.event_name == 'pull_request' && 'linux/amd64' || 'linux/amd64,linux/arm64' }}
