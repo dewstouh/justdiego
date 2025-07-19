@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.0](https://github.com/dewstouh/justdiego/compare/v1.3.0...v1.4.0) (2025-07-19)
+
+
+### Features
+
+* add docker installation support and documentation guide ([85ec87a](https://github.com/dewstouh/justdiego/commit/85ec87ac8131c4384254aad20e57cafe731f9b09))
+* **admin:** implement inline editing for all admin entities ([4bbb72e](https://github.com/dewstouh/justdiego/commit/4bbb72e495b111ec6d419c324f2f0f63836bc06d))
+* **admin:** implement inline editing for all admin entities ([121ae29](https://github.com/dewstouh/justdiego/commit/121ae29596090490e79a22f454dd7eaf099526a5))
+* **admin:** implement inline editing for tags management ([2c67588](https://github.com/dewstouh/justdiego/commit/2c675883aa0fa29a0634dd29312aaaf4ae481475))
+* **admin:** implement inline editing for tags management ([5c026a4](https://github.com/dewstouh/justdiego/commit/5c026a48f11f3668764e0b1385db4d1fc3da439a))
+* **docker:** add docker-compose.yml file ([c638154](https://github.com/dewstouh/justdiego/commit/c6381542ce0da5420a8325725846e6075fb33bca))
+* **web:** add health check endpoint ([99161bf](https://github.com/dewstouh/justdiego/commit/99161bf6f8f5a7cfc1fbde8174be71b36c8dfc7d))
+* **web:** add PUT methods for api endpoints to update data ([920acbc](https://github.com/dewstouh/justdiego/commit/920acbcdf9a409289d05f03e313f64a00c076158))
+* **web:** adjust solution creating form removing unused variables ([93c9a8d](https://github.com/dewstouh/justdiego/commit/93c9a8d0d97afcd15421d520a05d370d3001589f))
+* **web:** adjust solution creating form removing unused variables ([6195670](https://github.com/dewstouh/justdiego/commit/6195670bdd3cb0345a983fa2627322bba2a3164d))
+
 ## [1.3.0](https://github.com/dewstouh/justdiego/compare/v1.2.0...v1.3.0) (2025-07-17)
 
 
