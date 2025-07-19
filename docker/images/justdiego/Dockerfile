@@ -1,4 +1,4 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
 
 # This Dockerfile is adapted from the official Turborepo documentation
 # Make sure you update both files!
