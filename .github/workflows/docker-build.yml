@@ -62,13 +62,13 @@ jobs:
             type=sha,prefix=pr-,enable=${{ github.event_name == 'pull_request' }}
             type=raw,value=latest,enable={{is_default_branch}}
 
-      - name: Build Docker image
+      - name: Build Docker Image and Push
         uses: docker/build-push-action@v5
         with:
           context: .
           file: docker/images/justdiego/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: user/app:${{ matrix.architecture }}
+          tags: '${{ github.repository }}:${{ matrix.architecture }}' # push it to dewstouh/justdiego:architecture, e.g dewstouh/justdiego:amd64
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
