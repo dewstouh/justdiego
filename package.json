@@ -1,5 +1,6 @@
 {
   "name": "justdiego",
+  "description": "JustDiego Business Solutions Platform",
   "private": true,
   "scripts": {
     "build": "turbo run build",
